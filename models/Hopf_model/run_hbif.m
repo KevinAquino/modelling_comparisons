@@ -15,11 +15,11 @@
 %load('HealthyGroup.mat');%Load data
 
 % Tmax = 661;%Check whats your tmax.\
-Tmax = 148;%Check whats your tmax.
+Tmax = 147;%Check whats your tmax.
 % wG = 0:0.1:6;%this is de G vector i.e, 0:0.1:8
-wG = [0:6];
+% wG = [0:6];
 
-ldata = 24;%Number of subjets.
+
 % ldata = 1;%Number of subjets.
 
 
