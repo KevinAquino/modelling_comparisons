@@ -1,0 +1,8 @@
+#!/bin/bash
+#SBATCH --account=kg98
+#SBATCH --time=01:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1 
+
+module load matlab
+matlab -r  "run_hibf_SC_CTL;exit" -nojvm -nodisplay -nodesktop -nosplash
