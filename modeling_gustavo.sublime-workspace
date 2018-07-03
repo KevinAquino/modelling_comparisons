@@ -1,0 +1,773 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"vo",
+				"vollh"
+			],
+			[
+				"mni",
+				"mni_nifti"
+			],
+			[
+				"json",
+				"jsonString"
+			],
+			[
+				"vol",
+				"volumeVector"
+			],
+			[
+				"sub",
+				"subjects"
+			],
+			[
+				"ica-R",
+				"ICA-AROMA"
+			],
+			[
+				"ord",
+				"ordDBscan"
+			],
+			[
+				"time",
+				"time_series_dibscan"
+			],
+			[
+				"co",
+				"col"
+			],
+			[
+				"col",
+				"colors"
+			],
+			[
+				"loade",
+				"loader2"
+			],
+			[
+				"ge",
+				"geometry"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"al",
+				"align-content"
+			],
+			[
+				"align",
+				"align-items"
+			],
+			[
+				"anat",
+				"Anaticor"
+			],
+			[
+				"subject",
+				"subjectName"
+			],
+			[
+				"subjec",
+				"subjectName"
+			],
+			[
+				"o",
+				"orderingString"
+			],
+			[
+				"ds_time_series_",
+				"ds_time_series_gs"
+			],
+			[
+				"subj",
+				"subjects"
+			],
+			[
+				"all_co",
+				"all_cor"
+			],
+			[
+				"X_",
+				"X_sub"
+			],
+			[
+				"mask",
+				"maskVolume"
+			],
+			[
+				"rbb",
+				"ribbon_mask"
+			],
+			[
+				"tSN",
+				"tSNR_across_scans"
+			],
+			[
+				"lef",
+				"left_wm"
+			],
+			[
+				"tSNR",
+				"tSNRWM"
+			],
+			[
+				"re",
+				"regressors"
+			],
+			[
+				"image",
+				"imageMatrix"
+			],
+			[
+				"echo",
+				"echo_string"
+			],
+			[
+				"a",
+				"analysis"
+			],
+			[
+				"meica",
+				"meica_folders"
+			],
+			[
+				"n",
+				"nframes"
+			],
+			[
+				"zer",
+				"zeroInds"
+			],
+			[
+				"GM",
+				"GMInds"
+			],
+			[
+				"mas",
+				"maskVol"
+			],
+			[
+				"img",
+				"img1"
+			],
+			[
+				"non",
+				"nonZeroInds"
+			],
+			[
+				"mo",
+				"movementFile"
+			],
+			[
+				"data",
+				"dataArray"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"outpu",
+				"output_png"
+			],
+			[
+				"scan",
+				"scanNames"
+			],
+			[
+				"f",
+				"for"
+			],
+			[
+				"scaN",
+				"scanNames"
+			],
+			[
+				"sca",
+				"scanParams"
+			],
+			[
+				"s",
+				"struct_names"
+			],
+			[
+				"ct",
+				"ctab_rh"
+			],
+			[
+				"tS",
+				"tSeries"
+			],
+			[
+				"sb",
+				"subjects_dir"
+			],
+			[
+				"fnam",
+				"fname_tSeries"
+			],
+			[
+				"fname",
+				"fname_tSNR"
+			],
+			[
+				"par",
+				"parcel_tSNR"
+			],
+			[
+				"parce",
+				"parcel_tSNR"
+			],
+			[
+				"fname_tS",
+				"fname_tSeries"
+			],
+			[
+				"t",
+				"tSNR_lh_struct"
+			],
+			[
+				"uni",
+				"unix_string_rh"
+			],
+			[
+				"nI",
+				"nI_struct"
+			],
+			[
+				"out",
+				"outputFilenameTSNR"
+			],
+			[
+				"data_",
+				"data_struct_save"
+			],
+			[
+				"tsnr",
+				"tsnrData"
+			],
+			[
+				"csf",
+				"csfInds"
+			],
+			[
+				"beta",
+				"betaV"
+			],
+			[
+				"dis",
+				"distMatrix"
+			],
+			[
+				"ver",
+				"vertexParcel"
+			],
+			[
+				"di",
+				"diagev"
+			],
+			[
+				"glob",
+				"globalSignal"
+			],
+			[
+				"st",
+				"stocasticGS_mean"
+			],
+			[
+				"X",
+				"Xresid"
+			],
+			[
+				"GT",
+				"GT_n"
+			],
+			[
+				"corr",
+				"corr_diff"
+			],
+			[
+				"GST",
+				"GSR_BEST_Corr"
+			],
+			[
+				"GS",
+				"GSR_corr"
+			],
+			[
+				"z",
+				"zs_xs"
+			],
+			[
+				"Zs",
+				"zs_xs"
+			],
+			[
+				"PD",
+				"PD_emp"
+			],
+			[
+				"bds",
+				"bds_all"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "manuscript.tex",
+			"settings":
+			{
+				"buffer_size": 3266,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "\\begin{document}"
+			}
+		},
+		{
+			"file": "manuscript.log",
+			"settings":
+			{
+				"buffer_size": 3267,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"PdfLaTeX"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/kevinaquino/projects/modelling_gusatvo"
+	],
+	"file_history":
+	[
+		"/Users/kevinaquino/Documents/qa/offlineQA/tSNR_report.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/mni_volumeToJson.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/printPhysiolPlot.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/visualizeTimeSeriesResults_mni.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/createReport_mni.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/createSurfaceRender.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/websiteStyle.css",
+		"/Users/kevinaquino/fromLocalToMassive.sh",
+		"/Users/kevinaquino/Documents/threestl/something.json",
+		"/Users/kevinaquino/Documents/threestl/testing.json",
+		"/Users/kevinaquino/Documents/threestl/JSONLoader.js",
+		"/Users/kevinaquino/Documents/threestl/something.js",
+		"/Users/kevinaquino/Documents/threestl/js/loaders/AssimpJSONLoader.js",
+		"/Users/kevinaquino/Documents/threestl/js/loaders/AssimpLoader.js",
+		"/Users/kevinaquino/Documents/threestl/js/loaders/VTKLoader.js",
+		"/Users/kevinaquino/Documents/threestl/js/loaders/STLLoader.js",
+		"/Users/kevinaquino/Documents/commonsignalproject.github.io/index.html",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/visualizeTimeSeriesResults.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/DataProcessing/printCarpetPlot.m",
+		"/Users/kevinaquino/projects/GSR_data/UCLA_data_niftis/dibcrat/report/websiteStyle.css",
+		"/Users/kevinaquino/projects/tms-fmri/MRH046_8CHPILOT_MR01/_meica_11-R_L_Con_4_mbep2d_boldnative_4_con_AXIAL_no_oblique.sh",
+		"/Users/kevinaquino/Documents/layerAnalysis/anatomical_layering/scan_labels.m",
+		"/Users/kevinaquino/Documents/nottingham/bin/PSIR_script.sh",
+		"/Applications/freesurfer/subjects/S1_me/surf/test.txt",
+		"/Applications/freesurfer/subjects/S1_me/surf/lh.pial.normals.asc",
+		"/Users/kevinaquino/Documents/GSRSimulation/Data/parcelVolumeTimeSeriesRandom.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/dist_check.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/GSRGroupDiff.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/.gitignore",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/sbatch_multiple_jobs_GSR_FV.sh",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/GSR_job_FullVoxels.script",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/generateCommonSignalFullVoxels.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/CorrMethods/MinOptFun.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/plotter.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/analyseDistributions.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Peripheral/generate_pngs_correlation.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/run_GSR_on_CNP_fullVoxels.m",
+		"/Users/kevinaquino/projects/sandbox/UCLA_SubjectIDs.txt",
+		"/Users/kevinaquino/projects/sandbox/UCLA.csv",
+		"/Users/kevinaquino/Documents/qa/offlineQA/fMRI_report_GUI.m",
+		"/Users/kevinaquino/projects/rs-fMRI/func/GetFDPower.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/metricsOnMNI_152.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/generateSliceSummary.m",
+		"/Users/kevinaquino/projects/rs-fMRI/prepro/run_prepro.m",
+		"/Users/kevinaquino/projects/rs-fMRI/prepro/CompileTS.m",
+		"/Users/kevinaquino/projects/rs-fMRI/func/IntensityNormalise.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/mode1000Normalization.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/tSNR_dyn.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/setInitialParams.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/tSNR.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/fMRI_report.m",
+		"/Users/kevinaquino/Documents/qa/offlineQA/mean_image_report.m",
+		"/Users/kevinaquino/projects/multiecho/run_meica_pilot.sh",
+		"/Users/kevinaquino/projects/GSR_data/data/fd.txt",
+		"/Users/kevinaquino/projects/networkModeling_EI_balanced/deg_test_neg.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/calculateGraphLaplacian.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/calcGL.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/mutInfo.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/moreTesting.m",
+		"/Users/kevinaquino/projects/noiseModelAnalysis/distanceNoise.m",
+		"/Users/kevinaquino/projects/me-ica/meica.libs/tedana.py",
+		"/Users/kevinaquino/projects/multiecho/testing_resting/MRH000_METESTING_MR01/meica_rs.sh",
+		"/Users/kevinaquino/projects/multiecho/aFileForTesting.sh",
+		"/Users/kevinaquino/projects/hopf_model/distanceRelationshipChecker.m",
+		"/Users/kevinaquino/projects/multiecho/testing_again/meica.9-REST_cmrr_mbep2d_bold_mat64_32Ch_AP_Motion/_meica_9-REST_cmrr_mbep2d_bold_mat64_32Ch_AP_Motion.sh",
+		"/Users/kevinaquino/projects/eigen_decomposition/calculateEigenFunctions.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/eigen_decomp_on_fsaverage_sym.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/batch_emode_decomp.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/calc_surf_integral.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/eigenDecomPipeline.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/eigenODE.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/FEM.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/decomposeEigenFunction.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/parcelTimeSeries.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/RegressNoiseSignal.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/slurm_script.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/startup.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/testingODE.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/moveScript.m",
+		"/Users/kevinaquino/projects/eigen_decomposition/testingWaveFunction.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/sandbox_vis.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/distNetwork.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/testing.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/Vis_methods.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Benchmarks/networkGenerator.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/CorrMethods/CM_PCoptim.m",
+		"/Users/kevinaquino/Desktop/projectileMotion.m",
+		"/Users/kevinaquino/Desktop/projectileMotionPlanets.m"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "manuscript.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2328,
+								2328
+							]
+						],
+						"settings":
+						{
+							"auto_name": "\\begin{document}",
+							"spell_check": true,
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "manuscript.log",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3267,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX Log.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.latextools":
+	{
+		"height": 120.0
+	},
+	"pinned_build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
+	"project": "modeling_gustavo.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"createReport_mni",
+				"DataProcessing/createReport_mni.m"
+			],
+			[
+				"visuali",
+				"DataProcessing/visualizeTimeSeriesResults_mni.m"
+			],
+			[
+				"mni_volumeToJson",
+				"DataProcessing/mni_volumeToJson.m"
+			],
+			[
+				"surface",
+				"DataProcessing/createSurfaceRender.m"
+			],
+			[
+				"SetDefaultParams",
+				"DataProcessing/SetDefaultParams.m"
+			],
+			[
+				"prep",
+				"DataProcessing/PreprocessSubject.m"
+			],
+			[
+				"WriteProcessedDataCSV",
+				"DataProcessing/WriteProcessedDataCSV.m"
+			],
+			[
+				"visua",
+				"DataProcessing/visualizeTimeSeriesResults.m"
+			],
+			[
+				"Give",
+				"DataProcessing/GiveMeProcessedData.m"
+			],
+			[
+				"print",
+				"DataProcessing/printCarpetPlot.m"
+			],
+			[
+				"web",
+				"DataProcessing/websiteStyle.css"
+			],
+			[
+				"generate_pngs_correlation",
+				"Peripheral/generate_pngs_correlation.m"
+			],
+			[
+				"parce",
+				"Data/parcelVolumeTimeSeriesRandom.m"
+			],
+			[
+				"free",
+				"offlineQA/freesurferMetrics.m"
+			],
+			[
+				"cm_pc",
+				"CorrMethods/CM_PCoptim.m"
+			],
+			[
+				"per",
+				"Analysis/perform_matrix.m"
+			],
+			[
+				"",
+				"CorrMethods/CM_PCoptim.m"
+			],
+			[
+				"pc",
+				"Analysis/PCoptimFC.m"
+			],
+			[
+				"netw",
+				"Benchmarks/networkGenerator.m"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
