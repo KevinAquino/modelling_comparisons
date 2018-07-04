@@ -7,13 +7,14 @@
 % The FCD KS-estimate
 % The estimated time series as well (which is needed)
 
-function run_model(sc_matrix,time_series,G,model)
+function run_model(sc_matrix,time_series,G,model,preproType)
 % Now when this is solved for each element of G 
 % it is then save seperately, this is to make sure 
 % it is consisent once we go to the cluster level. 
 
 
 % now the first thing one has to do is to check the model
+% Another thing -- we have to consider actually adding GSR to the models as well. 
 
 switch model	
 	case 'HOPF+GLOBAL',
@@ -33,10 +34,17 @@ switch model
 		% Here it is the balanced EI model which is essentially the noise degree model
 		%  -- This is esentiall the noise-degree model but for now keep it seperate
 	case 'HOPF+ANEC',
-		% Here it is the HOPF model with ANEC
+		% Here it is the HOPF model with ANEC 
+		% Will have to work through this as well. 
+		% This here works now -- I think however, will have to implement this version of the FCD as well and add it all together up to the final FCD.
+		folder = 'results/HOPF+ANEC';
+		[ts_simulated_all,grandFCcorr,FCD] = run_hopf_model_heterogenous_edge_bif(sc_matrix,time_series,G,folder);
+
 	case 'NOISY+DEGREE',
 		% Here is simply the noise and degree model
 		folder = 'results/NOISY+DEGREE';
 		% Maybe here run it then save it appropriately.
 		[ts_simulated_all,FCcorr,grandFCcorr] =run_noisy_degree_model(sc_matrix,time_series,G,folder);
 end
+
+% There is a slight issue -- FCD can be calculated in different ways -- either using the phases (as Gustavo is using now) or by standard FCD measures, will have to work out later.
