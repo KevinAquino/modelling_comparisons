@@ -1,6 +1,6 @@
 % This here runs the noisy degree model, and might seem clunky how it is set up but it is needed here so that it is 
 % consistent with the other models when they are being run on a cluster (or just killed because they have been running too long)
-function [ts_simulated_all,FCcorr,grandFCcorr] =run_noisy_degree_model(sc_matrix,time_series,G,folder)
+function [ts_simulated_all,FCcorr,grandFCcorr,FCD_all] =run_noisy_degree_model(sc_matrix,time_series,G,folder)
 
 
 % We first grab the global signal (if there is one) form the estimated model, then find the optimal model for the G-value.
@@ -19,19 +19,18 @@ upperTriangle = find(triu(ones(size(sc_matrix)),1));
 
 
 for subject=1:10,
+	ts = time_series(:,:,subject);
+	% Find the equivalent G
+	corrFC(:,:,subject) = corr(ts.');
+	corrFC_emp = corrFC(:,:,subject);		
 	for coupling_index=1:length(G),
-		% Find the equivalent G
-		ts = time_series(:,:,subject);
-		corrFC(:,:,subject) = corr(ts.');
 		coupling_factor = max(D)/G(coupling_index);
 		for j=1:68;
 			ts_simulated(j,:) = mean(ts,1)*D(j) + coupling_factor*randn(1,147);
 		end
 		ts_simulated_all(:,:,subject,coupling_index) = ts_simulated;
-
 		% Look at the simulated data:
 		corrFC_sim = corr(ts_simulated.');
-		corrFC_emp = corrFC(:,:,subject);
 		FCcorr(coupling_index,subject) = corr(corrFC_sim(upperTriangle),corrFC_emp(upperTriangle));
 	end
 end
@@ -50,3 +49,5 @@ for coupling_index=1:length(G),
 	corrFC_sim = corr(ts_simulated.');	
 	grandFCcorr(coupling_index) = corr(corrFC_sim(upperTriangle),meancorrFC(upperTriangle));
 end
+
+% Question should we be calculating the ks-test for all subjects or just the grand average?
