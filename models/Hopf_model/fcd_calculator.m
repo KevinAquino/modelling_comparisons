@@ -2,6 +2,15 @@
 
 function fcd_est = fcd_calculator(data,windowWidth,overlap)
 
+% Some parameters for the FCD calculation
+if(nargin<3)
+	overlap = 20;
+end
+
+if(nargin<2)
+	windowWidth = 30;
+end
+
 nonOverlap = windowWidth - overlap;
 % Calculate the number of windows:
 N = size(data,1);
