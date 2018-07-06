@@ -3,7 +3,7 @@ function [ts_simulated_all,grandFCcorr,FCD] = run_hopf_model_heterogenous_edge_b
 % Setting up the parameters
 C = sc_matrix;
 N=68;
-Tmax=147;
+Tmax=148;
 Isubdiag = find(tril(ones(N),-1));
 NSUB=size(time_series,3);
 
