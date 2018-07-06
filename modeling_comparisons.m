@@ -4,8 +4,15 @@
 % ============================================================
 
 % Here we have the four processing streams that we want to model the responses to
-% preprocessing_stream ={'MINIMAL','ICA-AROMA','ICA-AROMA+GSR','ICA-AROMA+DBSCAN'};
+% preprocessing_stream ={'MINIMAL','ICA-AROMA','ICA-AROMA_GSR','ICA-AROMA_DBSCAN'};
 preprocessing_stream ={'ICA-AROMA','ICA-AROMA_GSR','ICA-AROMA_DBSCAN'};
+
+% Load in the time series:
+load('/Users/kevinaquino/projects/modelling_gusatvo/empirical_data/ten_subjects_4types.mat');
+% Load in the structural matrix:
+load('/Users/kevinaquino/projects/modelling_gusatvo/empirical_data/exemplarSC.mat');
+sc_matrix = C/max(C(:))*0.2;
+G = linspace(0,6,20);
 
 % A structure here to capture all of the models. Now of course all of these can't really be 
 % solved on one desktop so they will be sent to the cluster to be solved from matlab. Perhaps each
@@ -24,6 +31,9 @@ model_class.globalAndEdge = struct;
 model_class.globalAndEdge.models = {'HOPF+ANEC'};
 
 
+
+
+% Here set up the global coupling value for each model, this is done 
 % ============================================================
 
 % Here now the general script get it all working
@@ -38,11 +48,28 @@ for model_class_type = fields(model_class).',
 		% Now go through each preprocessing stream
 		for prepro = preprocessing_stream,
 			disp(['Using model:',model{1},' with processing stream:',prepro{1}]);
+
+			switch prepro{1}
+				case 'MINIMAL'
+					time_series = time_series_aparc_processed(:,:,:,4);
+				case 'ICA-AROMA'
+					time_series = time_series_aparc_processed(:,:,:,1);
+				case 'ICA-AROMA_GSR'
+					time_series = time_series_aparc_processed(:,:,:,2);
+				case 'ICA-AROMA_DBSCAN'
+					time_series = time_series_aparc_processed(:,:,:,3);
+			end
+				
+			
+			% Here now run the models
+			run_network_model(sc_matrix,time_series,G,model{1},prepro{1});
+
 			% Now here need to add the actual model with parameters that are equivalent
 			% Have to work out the inputs really
 			
 			% We don't actually want to save outputs in a generic function because we want the capability to be general enough to
 			% use the cluster.
+
 
 			% The function has to have the following inputs: the time series of the empirical data, the SC matrix (Which will be global) and then of course the global coupling G.
 
