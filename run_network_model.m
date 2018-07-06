@@ -19,20 +19,26 @@ function run_model(sc_matrix,time_series,G,model,preproType)
 switch model	
 	case 'HOPF+GLOBAL',
 		% Here it is the hopf global model i.e. setting a=-0.01.
-		folder = 'results/HOPF+GOBAL';
-		[ts_simulated_all,grandFCcorr,bifpar] = run_hopf_model_homogenous_bif(sc_matrix,time_series,G,folder);
+		folder = 'results/HOPF+GLOBAL';
+		[ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_homogenous_bif(sc_matrix,time_series,G,folder);
 	case 'DECO+WANG',
 		% Here look at the model what does this use? not the balanced EI model (will have to look)
+		folder = 'results/DECO+WANG';
+		FCD = [];ts_simulated_all = [];grandFCcorr = [];
 	case 'BTF',
 		% Here will have to grab the BTF model and then look at stuff
+		folder = 'results/BTF';
+		FCD = [];ts_simulated_all = [];grandFCcorr = [];
 	case 'HOPF+HETEROGENOUS',
 		% Here look at the heterogenous 
 		folder = 'results/HOPF+HETEROGENOUS';
-		[FC_simul, FC_emp, fitting, meta, ksP, PhasesD, Phases, bifpar] = run_hopf_model_heterogenous_bif(sc_matrix,time_series,G,folder);
+		[ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_heterogenous_bif(sc_matrix,time_series,G,folder);
 		% Will have to instead have something more uniform, but for now keep this structure.
 	case 'DECO+WANG+BALANCED',
 		% Here it is the balanced EI model which is essentially the noise degree model
 		%  -- This is esentiall the noise-degree model but for now keep it seperate
+		folder = 'results/DECO+WANG+BALANCED';
+		FCD = [];ts_simulated_all = [];grandFCcorr = [];
 	case 'HOPF+ANEC',
 		% Here it is the HOPF model with ANEC 
 		% Will have to work through this as well. 
@@ -44,7 +50,14 @@ switch model
 		% Here is simply the noise and degree model
 		folder = 'results/NOISY+DEGREE';
 		% Maybe here run it then save it appropriately.
-		[ts_simulated_all,FCcorr,grandFCcorr] =run_noisy_degree_model(sc_matrix,time_series,G,folder);
+		[ts_simulated_all,FCcorr,grandFCcorr,FCD] =run_noisy_degree_model(sc_matrix,time_series,G,folder);
 end
+
+
+if(~isdir(folder))
+	system(['mkdir -p ',folder]);
+end
+
+save([folder,'/',preproType,'.mat'],'G','ts_simulated_all','grandFCcorr','FCD');
 
 % There is a slight issue -- FCD can be calculated in different ways -- either using the phases (as Gustavo is using now) or by standard FCD measures, will have to work out later.
