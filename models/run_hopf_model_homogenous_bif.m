@@ -1,4 +1,4 @@
-function [ts_simulated_all,grandFCcorr,bifpar] = run_hopf_model_homogenous_bif(sc_matrix,time_series,G,folder)
+function [ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_homogenous_bif(sc_matrix,time_series,G,folder)
 
 	% Set up the structure for the Hopf model
 	for sub=1:size(time_series,3),
@@ -13,6 +13,14 @@ function [ts_simulated_all,grandFCcorr,bifpar] = run_hopf_model_homogenous_bif(s
 	Tmax = 147;%Check whats your tmax.
 	subjects = size(time_series,3);
 	N = size(sc_matrix,1);
+
+	phfcddata = [];
+	% Calculation of the total FCD
+	TR = 2;
+	for subject=1:10,
+		ts = time_series(:,:,subject);
+	phfcddata = [phfcddata,phase_fcd(ts,TR)];	
+	end
 
 	% ====== Calculation of the peak freq. for each node (should be made into a function if it is used multiple times) ==============
 
@@ -42,7 +50,11 @@ function [ts_simulated_all,grandFCcorr,bifpar] = run_hopf_model_homogenous_bif(s
 		ts_simulated_all(:,:,coupling_index) = xs;
 		corrFC_sim = corr(xs);
 		grandFCcorr(coupling_index) = corr(corrFC_sim(upperTriangle),meancorrFC(upperTriangle));
+		% Calculat ethe instantaneous phase from the dynamic FC measure
+		phfcd = phase_fcd(xs,TR);
 
+		% Now calculate the FCD
+		[~,~,FCD(coupling_index)] = kstest2(phfcd,phfcddata);
 	end
 
 	% This is default setting the bifurcation parameter as a;
