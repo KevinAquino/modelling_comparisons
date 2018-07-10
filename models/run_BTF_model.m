@@ -1,4 +1,4 @@
-function run_BTF_model(C);
+function run_BTF_model(C,cparam);
 
 
 % Function here to solve BTF, solve it over a long time
@@ -8,6 +8,7 @@ function run_BTF_model(C);
 % Initial set up with default parameters:
 % sys = BTF2003SDE(C*3);
 sys = BTF2003(C);
+sys.pardef=bdSetValue(sys.pardef,'C',cparam);
 % keyboard
 
 % Solve the model for 2 seconds
@@ -40,7 +41,7 @@ Vin = inputNeural;
 % Z = squeeze(Y(:,3,1:2500:end));
 
 % Solve this for 147*2 more seconds;
-for n=1:10,	
+for n=1:147,	
 	disp(['Iteration: ',num2str(n),'....']);
 	% Now set the last point as the intial value for the simulation to continue the simulation
 	sys2 = sys;
@@ -76,13 +77,13 @@ for n=1:10,
 
 end
 
-keyboard
+% keyboard
 
 % dt = 2000/20000*250/1000;
 % 1 ms
-dt = 1;
+% dt = 1;
 
-time = 0:dt:(size(Vin,2)-1)*dt;
+% time = 0:dt:(size(Vin,2)-1)*dt;
 % time_sampled = time(1:250:end);
 % time = 0:dt:(size(Vin,2)-1)*dt;
 
@@ -104,9 +105,12 @@ time = 0:dt:(size(Vin,2)-1)*dt;
 % BOLD = BOLD_interp;
 
 % bb = BOLD_interp(:,14:end);
-keyboard
-for n=1:68,b(n,:) = BOLD(80,Vin(n,:));end
-figure;
-imagesc(corr(b.'));
 
-keyboard;
+for n=1:68,b(n,:) = BOLD(200,Vin(n,:));end
+zt = b(:,1e5:end);
+zt = zscore(zt,[],2);
+figure;
+imagesc(corr(zt.'));
+caxis([0 1]);
+title(['G = ',num2str(cparam/0.2)]);
+axis image;
