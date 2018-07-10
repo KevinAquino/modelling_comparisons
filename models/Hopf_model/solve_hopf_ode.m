@@ -49,8 +49,8 @@ for tind=1:length(timeVector)
     zz = z(:,end:-1:1); % flipped z, because (x.*x + y.*y)
     z = z + dt*(a.*z + zz.*omega - z.*(z.*z+zz.*zz) + suma) + dsig*randn(N,2);
     % Here we have the downsampling to the same TR -- i dont like this.
-    if(ismember(timeVector(tind),tsampled))
-        nn=nn+1;
+    if(ismember(timeVector(tind),tsampled))        
         xs(nn,:)=z(:,1)';
+        nn=nn+1;
     end
 end
