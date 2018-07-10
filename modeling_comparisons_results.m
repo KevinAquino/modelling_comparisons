@@ -31,8 +31,8 @@ model_class.globalAndEdge = struct;
 model_class.globalAndEdge.models = {'HOPF+ANEC'};
 
 
-
-
+bigFig = figure('color','white');
+counter = 1;
 % Here set up the global coupling value for each model, this is done 
 % ============================================================
 
@@ -58,6 +58,16 @@ for model_class_type = fields(model_class).',
 				xlabel('Global Coupling (G)');ylabel('FCorr (red), FCD (black)');
 				ylim([0 1]);xlim([0 G(end)]);
 				set(gca,'fontSize',18);
+
+
+				figure(bigFig);
+				subplot(4,3,counter);
+				plot(G,FCD,'k.-','MarkerSize',24);hold on;plot(G,grandFCcorr,'r.-','MarkerSize',24);
+				title([model{1},' using data: ',prepro{1}],'Interpreter','none');
+				xlabel('Global Coupling (G)');ylabel('FCorr (red), FCD (black)');
+				ylim([0 1]);xlim([0 G(end)]);
+				set(gca,'fontSize',18);
+				counter = counter+1;
 			end
 			
 
