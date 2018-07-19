@@ -99,24 +99,30 @@ dt = 1;
 % time_sampled = time(1:250:end);
 time = 0:dt:(size(Vin,2)-1)*dt;
 
+% 
+% % % Now model the HRF with a standard two-gamma distribution
+% modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
+% hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
+% % % keyboard;
+% % TRs = 0:0.01:100*4;
+% % % Convolve the BOLD response 
+% for n=1:68,
+% 	BOLD(n,:) = conv(Vin(n,:),hrf,'same');
+% % 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
+% end
 
-% % Now model the HRF with a standard two-gamma distribution
-modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
-hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
-% % keyboard;
-% TRs = 0:0.01:100*4;
-% % Convolve the BOLD response 
 for n=1:68,
-	BOLD(n,:) = conv(Vin(n,:),hrf,'same');
-% 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
+	out=tobold(Vin(n,:),time/1e3);
+	bold_region(n,:) = out.y;
 end
 
+disp('Here will have to test the convolution model vs the Balloon model this might be a missing ingredient. ')
 keyboard;
 TRs = 0:0.01:100*4;
 % % Downsample the BOLD response 
-for n=1:68,	
-	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
-end
+% for n=1:68,	
+% 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
+% end
 
 gs = mean(BOLD_interp);
 % keyboard
