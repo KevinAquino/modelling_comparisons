@@ -100,6 +100,9 @@ for model_class_type = fields(model_class).',
 	end
 end
 
+set(bigFig,'PaperPosition',[0.25 0.25 100 40],'InvertHardCopy','off');
+print(bigFig,['Comparison_figure.png'],'-dpng','-opengl');
+
 
 % The idea here is to set it up for each type of model there will be 6 types of models, and run over 4 different preprocessing types.
 % Cool stuff to consider:
