@@ -10,7 +10,7 @@ C = C - diag(diag(C));
 % After doing this run the BTF model for parameter
 
 
-for cm=[0:0.1:1;
+for cm=[0:0.01:0.6];
 	% A really simple way to do this..
 	[Vin,time,BOLD_interp] = run_BTF_model(C,cm);
 	save([num2str(cm),'.mat'],'Vin','BOLD_interp');
