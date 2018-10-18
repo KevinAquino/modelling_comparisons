@@ -134,8 +134,8 @@ noNans = find(~isnan(gs));
 % zt = zscore(zt,[],2);
 % figure;
 % imagesc(corr(zt.'));
-figure;imagesc(corr(BOLD_interp(:,noNans).'))
-caxis([0 1]);
-title(['G = ',num2str(cparam/0.2)]);
-axis image;
-drawnow;
+% figure;imagesc(corr(BOLD_interp(:,noNans).'))
+% caxis([0 1]);
+% title(['G = ',num2str(cparam/0.2)]);
+% axis image;
+% drawnow;
