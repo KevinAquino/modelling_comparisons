@@ -52,7 +52,7 @@ Vtin = [];
 % Z = squeeze(Y(:,3,1:2500:end));
 
 % Solve this for 147*2 more seconds;
-for n=1:200,	
+for n=1:5;%00,	
 	disp(['Iteration: ',num2str(n),'....']);
 	% Now set the last point as the intial value for the simulation to continue the simulation
 	sys2 = sys;
@@ -111,7 +111,7 @@ for n=1:68,
 % 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
 end
 
-keyboard;
+% keyboard;
 TRs = 0:0.01:100*4;
 % % Downsample the BOLD response 
 for n=1:68,	
