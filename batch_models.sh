@@ -9,7 +9,7 @@
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-type=END
 #SBATCH --export=ALL
-#SBATCH --mem-per-cpu=8000
+#SBATCH --mem-per-cpu=32000
 #SBATCH -A kg98
 
 
