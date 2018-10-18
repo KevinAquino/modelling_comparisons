@@ -12,6 +12,6 @@ C = C - diag(diag(C));
 
 for cm=[0.1,0.2];
 	% A really simple way to do this..
-	[Vin,BOLD_interp] = run_BTF_model(C,cm);
+	[Vin,time,BOLD_interp] = run_BTF_model(C,cm);
 	save([num2str(cm),'.mat'],'Vin','BOLD_interp');
 end

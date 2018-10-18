@@ -1,4 +1,4 @@
-function [Vin,BOLD_interp] = run_BTF_model(C,cparam)
+function [Vin,time,BOLD_interp] = run_BTF_model(C,cparam)
 
 
 % Function here to solve BTF, solve it over a long time
@@ -52,7 +52,7 @@ Vtin = [];
 % Z = squeeze(Y(:,3,1:2500:end));
 
 % Solve this for 147*2 more seconds;
-for n=1:5;%00,	
+for n=1:200,	
 	disp(['Iteration: ',num2str(n),'....']);
 	% Now set the last point as the intial value for the simulation to continue the simulation
 	sys2 = sys;
