@@ -1,4 +1,4 @@
-function run_BTF_model(C,cparam)
+function [Vin,BOLD_interp] = run_BTF_model(C,cparam)
 
 
 % Function here to solve BTF, solve it over a long time
