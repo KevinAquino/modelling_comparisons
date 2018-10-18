@@ -1,4 +1,5 @@
-#!/bin/sh bash
+#!/bin/env bash
+
 #SBATCH --job-name=fmriprep
 #SBATCH --account=kg98
 #SBATCH --ntasks=1
