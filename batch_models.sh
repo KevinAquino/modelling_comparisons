@@ -4,7 +4,7 @@
 #SBATCH --account=kg98
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=24:00:00
+#SBATCH --time=4:00:00
 #SBATCH --mail-user=kevin.aquino@monash.edu
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-type=END
@@ -14,4 +14,4 @@
 
 
 module load matlab
-matlab -nodisplay -r "run_multiple_BTF; exit"
+matlab -nodisplay -r "run_multiple_HBTF('${cm}'); exit"
