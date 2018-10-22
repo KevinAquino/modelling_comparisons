@@ -8,4 +8,4 @@ while IFS=$ModelFile read -r line || [[ -n "$line" ]]; do
     cm=$line
 	export cm
 	sbatch --job-name="$line" --output="./$line.out" batch_models.sh
-done < "$1"
+done < "$ModelFile"
