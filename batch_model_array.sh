@@ -7,5 +7,5 @@ while IFS=$ModelFile read -r line || [[ -n "$line" ]]; do
     # Now look at the subject:
     cm=$line
 	export cm
-	sbatch --job-name="$line" --output="./$line.out" batch_models.sh
+	sbatch --job-name="$line" batch_models.sh
 done < "$ModelFile"
