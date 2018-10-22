@@ -13,5 +13,6 @@
 #SBATCH -A kg98
 
 
-module load matlab
+module load matlab/r2016a
+echo $cm
 matlab -nodisplay -r "run_multiple_HBTF('${cm}'); exit"

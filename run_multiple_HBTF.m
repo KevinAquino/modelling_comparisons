@@ -1,4 +1,6 @@
 function run_multiple_HBTF(cm)
+	disp('USING..........')
+	disp(cm)
 	% Load in the empirical SC matrix
 	load('empirical_data/exemplarSC.mat')
 	addpath(genpath('~/projects/bdtoolkit')); % Add the bdtoolkit
