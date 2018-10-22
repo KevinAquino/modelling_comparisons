@@ -1,6 +1,6 @@
 % This function runs the BTF model using the code straight from Honey and Sporns.
 
-function [Vin,time,BOLD_interp] = run_BTF_Honey_model(C,cparam)
+function [Vin,time,BOLD] = run_BTF_Honey_model(C,cparam)
 
 
 % global variables (shared with 'simvec') (yuck)
@@ -8,7 +8,7 @@ global V1 V2 V3 V4 V5 V6 V6 V7 gCa gK gL VK VL VCa I b ani aei aie aee phi V8 V9
 
 CM = C;
 % runname
-rn = 'modrun001';
+rn = ['modrun001_',num2str(cparam*100)];
 init = 'randm';     % set if random initial condition is desired
 
 N = size(CM,1);
@@ -29,7 +29,7 @@ ani = 0.4; vs = 1; aei = 2; aie = 2; aee = 0.36; ane = 1; rnmda = 0.25;
 
 % more parameters: noise, coupling, modulation
 nse = 0;
-c = 0.1;            % ********* COUPLING ***********
+c = cparam;            % ********* COUPLING ***********
 modn = 0;
 if (modn==0)
     V6 = 0.65;
@@ -41,7 +41,7 @@ end;
 % length of run and initial transient
 % (in time segments, 1 tseg = l timesteps
 tseg = 1;       % number of segments used in the intial transient
-lseg = 120;      % number of segments used in the actual run
+lseg = 360;      % number of segments used in the actual run
 llen = 1000;   % length of each segment, in milliseconds
 tres = 0.2;     % time resolution of model output, in milliseconds
 
@@ -100,16 +100,33 @@ end;
 % CONCATENATE OUTPUT FILES =========================
 Yall = Yall_concat(rn,1:lseg);
 
+% keyboard
+
 Yall = Yall';
 % keyboard
 for n=1:N,
     % get time series
     z = Yall(1:end,n);
-    % Append the first 30 seconds to the front of the time series.
-    ttrns = 30000;
+    % Append the first 20 seconds to the front of the time series.
+    ttrns = 20000;
     zt = Yall(1:ttrns+1,n);
     Vin(n,:) = [abs(diff([zt;z])); 0];
 
 end
 
-keyboard
+
+
+% Now comes the BOLD response..
+dt = 1;
+time = 0:dt:(size(Vin,2)-1)*dt;
+
+% % Now model the HRF with a standard two-gamma distribution (can change this at any time..)
+modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
+hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
+% % Convolve the BOLD response with ms resolution
+for n=1:N,
+	BOLD(n,:) = conv(Vin(n,:),hrf,'same');
+% 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
+end
+
+% After this we can interpolate etc..
