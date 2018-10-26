@@ -1,18 +1,16 @@
+% This here runs the BTF model while making sure we have the right parameters. All the parameters are default within the BDT
+% albeit for a handful of very important parameters! These made all the difference actually, so here we are making them
+% explicitly defined in this regime. 
+
 function [Vin,BOLD] = run_BTF_model(C,cparam)
 BOLD=[];
 
-% Function here to solve BTF, solve it over a long time
-% C = C/max(C(:))*0.2;
-% C = C - diag(diag(C));
+% Here is how long each simulation segment is being run for, there is no point doing the whole thing as it will kill memory
+simSegmentTime = 2000;
 
-% Initial set up with default parameters:
-% sys = BTF2003SDE(C*3);
 sys = BTF2003(C);
 sys.pardef=bdSetValue(sys.pardef,'C',cparam);
 
-% Have to make 'alpha' a parameter that we have to add as well ....
-% sys.pardef=bdSetValue(sys.pardef,'alpha',0.001);
-% keyboard
 deltaV = bdGetValue(sys.pardef,'deltaV');
 deltaZ = bdGetValue(sys.pardef,'deltaZ');
 
@@ -28,10 +26,6 @@ sys.vardef = [ struct('name','V', 'value',(randvec-0.5)*0.8-0.2);      % Mean fi
                struct('name','W', 'value',(randvec-0.5)*0.6+0.3);      % Proportion of open K channels
                struct('name','Z', 'value',(randvec-0.5)*0.16+0.05) ];  % Mean firing rate of inhibitory cells
 
-
-
-
-
 Gion = bdGetValue(sys.pardef,'Gion');
 Gion(1) = 1; %GCa has to be this value for Honey et al. paper
 sys.pardef = bdSetValue(sys.pardef,'Gion',Gion);
@@ -40,46 +34,40 @@ aee = 0.36;% This here is the value from honey et al.
 sys.pardef = bdSetValue(sys.pardef,'aee',aee);
 
 % Solve the model for 2 seconds to remove transients
-sol = bdSolve(sys,[0 2000],@ode23);
-% for j=1:size(C,1)*3,
-% 	y_all(j,:) = interp1(sol.x,sol.y(j,:),[1:1:40000]);
-% end
+sol = bdSolve(sys,[0 simSegmentTime],@ode23);
 
-% keyboard
 Y = reshape(sol.y(:,end),size(C,1),3,1);
 for j=1:3,	
 	sys.vardef(j).value = Y(:,j);
 end
 
 % After this, let the system run.
-sol = bdSolve(sys,[0 2000],@ode23);
+sol = bdSolve(sys,[0 simSegmentTime],@ode23);
 for j=1:size(C,1)*3,
-	y_all(j,:) = interp1(sol.x,sol.y(j,:),[1:1:2000]);
+	y_all(j,:) = interp1(sol.x,sol.y(j,:),[1:1:simSegmentTime]);
 end
 
-Y = reshape(y_all,size(C,1),3,2000);
+Y = reshape(y_all,size(C,1),3,simSegmentTime);
 
 % Take the last values
 lastValues = Y(:,:,end);
 Vtest = squeeze(Y(:,1,:));
 
-
-for n=1:size(C,1),
-	% inputNeural(n,:) = movmean(abs(gradient(Vtest(n,:),0.1)),2500);
-	inputNeural(n,:) = abs(gradient(Vtest(n,:),1));
-	% inputNeural(n,:) = filtfilt(bfilt2,afilt2,(gradient(Vtest(n,:),0.1)));
+% Take the deriviate of the excitatory potentials (this is what has been used in the past)
+for n=1:size(C,1),	
+	inputNeural(n,:) = abs(gradient(Vtest(n,:),1));	
 end
-
-% I have to low pass probably as a first pass take moving average of 250 ms
 
 Vin = inputNeural;
 
 
 Vtin = [];
-% W = squeeze(Y(:,2,1:2500:end));
-% Z = squeeze(Y(:,3,1:2500:end));
 
-% Solve this for 147*2 more seconds;
+
+% Solve this for 200 more seconds;
+% There is a tool within BDToolbox that does this, but here I want more control to 
+% observe all the parameters and not save all the values.
+
 for n=1:200,	
 	disp(['Iteration: ',num2str(n),'....']);
 	% Now set the last point as the intial value for the simulation to continue the simulation
@@ -87,88 +75,50 @@ for n=1:200,
 	for j=1:3,
 		sys2.vardef(j).value = lastValues(:,j);
 	end
-	% Solve again for 1 more second
-	sol2 = bdSolve(sys2,[0 2000],@ode23);
-	% Y = reshape(sol2.y,68,3,20001);
+	% Solve again for 2 more seconds
+	sol2 = bdSolve(sys2,[0 simSegmentTime],@ode23);
 
 	for j=1:size(C,1)*3,
-		y_all(j,:) = interp1(sol2.x,sol2.y(j,:),[1:1:2000]);
+		y_all(j,:) = interp1(sol2.x,sol2.y(j,:),[1:1:simSegmentTime]);
 	end
 
 
-	Y = reshape(y_all,size(C,1),3,2000);
+	Y = reshape(y_all,size(C,1),3,simSegmentTime);
 
 
 	Vtest = squeeze(Y(:,1,:));
 
-	for n=1:size(C,1),
-		% inputNeural(n,:) = movmean(abs(gradient(Vtest(n,:),0.1)),2500);
-		inputNeural(n,:) = abs(gradient(Vtest(n,:),1));
-		% inputNeural(n,:) = filtfilt(bfilt2,afilt2,(gradient(Vtest(n,:),0.1)));
+	for n=1:size(C,1),		
+		inputNeural(n,:) = abs(gradient(Vtest(n,:),1));		
 	end
 
 	Vin = [Vin,inputNeural];
 	Vtin = [Vtin,Vtest];
 	lastValues = Y(:,:,end);
 
-	
-	% W = [W, squeeze(Y(:,2,1:2500:end))];
-	% Z = [Z, squeeze(Y(:,3,1:2500:end))];
-
 end
 
-% keyboard
 
+% Downsample the responses to 0.1s resolution for the responses and peform a convolution. Note that the Balloon-model
+% is not really needed, as the responses are in the linear regime, it just adds complexity to the modelling, and although
+% the Balloon model displays some comparable characteristics of the BOLD response, it is not a model of reality. As shown
+% by Hillman et al 2007, and should be replaced by a better model e.g. Aquino et al. 2012, Ress et al 2013.
+dt = 1;
 
-doBold = 0;
-	if(doBold)
-	% % dt = 2000/20000*250/1000;
-	% % 1 ms
-	dt = 1;
-	% dsRate = 100;
+% I have downsampled the responses here rather crudely -- need to do this properly by filtering then downsampling.
+% not sure if this will make a difference. 
+dsRate=100;
 
-	% time = 0:dt:(size(Vin,2)-1)*dt;
-	% % time_sampled = time(1:250:end);
-	time = 0:dt:(size(Vin,2)-1)*dt;
+time = 0:dsRate*dt:(size(Vin,2)-1)*dt;
 
+% Here is the Boynton double gamma HRF
+modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
+% Re-ordering the hrf so the convolution actually makes sense:
+hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
 
-	% % % Now model the HRF with a standard two-gamma distribution
-	modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
-	hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
-	% % % keyboard;
-	% TRs = 0:0.01:100*4;
-	% % Convolve the BOLD response 
-	for n=1:68,
-		BOLD(n,:) = conv(Vin(n,:),hrf,'same');
-	% 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
-	end
+% Here perform the convolutions.
+for n=1:size(C,1),
+	BOLD(n,:) = conv(Vin(n,1:dsRate:end),hrf,'same');
 end
 
-% % keyboard;
-% TRs = 0:0.01:100*4;
-% % % Downsample the BOLD response 
-% for n=1:68,	
-% 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
-% end
 
-% gs = mean(BOLD_interp);
-% % keyboard
-% noNans = find(~isnan(gs));
-
-% keyboard;
-% BOLD_interp(isnan(BOLD_interp)) = 0;
-
-% BOLD = BOLD_interp;
-
-% bb = BOLD_interp(:,14:end);
-% 
-% for n=1:68,b(n,:) = BOLD(200,Vin(n,:));end
-% zt = b(:,1e5:end);
-% zt = zscore(zt,[],2);
-% figure;
-% imagesc(corr(zt.'));
-% figure;imagesc(corr(BOLD_interp(:,noNans).'))
-% caxis([0 1]);
-% title(['G = ',num2str(cparam/0.2)]);
-% axis image;
-% drawnow;
