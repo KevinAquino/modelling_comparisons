@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-#SBATCH --job-name=fmriprep
+#SBATCH --job-name=BOLD
 #SBATCH --account=kg98
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -15,4 +15,4 @@
 
 module load matlab/r2016a
 echo $cm
-matlab -nodisplay -r "run_multiple_HBTF('${cm}'); exit"
+matlab -nodisplay -r "run_multiple_BTF('${cm}'); exit"
