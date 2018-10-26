@@ -14,6 +14,6 @@ function run_multiple_HBTF(cm)
 
 	% A really simple way to do this..
 	[Vin,BOLD] = run_BTF_model(C,cm);
-	save([num2str(cm),'.mat'],'Vin','BOLD');
+	save([num2str(100*cm),'_BTF.mat'],'Vin','BOLD');
 
 end
