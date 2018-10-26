@@ -61,7 +61,7 @@ for model_class_type = fields(model_class).',
 
 
 				figure(bigFig);
-				subplot(4,3,counter);
+				subplot(5,3,counter);
 				plot(G,FCD,'k.-','MarkerSize',24);hold on;plot(G,grandFCcorr,'r.-','MarkerSize',24);
 				title([model{1},' using data: ',prepro{1}],'Interpreter','none');
 				xlabel('Global Coupling (G)');ylabel('FCorr (red), FCD (black)');
