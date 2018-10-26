@@ -1,5 +1,5 @@
-function [Vin,time,BOLD_interp] = run_BTF_model(C,cparam)
-
+function [Vin,BOLD] = run_BTF_model(C,cparam)
+BOLD=[];
 
 % Function here to solve BTF, solve it over a long time
 % C = C/max(C(:))*0.2;
@@ -9,10 +9,38 @@ function [Vin,time,BOLD_interp] = run_BTF_model(C,cparam)
 % sys = BTF2003SDE(C*3);
 sys = BTF2003(C);
 sys.pardef=bdSetValue(sys.pardef,'C',cparam);
-% keyboard
 
-% Solve the model for 40 seconds to remove transients
-sol = bdSolve(sys,[0 40000]);
+% Have to make 'alpha' a parameter that we have to add as well ....
+% sys.pardef=bdSetValue(sys.pardef,'alpha',0.001);
+% keyboard
+deltaV = bdGetValue(sys.pardef,'deltaV');
+deltaZ = bdGetValue(sys.pardef,'deltaZ');
+
+
+% Change these parameters because these are the ones used by Honey et al. 
+sys.pardef=bdSetValue(sys.pardef,'deltaV',0.65*ones(size(deltaV)));
+sys.pardef=bdSetValue(sys.pardef,'deltaZ',0.65*ones(size(deltaZ)));
+
+% Change the initial conditions to be consistent with prev. work
+nnodes=size(C,1);
+randvec=rand(nnodes,1);
+sys.vardef = [ struct('name','V', 'value',(randvec-0.5)*0.8-0.2);      % Mean firing rate of excitatory cells
+               struct('name','W', 'value',(randvec-0.5)*0.6+0.3);      % Proportion of open K channels
+               struct('name','Z', 'value',(randvec-0.5)*0.16+0.05) ];  % Mean firing rate of inhibitory cells
+
+
+
+
+
+Gion = bdGetValue(sys.pardef,'Gion');
+Gion(1) = 1; %GCa has to be this value for Honey et al. paper
+sys.pardef = bdSetValue(sys.pardef,'Gion',Gion);
+
+aee = 0.36;% This here is the value from honey et al. 
+sys.pardef = bdSetValue(sys.pardef,'aee',aee);
+
+% Solve the model for 2 seconds to remove transients
+sol = bdSolve(sys,[0 2000],@ode23);
 % for j=1:size(C,1)*3,
 % 	y_all(j,:) = interp1(sol.x,sol.y(j,:),[1:1:40000]);
 % end
@@ -24,7 +52,7 @@ for j=1:3,
 end
 
 % After this, let the system run.
-sol = bdSolve(sys,[0 2000]);
+sol = bdSolve(sys,[0 2000],@ode23);
 for j=1:size(C,1)*3,
 	y_all(j,:) = interp1(sol.x,sol.y(j,:),[1:1:2000]);
 end
@@ -46,7 +74,7 @@ end
 
 Vin = inputNeural;
 
-% keyboard;
+
 Vtin = [];
 % W = squeeze(Y(:,2,1:2500:end));
 % Z = squeeze(Y(:,3,1:2500:end));
@@ -60,11 +88,11 @@ for n=1:200,
 		sys2.vardef(j).value = lastValues(:,j);
 	end
 	% Solve again for 1 more second
-	sol2 = bdSolve(sys2,[0 2000]);
+	sol2 = bdSolve(sys2,[0 2000],@ode23);
 	% Y = reshape(sol2.y,68,3,20001);
 
 	for j=1:size(C,1)*3,
-		y_all(j,:) = interp1(sol.x,sol.y(j,:),[1:1:2000]);
+		y_all(j,:) = interp1(sol2.x,sol2.y(j,:),[1:1:2000]);
 	end
 
 
@@ -73,7 +101,7 @@ for n=1:200,
 
 	Vtest = squeeze(Y(:,1,:));
 
-	for n=1:68,
+	for n=1:size(C,1),
 		% inputNeural(n,:) = movmean(abs(gradient(Vtest(n,:),0.1)),2500);
 		inputNeural(n,:) = abs(gradient(Vtest(n,:),1));
 		% inputNeural(n,:) = filtfilt(bfilt2,afilt2,(gradient(Vtest(n,:),0.1)));
@@ -91,36 +119,41 @@ end
 
 % keyboard
 
-% dt = 2000/20000*250/1000;
-% 1 ms
-dt = 1;
 
-% time = 0:dt:(size(Vin,2)-1)*dt;
-% time_sampled = time(1:250:end);
-time = 0:dt:(size(Vin,2)-1)*dt;
+doBold = 0;
+	if(doBold)
+	% % dt = 2000/20000*250/1000;
+	% % 1 ms
+	dt = 1;
+	% dsRate = 100;
+
+	% time = 0:dt:(size(Vin,2)-1)*dt;
+	% % time_sampled = time(1:250:end);
+	time = 0:dt:(size(Vin,2)-1)*dt;
 
 
-% % Now model the HRF with a standard two-gamma distribution
-modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
-hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
+	% % % Now model the HRF with a standard two-gamma distribution
+	modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
+	hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
+	% % % keyboard;
+	% TRs = 0:0.01:100*4;
+	% % Convolve the BOLD response 
+	for n=1:68,
+		BOLD(n,:) = conv(Vin(n,:),hrf,'same');
+	% 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
+	end
+end
+
 % % keyboard;
 % TRs = 0:0.01:100*4;
-% % Convolve the BOLD response 
-for n=1:68,
-	BOLD(n,:) = conv(Vin(n,:),hrf,'same');
+% % % Downsample the BOLD response 
+% for n=1:68,	
 % 	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
-end
+% end
 
-% keyboard;
-TRs = 0:0.01:100*4;
-% % Downsample the BOLD response 
-for n=1:68,	
-	BOLD_interp(n,:) = interp1(time(1e5:end)/1e3,zscore(BOLD(n,1e5:end)),TRs);
-end
-
-gs = mean(BOLD_interp);
-% keyboard
-noNans = find(~isnan(gs));
+% gs = mean(BOLD_interp);
+% % keyboard
+% noNans = find(~isnan(gs));
 
 % keyboard;
 % BOLD_interp(isnan(BOLD_interp)) = 0;
