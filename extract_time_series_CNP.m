@@ -33,7 +33,7 @@ setenv('TMPDIR',tmpdir);
 setenv('SUBJECTS_DIR',[base_folder_string,'freesurfer/']);
 
 tic;
-cd(tmpdir);
+% cd(tmpdir);
 
 for analysis_type = 1:length(analyses)
     for subject=1:length(subject_list),
