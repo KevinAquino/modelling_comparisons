@@ -7,7 +7,7 @@
 
 base_folder_string = '/scratch/kg98/Linden/ResProjects/GSR/data/CNP/derivatives/';
 
-addpath('/usr/local/freesurfer/devel/matlab/');
+% addpath('/usr/local/freesurfer/devel/matlab/');
 addpath('/home/kaqu0001/projects/eigen_decomposition');
 
 
@@ -30,21 +30,21 @@ tmpdir = '/home/kaqu0001/kg98_scratch/kevo/tmpdir';
 system('mkdir -p /home/kaqu0001/kg98_scratch/kevo/tmpdir');
 addpath([getenv('FREESURFER_HOME'),'/matlab']);
 setenv('TMPDIR',tmpdir);
-setenv('SUBJECTS_DIR',tmpdir);
+setenv('SUBJECTS_DIR',[base_folder_string,'freesurfer/']);
 
 tic;
 cd(tmpdir);
 
 for analysis_type = 1:length(analyses)
     for subject=1:length(subject_list),
-		
-        epi=[base_folder_string,'/fmriprep/',subject,'/func/',subject,'_task-rest_bold_space-T1w_variant-AROMAnonaggr+2P_preproc.nii.gz'];
-        outputName=[base_folder_string,'/fmriprep/',subject,'/func/',subject,'_task-rest_bold_space-self-AROMAnonaggr+2P_preproc'];
+		subjectName = subject_list(subject);
+        epi=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-T1w_variant-AROMAnonaggr+2P_preproc.nii.gz'];
+        outputName=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-self-AROMAnonaggr+2P_preproc'];
         % Now perform GSR to this (or should we perform meanGMTR)
         % First just wrtite the code without
-		unix_string = ['mri_vol2surf --mov ',epi,' --trgsubject ',subject,' --hemi lh --o ',outputName,'.lh.nii.gz'];
+		unix_string = ['mri_vol2surf --mov ',epi,' --trgsubject ',subjectName,' --hemi lh --o ',outputName,'.lh.nii.gz'];
 		unix(unix_string);
-		unix_string = ['mri_vol2surf --mov ',epi,' --trgsubject ',subject,' --hemi rh --o ',outputName,'.rh.nii.gz'];
+		unix_string = ['mri_vol2surf --mov ',epi,' --trgsubject ',subjectName,' --hemi rh --o ',outputName,'.rh.nii.gz'];
 		unix(unix_string);		
         data_ts_lh = MRIread([outputName,'.lh.nii.gz']);data_ts_lh = squeeze(data_ts_lh.vol);
         data_ts_rh = MRIread([outputName,'.rh.nii.gz']);data_ts_rh = squeeze(data_ts_rh.vol);
