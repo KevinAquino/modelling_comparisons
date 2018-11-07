@@ -49,7 +49,7 @@ for analysis_type = 1:length(analyses)
         preproc_epi=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-T1w_preproc.nii.gz'];        
         brain_signal_file = [base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_brain_signal.txt'];
 
-        unix_string=['fslmeants -i ',preproc_epi,' --label ',mask_epi,' --o ',brain_signal_file];
+        unix_string=['fslmeants -i ',preproc_epi,' --label=',mask_epi,' -o ',brain_signal_file];
         system(unix_string);
         
         unix_string =['fsl_regfilt -i ',epi,' -o ',epi_gsr,' -d ',brain_signal_file,' -f 1']
