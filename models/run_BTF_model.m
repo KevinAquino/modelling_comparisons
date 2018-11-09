@@ -21,10 +21,9 @@ sys.pardef=bdSetValue(sys.pardef,'deltaZ',0.65*ones(size(deltaZ)));
 
 % Change the initial conditions to be consistent with prev. work
 nnodes=size(C,1);
-randvec=rand(nnodes,1);
-sys.vardef = [ struct('name','V', 'value',(randvec-0.5)*0.8-0.2);      % Mean firing rate of excitatory cells
-               struct('name','W', 'value',(randvec-0.5)*0.6+0.3);      % Proportion of open K channels
-               struct('name','Z', 'value',(randvec-0.5)*0.16+0.05) ];  % Mean firing rate of inhibitory cells
+sys.vardef = [ struct('name','V', 'value',(rand(nnodes,1)-0.5)*0.8-0.2);      % Mean firing rate of excitatory cells
+               struct('name','W', 'value',(rand(nnodes,1)-0.5)*0.6+0.3);      % Proportion of open K channels
+               struct('name','Z', 'value',(rand(nnodes,1)-0.5)*0.16+0.05) ];  % Mean firing rate of inhibitory cells
 
 Gion = bdGetValue(sys.pardef,'Gion');
 Gion(1) = 1; %GCa has to be this value for Honey et al. paper
