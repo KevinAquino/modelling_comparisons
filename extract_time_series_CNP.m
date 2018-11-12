@@ -43,10 +43,10 @@ for analysis_type = 1:length(analyses)
 
         try 
     		subjectName = subject_list{subject};
-            epi=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-T1w_variant-AROMAnonaggr+2P_preproc.nii.gz'];        
-            epi_gsr = [base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-T1w_variant-AROMAnonaggr+2P_preproc+GSR.nii.gz'];
+            epi=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-T1w_variant-AROMA+2P_preproc.nii.gz'];        
+            epi_gsr = [base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-T1w_variant-AROMA+2P_preproc+GSR.nii.gz'];
 
-            outputName=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-self-AROMAnonaggr+2P_preproc+GSR'];
+            outputName=[base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-self-AROMA+2P_preproc+GSR'];
             % Now perform GSR to this (or should we perform meanGMTR)
 
             % This here is to grab the mask and find the global signal and then apply it
