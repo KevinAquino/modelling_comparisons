@@ -11,7 +11,7 @@ base_folder_string = '/scratch/kg98/Linden/ResProjects/GSR/data/CNP/derivatives/
 addpath('/home/kaqu0001/projects/eigen_decomposition');
 
 
-fid = fopen('UCLA_data_tst.txt');
+fid = fopen('UCLA_data_all.txt');
 tline = fgetl(fid);
 counter = 1;
 while ischar(tline)    
