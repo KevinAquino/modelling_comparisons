@@ -41,8 +41,8 @@ end;
 % length of run and initial transient
 % (in time segments, 1 tseg = l timesteps
 tseg = 1;       % number of segments used in the intial transient
-lseg = 360;      % number of segments used in the actual run
-llen = 1000;   % length of each segment, in milliseconds
+lseg = 10;      % number of segments used in the actual run
+llen = 2000;   % length of each segment, in milliseconds
 tres = 0.2;     % time resolution of model output, in milliseconds
 
 % ERROR TOLERANCES =================================
@@ -74,6 +74,8 @@ for SEGMENT=1:tseg
     toc;
 end;
 disp('finished transient');
+
+keyboard
 % END TRANSIENT ==================================
 
 % save model parameters and intial condition
@@ -103,6 +105,7 @@ Yall = Yall_concat(rn,1:lseg);
 % keyboard
 
 Yall = Yall';
+keyboard
 % keyboard
 for n=1:N,
     % get time series

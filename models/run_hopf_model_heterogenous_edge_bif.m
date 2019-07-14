@@ -1,4 +1,4 @@
-function [ts_simulated_all,grandFCcorr,FCD] = run_hopf_model_heterogenous_edge_bif(sc_matrix,time_series,G,folder)
+function [ts_simulated_all,grandFCcorr,FCD,all_anecs] = run_hopf_model_heterogenous_edge_bif(sc_matrix,time_series,G,folder)
 
 % Setting up the parameters
 C = sc_matrix;
@@ -45,7 +45,7 @@ ITER=1:50;
 Tmax=Tmax*NSUB;
 
 iwe=1;
-for we=WE
+for we=WE,
 	disp(we);
     Cnew=C;
     % Could possibly use parfor here for parallel processing.
@@ -56,6 +56,7 @@ for we=WE
         	% Solve the hopf ode/sde:
 
         	% Solve the HOPF model here.
+            % keyboard
         	xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);
         	nn = size(xs,2);
             %%%%
@@ -89,6 +90,9 @@ for we=WE
     end
     
     Coptim(iwe,:,:)=Cnew;
+
+    % Added part here was not correct.
+    wC=we*Cnew;
     
     %%%%%%%%%%%%%%
     %%% Final simulation.   
@@ -108,6 +112,8 @@ for we=WE
     % Note for consistency this is now calculated in a universal function.
 	phfcd = phase_fcd(xs,TR);
     [H,P,FCD(iwe)]=kstest2(phfcd,phfcddata);       
+
+    all_anecs{iwe}=Cnew;
     iwe=iwe+1;
 
 end

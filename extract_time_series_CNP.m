@@ -70,6 +70,9 @@ for analysis_type = 1:length(analyses)
             data_ts_rh = MRIread([outputName,'.rh.nii.gz']);data_ts_rh = squeeze(data_ts_rh.vol);
             % data_ts_rh = MRIread(['timeseries' num2str(subject) '.rh.nii']);data_ts_rh = squeeze(data_ts_rh.vol);
             
+            % Here add path for the parcellation (add HCP for the register, then do it)
+            % Also here add in the sub-cortical parcellation.
+
             left_label = [getenv('SUBJECTS_DIR'),subjectName,'/label/lh.aparc.annot'];
             right_label = [getenv('SUBJECTS_DIR'),subjectName,'/label/rh.aparc.annot'];
 

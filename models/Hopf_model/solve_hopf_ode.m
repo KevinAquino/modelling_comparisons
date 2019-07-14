@@ -37,12 +37,12 @@ for t=0:dt:3000
     zz = z(:,end:-1:1); % flipped z, because (x.*x + y.*y)
     z = z + dt*(a.*z + zz.*omega - z.*(z.*z+zz.*zz) + suma) + dsig*randn(N,2);
 end
-
+nn=1;
 timeVector = 0:dt:((Tmax-1)*TR);
 downsampleRate = TR/dt;
 tsampled = (timeVector(1:downsampleRate:end));
 
-
+% keyboard
 % actual modeling (x=BOLD signal (Interpretation), y some other oscillation)
 for tind=1:length(timeVector)
     suma = wC*z - sumC.*z; % sum(Cij*xi) - sum(Cij)*xj
