@@ -31,14 +31,32 @@ function phfcd = phase_fcd(xs,TR)
         pattern(t-9,:)=patt(upperTriangle);
     end
     
-    kk=1;
-    npattmax=size(pattern,1);
-    for t=1:npattmax-2
-        p1=mean(pattern(t:t+2,:));
-        for t2=t+1:npattmax-2
-            p2=mean(pattern(t2:t2+2,:));
-            phfcd(kk)=dot(p1,p2)/norm(p1)/norm(p2);
-            kk=kk+1;
-        end
-    end
+    % keyboard
     
+    npattmax=size(pattern,1);
+    % kk=1;
+    % for t=1:npattmax-2
+    %     p1=mean(pattern(t:t+2,:));
+    %     for t2=t+1:npattmax-2
+    %         p2=mean(pattern(t2:t2+2,:));
+    %         phfcd(kk)=dot(p1,p2)/norm(p1)/norm(p2);
+    %         kk=kk+1;
+    %     end
+    % end
+    
+    % Code here does the same thing, orders of magnitude faster;
+
+    p_mat = zeros(npattmax-2,size(pattern,2));
+
+    % Pre-calculation of the phase vectors
+    for t=1:npattmax-2
+        p_mat(t,:)=mean(pattern(t:t+2,:));
+        p_mat(t,:) = p_mat(t,:)/norm(p_mat(t,:));
+    end
+    % The same dot-product, making use of some matrix mathematics.
+    phase_fcd_all = p_mat*p_mat';
+    % Take only the upper triangle
+    uT=triu(ones(size(phase_fcd_all)),1);
+    % Use the upper triangle only, and viola here it is
+    phfcd = phase_fcd_all(find(uT))';
+
