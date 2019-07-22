@@ -2,8 +2,10 @@ function [ts_simulated_all,grandFCcorr,FCD,all_anecs,all_MSE] = run_hopf_model_h
 
 % Setting up the parameters
 C = sc_matrix;
-N=68;
-Tmax=148;
+% N=68;
+% Tmax=148;
+[N,Tmax] = size(squeeze(time_series(:,:,1)));
+
 Isubdiag = find(tril(ones(N),-1));
 NSUB=size(time_series,3);
 
@@ -40,7 +42,7 @@ sig=0.02; % This sigma is used to determine the strength of noise in the Hopf mo
 WE=G;
 a=-0.01*ones(N,2);
 Cnew=C;
-ITER=1:20;
+ITER=1:30;
 
 Tmax=Tmax*NSUB;
 
