@@ -25,7 +25,7 @@ fclose(fid);
 % Look at data with ICA-AROMA GSR, and then look at ICA-AROMA DBSCAN
 % Note no explicit physiological regression on either
 
-analyses = {'ICA-AROMA+2P_GSR'};
+% analyses = {'ICA-AROMA+2P_GSR'};
 tmpdir = '/home/kaqu0001/kg98_scratch/kevo/tmpdir';
 system('mkdir -p /home/kaqu0001/kg98_scratch/kevo/tmpdir');
 addpath([getenv('FREESURFER_HOME'),'/matlab']);
@@ -43,9 +43,9 @@ for subject=1:length(subject_list),
 
     try 
 		subjectName = subject_list{subject};
-        epi{1} = [base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-MNI152NLin2009cAsym_variant-smoothAROMAnonaggr_preproc+2P.nii.gz'];        
-        epi{2} = [base_folder_string,'/fmriprep/',subjectName,'/func/',subjectName,'_task-rest_bold_space-MNI152NLin2009cAsym_variant-smoothAROMAnonaggr_preproc+2P+GMR.nii.gz'];
-        epi{3} = [base_folder_string,'/fmriprep/',subjectName,'/dbscan/',subjectName,'task-rest_bold_space-MNI152NLin2009cAsym_variant-AROMAnonaggr_preproc+2P_detrended_hpf_dbscan.nii.gz'];
+        epi{1} = [base_folder_string,'/fmriprep/',subjectName,'/dbscan/',subjectName,'_task-rest_bold_space-MNI152NLin2009cAsym_variant-AROMAnonaggr_preproc+2P_detrended_hpf.nii.gz'];        
+        epi{2} = [base_folder_string,'/fmriprep/',subjectName,'/dbscan/',subjectName,'_task-rest_bold_space-MNI152NLin2009cAsym_variant-AROMAnonaggr_preproc+2P+GMR_detrended_hpf.nii.gz'];
+        epi{3} = [base_folder_string,'/fmriprep/',subjectName,'/dbscan/',subjectName,'_task-rest_bold_space-MNI152NLin2009cAsym_variant-AROMAnonaggr_preproc+2P_detrended_hpf_dbscan.nii.gz'];
 
         aparc_aseg=[base_folder_string,'/fmriprep/',subjectName,'/anat/',subjectName,'_T1w_space-MNI152NLin2009cAsym_preproc_aparcaseg_roi.nii.gz'];
         aparc_aseg_epi=[base_folder_string,'/fmriprep/',subjectName,'/anat/',subjectName,'_bold_space-MNI152NLin2009cAsym_preproc_aparcaseg_roi.nii.gz'];
@@ -54,7 +54,8 @@ for subject=1:length(subject_list),
         system(unix_command);
         % First just wrtite the code without
         for analysis_type=1:3,
-            [data_ts_lh,data_ts_rh] = CBIG_RF_ProjectMNI2fsaverage(epi{analysis_type});
+            clear data_ts_lh data_ts_rh
+            [data_ts_lh,data_ts_rh] = CBIG_RF_projectMNI2fsaverage(epi{analysis_type});
     		% can use the CBIG tools here to transform the data into the surface space, not perfect but okay for our purposes - do we also want sub-cortex though? not sure 
             data_ts_lh = parcelTimeSeries(data_ts_lh.',left_label);
             data_ts_rh = parcelTimeSeries(data_ts_rh.',right_label);        
@@ -63,12 +64,13 @@ for subject=1:length(subject_list),
             % Also now look at sub-cortex.
             % Grab the map, do a transform then map it onto here.
             % Will have to look at some stuff first        
-            unix_command = ['fslmeants -i ',epi{analysis_type,' --label ',aparc_aseg_epi,' -o ',timeSeries_text];
+            timeSeries_text = [base_folder_string,'/fmriprep/',subjectName,'/dbscan/','tser.txt'];
+            unix_command = ['fslmeants -i ',epi{analysis_type},' --label=',aparc_aseg_epi,' -o ',timeSeries_text];
             system(unix_command);
 
-            parcelTimeSeries = dlmread(timeSeries_text);
-            left_subcortex=parcelTimeSeries([10,11,12,13,17,18,26],:);
-            right_subcortex=parcelTimeSeries([49,50,51,52,53,54,58],:);
+            scTimeSeries = dlmread(timeSeries_text);
+            left_subcortex=scTimeSeries(:,[10,11,12,13,17,18,26],:)';
+            right_subcortex=scTimeSeries(:,[49,50,51,52,53,54,58],:)';
 
             allInds = setdiff(1:35,4);
             data_ts_lh = [data_ts_lh(allInds,:);left_subcortex];
@@ -89,5 +91,5 @@ for subject=1:length(subject_list),
 end
 toc;
 
-save('AROMA+2P+GSR');
+save('UCLA_ALL_SUBS_updated_DiCER');
 
