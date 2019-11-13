@@ -9,6 +9,7 @@ base_folder_string = '/scratch/kg98/kristina/Projects/GenofCog/derivatives/dicer
 
 % addpath('/usr/local/freesurfer/devel/matlab/');
 addpath('/home/kaqu0001/projects/eigen_decomposition');
+addpath(genpath('/home/kaqu0001/projects/CBIG/stable_projects/registration/Wu2017_RegistrationFusion/'));
 
 
 fid = fopen('GenCog_data_all.txt');
@@ -38,9 +39,9 @@ tic;
 badSub = [];
 for subject=1:length(subject_list),
     disp('========================================================================================================================')
-    disp(['=======================================SUBJECT',subject_list{subject},'================================================'])
+    disp(['=============================SUBJECT ',subject_list{subject},'  ',num2str(subject),'/440================================================'])
     disp('========================================================================================================================')
-
+    disp(['Total number of bad subjects: ',num2str(length(badSub))]);
     try 
 		subjectName = subject_list{subject};
         epi{1} = [base_folder_string,subjectName,'/',subjectName,'_filtered_func_data_clean_mni.nii.gz'];
@@ -50,7 +51,7 @@ for subject=1:length(subject_list),
         % First do GMR
         % Extract GM signal
         brain_signal_txt=['/home/kaqu0001/kg98_scratch/kevo/tmpdir/',subjectName,'_gm_signal.txt'];
-        unix_command=['fslmeants -i ',epi{1},'-o ',brain_signal_txt,' --label=',base_folder_string,subjectName,'/',subjectName,'_dtissue_func.nii.gz'];
+        unix_command=['fslmeants -i ',epi{1},' -o ',brain_signal_txt,' --label=',base_folder_string,subjectName,'/',subjectName,'_dtissue_func.nii.gz'];
         system(unix_command);
         % Now perform GMR
         unix_command=['fsl_regfilt -i ',epi{1},' -o ',epi{2},' -d ',brain_signal_txt,' -f 4 -a'];
