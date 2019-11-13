@@ -37,7 +37,16 @@ right_label='/home/kaqu0001/kg98/kevo/fsaverage/label/rh.aparc.annot';
 tic;
 % cd(tmpdir);
 badSub = [];
-for subject=1:length(subject_list),
+all_sample{1}=[1:73];
+all_sample{2}=[74:147];
+all_sample{3}=[148:220];
+all_sample{4}=[221:293];
+all_sample{5}=[294:366];
+all_sample{6}=[367:440];
+
+dicer_list=all_sample{listNum};
+% for subject=1:length(subject_list),
+for subject=dicer_list,
     disp('========================================================================================================================')
     disp(['=============================SUBJECT ',subject_list{subject},'  ',num2str(subject),'/440================================================'])
     disp('========================================================================================================================')
@@ -104,5 +113,5 @@ for subject=1:length(subject_list),
 end
 toc;
 
-save('GenCog_ALL_DiCER');
+save(['GenCog_ALL_DiCER',num2str(listNum)]);
 
