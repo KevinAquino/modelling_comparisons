@@ -10,14 +10,14 @@ function [ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_homogenous_b
 	C = sc_matrix;
 	wG = G;	
 	TR = 2;
-	Tmax = 147;%Check whats your tmax.
+	Tmax = size(time_series,2);%Check whats your tmax.
 	subjects = size(time_series,3);
 	N = size(sc_matrix,1);
 
 	phfcddata = [];
 	% Calculation of the total FCD
 	TR = 2;
-	for subject=1:10,
+	for subject=1:size(time_series,3),
 		ts = time_series(:,:,subject);
 	phfcddata = [phfcddata,phase_fcd(ts,TR)];	
 	end

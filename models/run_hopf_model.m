@@ -7,8 +7,8 @@ function run_hopf_model_heterogenous_bif(sc_matrix,time_series,G,folder)
 
 	C = sc_matrix;
 	wG = G;
-	ldata = 2;%Number of subjects.
-	Tmax = 147;%Check whats your tmax.
+	ldata = size(time_series,3);%Number of subjects.
+	Tmax = size(time_series,2);%Check whats your tmax.
 
 	Cfg.opt_a.nIters = 200;%Number of iterations for initial optimization
 	Cfg.opt_a.updateStrength = 0.1;%Update strength for a optimization

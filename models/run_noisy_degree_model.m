@@ -14,12 +14,14 @@ function [ts_simulated_all,FCcorr,grandFCcorr,FCD] =run_noisy_degree_model(sc_ma
 D = mean(sc_matrix,1);
 TR = 2;
 Tmax = size(time_series,2);
+Nregions=size(time_series,1);
+Nsubs=size(time_series,3);
 % Here to make sure we exclude the main diagonal
 upperTriangle = find(triu(ones(size(sc_matrix)),1));
 phfcddata = [];
 
 
-for subject=1:10,
+for subject=1:Nsubs,
 	ts = time_series(:,:,subject);
 	% Find the equivalent G
 	corrFC(:,:,subject) = corr(ts.');
@@ -33,7 +35,7 @@ for subject=1:10,
 			coupling_factor = max(D)/G(coupling_index);
 		end
 
-		for j=1:68;
+		for j=1:Nregions;
 			ts_simulated(j,:) = mean(ts,1)*D(j) + coupling_factor*randn(1,Tmax);
 		end
 		ts_simulated_all(:,:,subject,coupling_index) = ts_simulated;
@@ -66,14 +68,14 @@ for coupling_index=1:length(G),
 	else
 		coupling_factor = max(D)/G(coupling_index);
 	end
-	for j=1:68;
+	for j=1:Nregions;
 		ts_simulated(j,:) = globalSignal*D(j) + coupling_factor*randn(1,Tmax);
 	end
 	% Look at the simulated data:
 	corrFC_sim = corr(ts_simulated.');	
 	grandFCcorr(coupling_index) = corr(corrFC_sim(upperTriangle),meancorrFC(upperTriangle));
 	% phfcd = phase_fcd(ts_simulated,TR);
-	% keyboard
+% 	keyboard
 	% [~,~,FCD(coupling_index)] = kstest2(phfcd,phfcddata);
 end
 

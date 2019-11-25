@@ -42,7 +42,8 @@ sig=0.02; % This sigma is used to determine the strength of noise in the Hopf mo
 WE=G;
 a=-0.01*ones(N,2);
 Cnew=C;
-ITER=1:30;
+% ITER=1:30;
+ITER=[];
 
 Tmax=Tmax*NSUB;
 
@@ -59,6 +60,7 @@ for we=WE,
     % Could possibly use parfor here for parallel processing.
     MSE=100;    
     MSE_run = [];
+    wC = we*Cnew;
     for iter=ITER
         disp(['ITERATION_=',num2str(iter),' MSE=',num2str(MSE)]);
         wC = we*Cnew;
