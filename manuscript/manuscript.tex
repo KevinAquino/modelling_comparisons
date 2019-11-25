@@ -1,25 +1,118 @@
-\documentclass[10pt]{article}
+\documentclass[oneside]{zHenriquesLab-StyleBioRxiv}
+\usepackage{url}
+\usepackage{float}
+\graphicspath{{./figs/}} % Path to figures:
+\usepackage{soul}
+\usepackage{color}
+\leadauthor{Aquino}
+
+\newcommand{\subf}[2]{%
+   \normalfont\sffamily\fontsize{7}{9} \selectfont #2 \\
+  {\small\begin{tabular}[t]{@{}c@{}}
+  #1
+  \end{tabular}}%
+}
+
 \begin{document}
 
-\title{Toward fundamental principles in large scale brain modelling: In other words bridging the divide between models and experiment}
-\author{Kevin Aquino, Gustavo Deco \& Alex Fornito}
-% \date
+\title{How wide scale deflections (WSDs) corrupt large scale network modelling.}
+\shorttitle{Effect of large-scale coherent structures on modelling}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[1,*]{Kevin M. Aquino}
+\author[1,2]{Gustavo Deco}
+\author[3]{Leonardo Gollo?}
+\author[1]{Alex Fornito}
+
+\affil[1]{The Turner Institute for Brain and Mental Health, School of Psychological Sciences, and Monash Biomedical Imaging, Monash University, Victoria, Australia.}
+\affil[2]{Universitat Pompeu Fabra, Barcelona, Spain.}
+\affil[3]{Queensland institute of Medical Research, Berghoffer, Brisbane, Australia.}
+
 \maketitle
 
-\section{Abstract}
+\begin{abstract}
+Large-scale dynamics of the human are often modelled using systems of dynamical equations that describe the evolution of population-level activity under certain biophysical constraints, and which are coupled according to an empirically measured structural connection matrix. 
+The accuracy of these models is often quantified through correlation with empirical patterns of functional coupling between brain regions. 
+Model parameters are often tuned to obtain the best fit between theory and experiment. This approach has been used to generate insights into the neural underpinnings of spontaneous brain dynamics, as recorded with techniques such as functional MRI (fMRI).
+However, parallel studies into the fMRI data that are used to fit the models have revealed a wealth of structured noise – from small to large scale – resulting in the lack of a consensus of which pre-processing steps should be used. 
+The specific choice of pre-processing models has a major impact on the final measures, and thus which signals are used to fit the models, but these variations are rarely considered in the modelling sphere. 
+We show, using  popular neural mass models, that the choice between four key pre-processing steps leads to very different degrees of model fit. 
+These results question estimates of reported model parameters, model interpretation, and, in the worst case, model validity. 
+We try to bridge the gap between theory and experiment by presenting recent quality control measures on the acquired data and the different types of structured noise. 
+We hope to open the dialog between theory and experiment, which is necessary to advance large-scale brain network modelling.
+\end{abstract}
 
-\section{Introduction}
+\begin{keywords}
+resting-state | fMRI | global signal regression | denoising | modelling | network
+\end{keywords}
 
-\subsection{The premise: Resting state functional networks}
+\begin{corrauthor}
+kevin.aquino@monash.edu
+\end{corrauthor}
+
+
+\section*{Introduction}
+Things to talk about in the introduction:
++ General large-scale network modelling
++ What is being fitted (rsfMRI correlations)
++ Problems in the field regarding Large-coherent structures
++ Largely ignore by the modelling community (no real discussion of this)
+	-- Discussion more on GSR vs noGSR (Hannes paper, Messe et al as well)
++ If we treat model simulations as numerical experiments we can then understand the simulated data in the same light
++ Summary of the rest of the paper - starting with a special case of the balanced EI model, using the tools and the models under different preprocessing lights. Introduce the noisy-degree model (could be something that is really interesting on its own, but it does not need anything else.)
+
+
+Over the last two decades, functional magnetic resonance imaging (fMRI) has heavily focused on understanding the brain "at rest". 
+Imaging the brain at ``rest'' ,or more accurately task-free,   is thought to accentuate the brain's complex functional networks (REFS) under the premise that key networks of brain function have a correlated structure (REFS). 
+This paradigm has lead to the discovery of robust resting networks that are altered once the brain is engaged tasks, are altered in disease, and consistent across populations as well as species. 
+These discoveries have lead to various questions -- such as what is the role of these networks? what are the key elements are altered during disease, and importantly how stucture shapes cortical function.
+
+Large-scale biophysical models of cortical activity have sought to bridge the gaps in our understanding of the resting brain. 
+These models start typically with an anatomically defined connectivity matrix, impose biophysically realistic dynamics and simulate dynamics present in large scale resting state fMRI. 
+At the time of this article there have been numerous coritcal models, each providing accurate predictions of the correlational stucture. 
+Together, these models show the following (A,B,C,D ++ need to find the key findings and what people are saying).
+
+The ease of recording resting state data, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest.
+However, with the advance of this in parallel we have the following problems
+At the same time (and almost in parallel) however, numerous studies have demonstrated that fluctuations in the resting state contain a large amount of artefacts.
+
+Here describle all the artefacts corrupted by motion, heart rate, breathing, oxygenation, basal state (and other stuff). Hence, there has been a rigous effort to regress out large scale structure correlated to physiology in order to isolate neural mechanisms. This has lead to the lack of a community consensus into which preprocessing steps should be used (ref,ref).
+
+Talk about the tools to de-noise: popular methods are typically seen in the following light - take estimates 
+
+
+This crisis in the experimental and data analysis litertaure has largely been ignored in large scale biopyhysical modelling. In This crisis
+
+
+Hence, this has been a large focus of large scale brain dynamics. 
+
+Hence, there has been a large focus to understand the data acquired from this paradigm 
+
+ although easy to acquire, has presented a number of challenges there has been a paradigm shift to stray away from understanding task specific brain activity to 
+
+
+Functional magnetic resonance imaging (fMRI) of the brain at rest has brought upon a plehtora of studies to understand the correlational structure of cortex. A number of studies have used this resting paradigm 
+
+
+Need to mention that very bad prepro has been used. 
+
+\section*{Methods 1: Experimental data}
+
+\section*{Methods 2: Brain network modelling}
+generic theory:
+\begin{equation}
+	\frac{d}{dt}z_{i}(t) = f(A,{\bf z}) + I.
+\end{equation}
+where $A$ is the structural connectivity matix 
+
+\section*{The premise: Resting state functional networks}
 
 Here talk about the results and what is extracted. Then talk about the modelling from structure to function, essentially what people have been doing. State that there has been success. 
 
 Then state the problems, and they have unfortunately been treated seemingly independently.
 
 Independent problems:
-
 From the modeling side: Homogenous vs heterogenous. Types of different dynamical mechanisms. Types of oscillatory models.
-
 From the data side: preprocessing, global signal regression? inter subject registration
 
 Fusion problems:
@@ -33,7 +126,7 @@ Assumptions, that all problems listed above have been handled/sorted/agreed upon
 
 Show that we are not ready yet to make robust inferences, we need better models and cleaner data.
 
-\section{Theory and results}
+\section*{Theory and results}
 
 Add in stuff to do with 
 
@@ -45,26 +138,28 @@ Definitions of models (heterogenous vs homogenous models) \\
 Show different candidates of metrics: FC,FCD and correlations.
 Show the different types \\
 
-\section{Theory and predictions}
+\section*{Theory and predictions}
 
 How many sample points are needed?
 Perhaps something we should also ask is how much of the time domain needed for the functional connectivity emerge as a robust measure -- timings etc. Which edges take the longest.
 
 Perhaps we need a certainty. 
 
-\section{Results from modeling:}
+\section*{Results from modeling:}
 Need to have a table here
 
-\section{ways to improve things}
+\section*{ways to improve things}
 We take correlations blindly in functional networks on large scale connectivity. Perhaps however we need estimates of uncertainty on each node -- this way the model does not have to prove the existence of this connection. 
 
 How robust are connections to preprocessing methods and timing windows? Then fitting needs to work on this assumption.
 
-Heterogeneity is the answer. but preprocessing matters.
+Heterogeneity is the answer. but preprocessing matters. 
 
 GSR is probably not the answer.
 
-\section{Points that need to be discussed/mentioned here}
+ANEC
+
+\section*{Points that need to be discussed/mentioned here}
 
 There is a big divide between modeling and experimental expertise \\
 There is an assumption of quality on each side \\
@@ -75,6 +170,13 @@ The interplay between theory and experiment. \\
 Does it matter? we have a test scenario SCZ vs CTL -- what are the differences? \\
 Models fit best with the worst kind of preprocessing.
 
-\section{Discussion}
+\section*{Discussion}
+
+What is actually being modelled? Is this brain function, or just a perturbation of a resting idled brain? This is not generalizable really. If one were to take a simple visual response what do we see? Should the models capture all this behaviour?
+
+We need better measures - FCD? not sure if this is enough, we need more stuff. Also need to have predictive validity. 
+
+
+also idea, shift the last few Gs stuff to negative see what GSR does to it.
 
 \end{document}

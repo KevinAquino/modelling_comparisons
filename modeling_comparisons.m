@@ -4,15 +4,30 @@
 % ============================================================
 
 % Here we have the four processing streams that we want to model the responses to
-% preprocessing_stream ={'MINIMAL','ICA-AROMA','ICA-AROMA_GSR','ICA-AROMA_DBSCAN'};
-preprocessing_stream ={'ICA-AROMA','ICA-AROMA_GSR','ICA-AROMA_DBSCAN'};
+fmri_dataset = 'UCLA'
 
-% Load in the time series:
-load('/Users/kevinaquino/projects/modelling_gusatvo/empirical_data/ten_subjects_4types.mat');
+switch fmri_dataset
+	case 'UCLA'
+		% Load in the time series: (with accompanying structural connectivity matrix)
+		load('empirical_data/UCLA_time_series_four_groups.mat');
+		C=ADJ_average;
+		Nsubs=1:size(time_series,3);
+		% Remove out the bad subjects (parsing of the subject data here)
+		time_series=time_series(:,:,setdiff(Nsubs,badSub),:);
+		time_series=time_series(:,:,1:100,:);
+	case 'GenCog'
+	case 'HCP'
+end
+
+preprocessing_stream = noiseOptions;
+
+
 % Load in the structural matrix:
-load('/Users/kevinaquino/projects/modelling_gusatvo/empirical_data/exemplarSC.mat');
+% load('empirical_data/exemplarSC.mat');
+
+
 sc_matrix = C/max(C(:))*0.2;
-G = linspace(0,6,20);
+G = linspace(0,10,20);
 
 % A structure here to capture all of the models. Now of course all of these can't really be 
 % solved on one desktop so they will be sent to the cluster to be solved from matlab. Perhaps each
@@ -46,23 +61,13 @@ for model_class_type = fields(model_class).',
 
 		disp(['Currently at: ',model]);
 		% Now go through each preprocessing stream
-		for prepro = preprocessing_stream,
-			disp(['Using model:',model{1},' with processing stream:',prepro{1}]);
+		for prepro_num=1:length(preprocessing_stream);
+			prepro = preprocessing_stream{prepro_num},
+			disp(['Using model:',model{1},' with processing stream:',prepro]);
+			model_time_series=permute(time_series(:,:,:,prepro_num),[2 1 3]);
 
-			switch prepro{1}
-				case 'MINIMAL'
-					time_series = time_series_aparc_processed(:,:,:,4);
-				case 'ICA-AROMA'
-					time_series = time_series_aparc_processed(:,:,:,1);
-				case 'ICA-AROMA_GSR'
-					time_series = time_series_aparc_processed(:,:,:,2);
-				case 'ICA-AROMA_DBSCAN'
-					time_series = time_series_aparc_processed(:,:,:,3);
-			end
-				
-			
 			% Here now run the models
-			run_network_model(sc_matrix,time_series,G,model{1},prepro{1});
+			run_network_model(sc_matrix,model_time_series,G,model{1},prepro,fmri_dataset);
 
 			% Now here need to add the actual model with parameters that are equivalent
 			% Have to work out the inputs really
