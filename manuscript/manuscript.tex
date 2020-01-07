@@ -15,35 +15,33 @@
 
 \begin{document}
 
-\title{How wide scale deflections (WSDs) corrupt large scale network modelling.}
+\title{How wide scale deflections (WSDs) corrupt large scale network modelling of resting state fMRI.}
 \shorttitle{Effect of large-scale coherent structures on modelling}
 
 % Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
 \author[1,*]{Kevin M. Aquino}
 \author[1,2]{Gustavo Deco}
-\author[3]{Leonardo Gollo?}
+% \author[3]{Leonardo Gollo (ask)}
 \author[1]{Alex Fornito}
 
 \affil[1]{The Turner Institute for Brain and Mental Health, School of Psychological Sciences, and Monash Biomedical Imaging, Monash University, Victoria, Australia.}
 \affil[2]{Universitat Pompeu Fabra, Barcelona, Spain.}
-\affil[3]{Queensland institute of Medical Research, Berghoffer, Brisbane, Australia.}
+% \affil[3]{Queensland institute of Medical Research, Berghoffer, Brisbane, Australia.}
 
 \maketitle
 
 \begin{abstract}
-Large-scale dynamics of the human are often modelled using systems of dynamical equations that describe the evolution of population-level activity under certain biophysical constraints, and which are coupled according to an empirically measured structural connection matrix. 
-The accuracy of these models is often quantified through correlation with empirical patterns of functional coupling between brain regions. 
-Model parameters are often tuned to obtain the best fit between theory and experiment. This approach has been used to generate insights into the neural underpinnings of spontaneous brain dynamics, as recorded with techniques such as functional MRI (fMRI).
-However, parallel studies into the fMRI data that are used to fit the models have revealed a wealth of structured noise – from small to large scale – resulting in the lack of a consensus of which pre-processing steps should be used. 
-The specific choice of pre-processing models has a major impact on the final measures, and thus which signals are used to fit the models, but these variations are rarely considered in the modelling sphere. 
-We show, using  popular neural mass models, that the choice between four key pre-processing steps leads to very different degrees of model fit. 
+Large-scale dynamics of the brain are routinely modelled using systems of dynamical equations that describe the evolution of population-level activity under certain biophysical constraints, and are coupled according to an empirically measured structural connection matrix. This modelling approach has been used to generate insights into the neural underpinnings of spontaneous brain dynamics, as recorded with techniques such as resting state functional MRI (fMRI).
+However, parallel studies into the fMRI have revealed a wealth of structured noise – from small to large scale – and has revealed a lack of a consensus of which pre-processing and de-noising steps should be used. 
+The specific choice of pre-processing models has a major impact on the final measures that compare population groups and understand underlying biology of human cortex, but these impacts are rarely considered in the modelling sphere. 
+We show, using popular neural mass models, that key de-noising step leads to very different degrees of model fit and interpetations of findings.
 These results question estimates of reported model parameters, model interpretation, and, in the worst case, model validity. 
 We try to bridge the gap between theory and experiment by presenting recent quality control measures on the acquired data and the different types of structured noise. 
-We hope to open the dialog between theory and experiment, which is necessary to advance large-scale brain network modelling.
+We hope to open the dialog between theory and experiment, which is necessary to advance large-scale brain network modelling. (having something less grand, statement is possibly too bold?)
 \end{abstract}
 
 \begin{keywords}
-resting-state | fMRI | global signal regression | denoising | modelling | network
+resting-state | fMRI | denoising | modelling | network | DiCER | GSR | rsfMRI
 \end{keywords}
 
 \begin{corrauthor}
@@ -52,49 +50,92 @@ kevin.aquino@monash.edu
 
 
 \section*{Introduction}
-Things to talk about in the introduction:
-+ General large-scale network modelling
-+ What is being fitted (rsfMRI correlations)
-+ Problems in the field regarding Large-coherent structures
-+ Largely ignore by the modelling community (no real discussion of this)
-	-- Discussion more on GSR vs noGSR (Hannes paper, Messe et al as well)
-+ If we treat model simulations as numerical experiments we can then understand the simulated data in the same light
-+ Summary of the rest of the paper - starting with a special case of the balanced EI model, using the tools and the models under different preprocessing lights. Introduce the noisy-degree model (could be something that is really interesting on its own, but it does not need anything else.)
+
+% Plan for today - Tuesday 7th Janurary 2020.
+% Have a good rough crack at all of the Introduction (need to have it all filled out.)
+
+% Plan for Wednesday - Have a rough crack of the methods
+
+% Plan for Thursday - Have a crack including all of the holes in the results section
+
+% Plan for Friday - Have a crack of the discussion (at least little bits)
+
+% Plan for next week - Then have something to add to for the results and things 
+
+Over the last three decades, functional magnetic resonance imaging (fMRI) has  focused on understanding the brain at ``rest'' or more specifically task-free. Imaging the brain in this state is sought to provide researchers an insight into the brain's idling dynamics - the default mode of the brain. Imaging the brain ``at rest'' is attractive paradigm as it can be easily acquired in the healthy population (REF) and has replaced many task-based analyses between groups where a balanced task response between patient groups and controls is difficult (REFs) or in some cases impossible to develop (REFs).
 
 
-Over the last two decades, functional magnetic resonance imaging (fMRI) has heavily focused on understanding the brain "at rest". 
-Imaging the brain at ``rest'' ,or more accurately task-free,   is thought to accentuate the brain's complex functional networks (REFS) under the premise that key networks of brain function have a correlated structure (REFS). 
-This paradigm has lead to the discovery of robust resting networks that are altered once the brain is engaged tasks, are altered in disease, and consistent across populations as well as species. 
-These discoveries have lead to various questions -- such as what is the role of these networks? what are the key elements are altered during disease, and importantly how stucture shapes cortical function.
+Despite challenges in (described below) imaging the brain at rest has led to the discovery that the brain at rest exhibits synchronized fluctuations, revealing resting state networks (REFS smith and others) and they are robustly detected. The resting state networks unique enough between individuals to be a unique identifier (REFs), are related to independent behavioural measures (REFs) and the associated correlation structure are related to the underlying neural connectivity (REFs). For these reasons resting state fMRI (rsfMRI) has potential promise in the clinical domain, as resting-state connectivity patterns are different between populations as shown in various disorders (REFs), change in response to treatment, and thus serve as potential biomarkers. 
 
-Large-scale biophysical models of cortical activity have sought to bridge the gaps in our understanding of the resting brain. 
-These models start typically with an anatomically defined connectivity matrix, impose biophysically realistic dynamics and simulate dynamics present in large scale resting state fMRI. 
-At the time of this article there have been numerous coritcal models, each providing accurate predictions of the correlational stucture. 
-Together, these models show the following (A,B,C,D ++ need to find the key findings and what people are saying).
 
-The ease of recording resting state data, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest.
+There are many open questions as to the meaning of these networks, such as: what is driving these resting state flucations? (REFs) How much does the structural connectivity drive these co-ordinated flucations? (REFs) Can neuromodulations change the level of synchronized flucationas? (Need refs for all of these). Large-scale biophysical models of cortical activity have sought to bridge the gaps in our understanding of the resting brain. These models typically have three critical ingredients - an anatomically defined connectivity matrix, a biophysically realistic model, and a set of meaningful parameters. 
+
+Firstly, the anatomical matrix is from DTI/DSI/Literature. It is usually measured and used for each subject or sometimes the average is taken instead.
+
+Secondly, The biophysical model takes from local neural scales to mesoscopic scales in the flavours of mean-field, neural mass models, or more recently using a norm - e.g. the Hopf biophysical model. Although seemingly complex, resting state fMRI is quite attractive from a modelling perspective as although underlying connections and dynamics may be extremely complex, and nonlinear, it can be treated as a linear perturbation from a steady state resulting in a wealth of linear models.
+
+Lastly the parameters are set to provide the meaning beteween the model. Two sets are generally observed - local parameters to each node. Another parameters is typically a hyperparameter which determines the scaling between the anatomical connectivity. Mostly the models have been fit. 
+
+What have they shown? Firstly, they can fit correlations really well, 
+Secondly, that structure really shapes rsfMRI connectivity to a large degree and that underlying ``hidden parameters'' such as neuromodulation etc can be inferred and possibly used to correlate to certain things. 
+
+% and simulate dynamics present in large scale resting state fMRI (REFs). There have been numerous coritcal models, each providing accurate predictions of the network correlational stucture. Together, these models show the following (A,B,C,D ++ need to find the key findings and what people are saying).
+
+The ease of recording rsfMRI, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest.
 However, with the advance of this in parallel we have the following problems
 At the same time (and almost in parallel) however, numerous studies have demonstrated that fluctuations in the resting state contain a large amount of artefacts.
 
-Here describle all the artefacts corrupted by motion, heart rate, breathing, oxygenation, basal state (and other stuff). Hence, there has been a rigous effort to regress out large scale structure correlated to physiology in order to isolate neural mechanisms. This has lead to the lack of a community consensus into which preprocessing steps should be used (ref,ref).
+Here describle all the artefacts corrupted by motion, heart rate, breathing, oxygenation, basal state (and other stuff). Hence, there has been a rigous effort to regress out large scale structure correlated to physiology in order to isolate neural mechanisms. This has lead to the lack of a community consensus into which preprocessing steps should be used (ref,ref). Although some people have sought to keep on trying and build up on this. 
 
-Talk about the tools to de-noise: popular methods are typically seen in the following light - take estimates 
+Some papers have set to quantify the effects of artefacts - QC-FC measures (Parkes et al., Ciric et al. Glasser et al. Power Et al.), providing a way to determine all of this. Also another thing is carpet plots too. This can really show the observed patterns.
 
+However, the modelling community has not investigated the effects of preprocessing on modelling estimates. Do any wide scale deflections manifest in erroroneous estimates of modelling? As with the debate of GSR in the literature and lack of concensus this is also apparent in modelling studies no consistent regime. In particular large scale coherent patterns with GSR. Large scale biophysical models in fact model large scale patterns. Also with parameter estimates - what do they actually mean if they are influence by certain things. 
 
-This crisis in the experimental and data analysis litertaure has largely been ignored in large scale biopyhysical modelling. In This crisis
-
-
-Hence, this has been a large focus of large scale brain dynamics. 
-
-Hence, there has been a large focus to understand the data acquired from this paradigm 
-
- although easy to acquire, has presented a number of challenges there has been a paradigm shift to stray away from understanding task specific brain activity to 
+Here this study is going to bridge that gap by using biophyiscal models of the certain kind. Will show the effects that WSDs provide, showing how WSDs can influence findings and corrupt the work. Here, we bring into question the role and urge QC-FC type of measures as well as carpet plots. We end with a note on how things can be improved with heteroengous models but at the cost of model complexity. 
 
 
-Functional magnetic resonance imaging (fMRI) of the brain at rest has brought upon a plehtora of studies to understand the correlational structure of cortex. A number of studies have used this resting paradigm 
+What i think is instead cool is to have two different sections, 
+
+firstly show the effects that different preprocessing has and relationships to data. 
+
+% Then say from a modelling point of view this is very attractive as if there is a complex network resting state fMRI can be seen as small pertubations, and from a dynamic perspective this allows a large amount of dynamics that are applicable from other sources.
 
 
-Need to mention that very bad prepro has been used. 
+
+% Things to talk about in the introduction:
+% + General large-scale network modelling
+% + What is being fitted (rsfMRI correlations)
+% + Problems in the field regarding Large-coherent structures
+% + Largely ignore by the modelling community (no real discussion of this)
+% 	-- Discussion more on GSR vs noGSR (Hannes paper, Messe et al as well)
+% + If we treat model simulations as numerical experiments we can then understand the simulated data in the same light
+% + Summary of the rest of the paper - starting with a special case of the balanced EI model, using the tools and the models under different preprocessing lights. Introduce the noisy-degree model (could be something that is really interesting on its own, but it does not need anything else.)
+
+
+% Over the last two decades, functional magnetic resonance imaging (fMRI) has heavily focused on understanding the brain "at rest". 
+% Imaging the brain at ``rest'' ,or more accurately task-free,   is thought to accentuate the brain's complex functional networks (REFS) under the premise that key networks of brain function have a correlated structure (REFS). 
+% This paradigm has lead to the discovery of robust resting networks that are altered once the brain is engaged tasks, are altered in disease, and consistent across populations as well as species. 
+% These discoveries have lead to various questions -- such as what is the role of these networks? what are the key elements are altered during disease, and importantly how stucture shapes cortical function.
+
+
+
+% Talk about the tools to de-noise: popular methods are typically seen in the following light - take estimates 
+
+
+% This crisis in the experimental and data analysis litertaure has largely been ignored in large scale biopyhysical modelling. In This crisis
+
+
+% Hence, this has been a large focus of large scale brain dynamics. 
+
+% Hence, there has been a large focus to understand the data acquired from this paradigm 
+
+%  although easy to acquire, has presented a number of challenges there has been a paradigm shift to stray away from understanding task specific brain activity to 
+
+
+% Functional magnetic resonance imaging (fMRI) of the brain at rest has brought upon a plehtora of studies to understand the correlational structure of cortex. A number of studies have used this resting paradigm 
+
+
+% Need to mention that very bad prepro has been used. 
 
 \section*{Methods 1: Experimental data}
 
