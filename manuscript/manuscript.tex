@@ -103,13 +103,50 @@ However, the modelling community has largely ignored these significant challenge
 Here, we investigate the effects of WSDs on modelling by employing recent techniques in the rsfMRI literature to a set of XX exisitng large-scale biophysical models. We find that the existence of WSDs influence model fits to a significant degree, and find that in some models increasing the accuracy/level of de-noising methods reduces model fits across many models. We find that many models are biased to modelling large scale coherent activity that is impossible with many current methods to disambiguate from potential sources of noise. Second order effects i.e. those that are not global do not fit very well on most models thus we find that models need to be improved on the whole. With this bias we can reduce down a recent model to a linear operation of degree and noise that outperforms models in terms of static FC and dynamic FC. We do find however, that heterogenoity can improve model accuracy and model second order effects that are less prone to WSDs driven by motion or physiology at the cost of model complexity. All analysis here is provided in open source toolboxes at XXX.
 
 \section*{Methods}
+Methods here describe the expermiental data and the mentioned dynamical models. 
+
 \subsection*{Experimental data}
+Here talk about all the datasets that will be used
+
+UCLA Rest
+BZ Rest
+
+Talk about various levels of de-noising on standard clinical sets
+Non AROMA
+AROMA+2P
+AROMA+2P+GMR
+AROMA+2P+DiCER
+
+
+Talk about denoising on HCP
+
+MPP
+MPP+sICA+FIX
+MPP+sICA+FIX+GMR
+MPP+sICA+FIX+DiCER
+
+Talk about the strucual connectivity matrix.
 
 \subsection*{Dynamical models}
 
+Homogenous models:
+Balanced EI
+Hopf
+BTF
+
+Heterogenous Node:
+Hopf
+
+Hetergenous Edge:
+Hopf+ANEC
+
 \section*{Results I: How WSDs influence model fits}
 
+Show the results + show carpet plots and stuff
+
 \section*{Results II: The noisy degree model}
+
+Show how it comes about. 
 
 \section*{Results III: ANEC}
 
