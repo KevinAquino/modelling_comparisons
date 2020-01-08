@@ -65,38 +65,65 @@ kevin.aquino@monash.edu
 Over the last three decades, functional magnetic resonance imaging (fMRI) has  focused on understanding the brain at ``rest'' or more specifically task-free. Imaging the brain in this state is sought to provide researchers an insight into the brain's idling dynamics - the default mode of the brain. Imaging the brain ``at rest'' is attractive paradigm as it can be easily acquired in the healthy population (REF) and has replaced many task-based analyses between groups where a balanced task response between patient groups and controls is difficult (REFs) or in some cases impossible to develop (REFs).
 
 
-Despite challenges in (described below) imaging the brain at rest has led to the discovery that the brain at rest exhibits synchronized fluctuations, revealing resting state networks (REFS smith and others) and they are robustly detected. The resting state networks unique enough between individuals to be a unique identifier (REFs), are related to independent behavioural measures (REFs) and the associated correlation structure are related to the underlying neural connectivity (REFs). For these reasons resting state fMRI (rsfMRI) has potential promise in the clinical domain, as resting-state connectivity patterns are different between populations as shown in various disorders (REFs), change in response to treatment, and thus serve as potential biomarkers. 
+Despite its challenges, resting state fMRI has led to the discovery that the brain at rest exhibits synchronized fluctuations, revealing resting state networks (REFS smith and others) that are robustly detected across individuals and species (REFS). These resting state networks are unique enough between individuals to all subject identification (REFs), are related to independent behavioural measures (REFs) and the associated correlation structure is related to the underlying neural connectivity (REFs). For these reasons resting state fMRI (rsfMRI) has potential promise in the clinical domain, as resting-state connectivity patterns are different between patient groups (REFs), change in response to treatment (REFs), and thus serve as potential biomarkers. 
 
 
-There are many open questions as to the meaning of these networks, such as: what is driving these resting state flucations? (REFs) How much does the structural connectivity drive these co-ordinated flucations? (REFs) Can neuromodulations change the level of synchronized flucationas? (Need refs for all of these). Large-scale biophysical models of cortical activity have sought to bridge the gaps in our understanding of the resting brain. These models typically have three critical ingredients - an anatomically defined connectivity matrix, a biophysically realistic model, and a set of meaningful parameters. 
+There are many open questions as to the meaning of these networks, such as: what is driving these resting state fluctuations? (REFs) How much does the structural connectivity drive these co-ordinated flucations? (REFs) What type of neuromodulations alter whole brain synchrony (Need refs for all of these). Large-scale biophysical models of cortical activity have sought to bridge the gaps in our understanding of the resting brain. The majority of these models are at the mesoscopic population level, where the populations are on the scale of units derived from parcellations of cortex (REFs). The target of these models is to simulate the functional connectivity network, where the nodes are the population units and the edges detail the empirical connectivity typically from correlations between nodes. These models typically have three critical ingredients - a biophysically realistic model of population dynamics, an anatomically defined connectivity, and a set of meaningful parameters. 
 
-Firstly, the anatomical matrix is from DTI/DSI/Literature. It is usually measured and used for each subject or sometimes the average is taken instead.
 
-Secondly, The biophysical model takes from local neural scales to mesoscopic scales in the flavours of mean-field, neural mass models, or more recently using a norm - e.g. the Hopf biophysical model. Although seemingly complex, resting state fMRI is quite attractive from a modelling perspective as although underlying connections and dynamics may be extremely complex, and nonlinear, it can be treated as a linear perturbation from a steady state resulting in a wealth of linear models.
+Firstly, at each node is a model that describes the net neural activity from each node. The translation from single neurons to a population are typically derived via neural mass (REFs) or neural field theory (REFs), and can also be derived from models that capture the typical local dynamics which can be described by a Hopf bifurcation (REFs Freyer, Robers, Gustavo). Although the form of these models can be quite complex, resting state can be viewed as a perturbation from a steady state and thus allow many models to be linearized, reducing the complexity allowing efficient compuation. In addition, at each node many populations can be ascribed e.g. excitatory, inhibory, and layer specific models. The resultant neural dynamics are then translated to a BOLD forward model that allows a direct simulation of resting state fMRI.
 
-Lastly the parameters are set to provide the meaning beteween the model. Two sets are generally observed - local parameters to each node. Another parameters is typically a hyperparameter which determines the scaling between the anatomical connectivity. Mostly the models have been fit. 
 
-What have they shown? Firstly, they can fit correlations really well, 
-Secondly, that structure really shapes rsfMRI connectivity to a large degree and that underlying ``hidden parameters'' such as neuromodulation etc can be inferred and possibly used to correlate to certain things. 
+Secondly, in a whole-brain model coupling between nodes is imposed by  anatomical connections that emulates how neurons are wired and exert influence to one another. This anatomical connectivity is usually defined from measurements that use diffusion weighted MRI and automated fibre tracking to and from each node (REF). These fibre tracks are summarized in a symmetric structual connectivity matrix that can detail the existence of connection between two nodes and/or the strength of this connection (REFs.). In some non-human modelling, asymmetric matrices can be imposed via invasive recordings that can track directionality of fibre tracks. Importantly, it is worth noting that these matrices are limited in their resolution in that inter-hemispheric connections are underestimated (REFs), have strong spatial dependence that roughly follows an exponential decay, and many modelling studies use an average structual connectivity matrix. 
+
+
+Lastly, in each biophysical model requires two sets of parameters - at the global and at the individual node level. The global parameter/s are used to scale the anatomical connections uniformly as the structual connectivity matrix is typically without units. In almost all models, this global parameter is a hyper parameter but it has a large influence on the model - scaling all connections too high can result in largely synchronized activity and too low causes asynchronus fluctuations. This is typically tuned to maximise model fits. At the local level, the neural mass or neural field models use techniques that translate measured parameters from the neuronal scale to the mesoscopic scale. The first generation of these large-scale models use the same local parameters for each node (REFs), however with the advent of additional measurements - such as intracortical myelin markers (REFs) - recent models employ heterogenous population parameters that have improved model fitting. (see below).
+
+
+Through the application to rsfMRI, large-scale biophysical modelling has found that structure largely guides function connectivity in both humans (REF) and primates (REF). The accuracy of such modelling is usually determined by how well it can reproduce the functional connectivity matrix, and models have increased their accuracy as models have become more sophisticated and imaging has improved. Recently, there has been a shift to use additional metrics on simulated and empirical data to further investiage model accuracy such as time varying functional connectivity, dynamic processes such as metastability, and phase coherence (REFs add more?). In concert, models are now being fit to these criteria to fit directed connectivity (DCM REFs, Gilson Refs), heterogenous population parameters (REFs) allowing potential ``hidden'' parameters that may indirectly measure neuromodulatory process, understand the implications of node deficits resulting in the potential for biomarkers that are directly related to neural processes. 
+
+
+% (will have to do something on fitting really.)
+
+
+% What have they shown? Firstly, they can fit correlations really well, 
+% Secondly, that structure really shapes rsfMRI connectivity to a large degree and that underlying ``hidden parameters'' such as neuromodulation etc can be inferred and possibly used to correlate to certain things. 
 
 % and simulate dynamics present in large scale resting state fMRI (REFs). There have been numerous coritcal models, each providing accurate predictions of the network correlational stucture. Together, these models show the following (A,B,C,D ++ need to find the key findings and what people are saying).
 
-The ease of recording rsfMRI, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest.
-However, with the advance of this in parallel we have the following problems
-At the same time (and almost in parallel) however, numerous studies have demonstrated that fluctuations in the resting state contain a large amount of artefacts.
-
-Here describle all the artefacts corrupted by motion, heart rate, breathing, oxygenation, basal state (and other stuff). Hence, there has been a rigous effort to regress out large scale structure correlated to physiology in order to isolate neural mechanisms. This has lead to the lack of a community consensus into which preprocessing steps should be used (ref,ref). Although some people have sought to keep on trying and build up on this. 
-
-Some papers have set to quantify the effects of artefacts - QC-FC measures (Parkes et al., Ciric et al. Glasser et al. Power Et al.), providing a way to determine all of this. Also another thing is carpet plots too. This can really show the observed patterns.
-
-However, the modelling community has not investigated the effects of preprocessing on modelling estimates. Do any wide scale deflections manifest in erroroneous estimates of modelling? As with the debate of GSR in the literature and lack of concensus this is also apparent in modelling studies no consistent regime. In particular large scale coherent patterns with GSR. Large scale biophysical models in fact model large scale patterns. Also with parameter estimates - what do they actually mean if they are influence by certain things. 
-
-Here this study is going to bridge that gap by using biophyiscal models of the certain kind. Will show the effects that WSDs provide, showing how WSDs can influence findings and corrupt the work. Here, we bring into question the role and urge QC-FC type of measures as well as carpet plots. We end with a note on how things can be improved with heteroengous models but at the cost of model complexity. 
+The ease of recording rsfMRI, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest. However, with this advance, recent studies have relaved a wealth of confounding artefacts within rsfMRI such the presence of large coherent patterns correlated to head motion (REF), heart rate variability (REF), respiration (REF), time of acqusition (REF). Although there have been efforts over the last 30 years to remove these effects through physiological modelling (RETROICOR REF), improved motion correction algorithms (REF), fMRI acquisiton advancements (ME ref), advancements in de-noising (MANY REFS) there is a large influence of motion and physiological confounds on rsfMRI. This is most clearly manifested in popularized ``carpet (or gray) plots'' which show temporal relationships of these confounds with rsfMRI (Power, Glasser, Aquino). In practise, this results in high global correlations functional correlations where the strength of these correlations have been shown to relate to motion (REF) or physiology (REF) making neural inferences from rsfMRI difficult to seperate from these processes. This issue is important in groups that have differences in head motion (REFS) or physiology (REFS) i.e. neuronal differences are harder to determine. Through these confounds, there does not appear to be a clear concensus on the appropriate steps for not just de-noising but the order and type of steps with preprocessing pipelines - however there is a growing movement to standarize many of these steps (fMRIprep reference) and to utilzing large unified sources of data.
 
 
-What i think is instead cool is to have two different sections, 
+Ongoing efforts within the rsfMRI community has placed greater standards that analyze not just group-level functional connectivity but capture artefacts at the individual level by analyzing spatiotemporal time series via carpet plots  carpet plots (REFS) and quality control (QC) metrics that measure the influence of motion or respiration on FC edges. These tools are being employed to critically evaulate existing and new tools that denoise fMRI data and are often used to question any denoising method. 
 
-firstly show the effects that different preprocessing has and relationships to data. 
+
+However, the modelling community has largely ignored these significant challenges within experimental rsfMRI, and equivalent comprehensive investigations on the effects of preprocessing, de-noising techniques, the visualisation of carpet plots or QC metrics have not penetrated the investigation of model outputs or inferences. Although the use of one particular de-noising strategy - global signal regression (GSR) - has been discussed (Messe and othe rpapers), its use or non-use is not standard and  model dependent. Therefore, there is a gap in the field to determine whether WSDs influence model prediction, whether motion or respiration influences model estimates, and if WSDs influence model fits. 
+
+
+Here, we investigate the effects of WSDs on modelling by employing recent techniques in the rsfMRI literature to a set of XX exisitng large-scale biophysical models. We find that the existence of WSDs influence model fits to a significant degree, and find that in some models increasing the accuracy/level of de-noising methods reduces model fits across many models. We find that many models are biased to modelling large scale coherent activity that is impossible with many current methods to disambiguate from potential sources of noise. Second order effects i.e. those that are not global do not fit very well on most models thus we find that models need to be improved on the whole. With this bias we can reduce down a recent model to a linear operation of degree and noise that outperforms models in terms of static FC and dynamic FC. We do find however, that heterogenoity can improve model accuracy and model second order effects that are less prone to WSDs driven by motion or physiology at the cost of model complexity. All analysis here is provided in open source toolboxes at XXX.
+
+\section*{Methods}
+\subsection*{Experimental data}
+
+\subsection*{Dynamical models}
+
+\section*{Results I: How WSDs influence model fits}
+
+\section*{Results II: The noisy degree model}
+
+\section*{Results III: ANEC}
+
+\section*{Discussion}
+
+\section*{Acknowledgements}
+
+%  this study is going to bridge that gap by using biophyiscal models of the certain kind. Will show the effects that WSDs provide, showing how WSDs can influence findings and corrupt the work. Here, we bring into question the role and urge QC-FC type of measures as well as carpet plots. We end with a note on how things can be improved with heteroengous models but at the cost of model complexity. 
+
+
+% What i think is instead cool is to have two different sections, 
+
+% firstly show the effects that different preprocessing has and relationships to data. 
+% We find a very important influence of global fluctuations and state that without careful consideration we are only really fitting this large oscillations. We can just use the ND model instead.
 
 % Then say from a modelling point of view this is very attractive as if there is a complex network resting state fMRI can be seen as small pertubations, and from a dynamic perspective this allows a large amount of dynamics that are applicable from other sources.
 
@@ -137,87 +164,87 @@ firstly show the effects that different preprocessing has and relationships to d
 
 % Need to mention that very bad prepro has been used. 
 
-\section*{Methods 1: Experimental data}
+% \section*{Methods 1: Experimental data}
 
-\section*{Methods 2: Brain network modelling}
-generic theory:
-\begin{equation}
-	\frac{d}{dt}z_{i}(t) = f(A,{\bf z}) + I.
-\end{equation}
-where $A$ is the structural connectivity matix 
+% \section*{Methods 2: Brain network modelling}
+% generic theory:
+% \begin{equation}
+% 	\frac{d}{dt}z_{i}(t) = f(A,{\bf z}) + I.
+% \end{equation}
+% where $A$ is the structural connectivity matix 
 
-\section*{The premise: Resting state functional networks}
+% \section*{The premise: Resting state functional networks}
 
-Here talk about the results and what is extracted. Then talk about the modelling from structure to function, essentially what people have been doing. State that there has been success. 
+% Here talk about the results and what is extracted. Then talk about the modelling from structure to function, essentially what people have been doing. State that there has been success. 
 
-Then state the problems, and they have unfortunately been treated seemingly independently.
+% Then state the problems, and they have unfortunately been treated seemingly independently.
 
-Independent problems:
-From the modeling side: Homogenous vs heterogenous. Types of different dynamical mechanisms. Types of oscillatory models.
-From the data side: preprocessing, global signal regression? inter subject registration
+% Independent problems:
+% From the modeling side: Homogenous vs heterogenous. Types of different dynamical mechanisms. Types of oscillatory models.
+% From the data side: preprocessing, global signal regression? inter subject registration
 
-Fusion problems:
-Where worlds meet:
-Fitting models to data
-- Find fitting statistics FCD, FC, Correlations
-- Making inferences from data
-- GSR the assumption that it is the panacea. From a modeling perspective we are removing the global neural mode however this is NOT equivalent to what is happening, the reason is different. 
+% Fusion problems:
+% Where worlds meet:
+% Fitting models to data
+% - Find fitting statistics FCD, FC, Correlations
+% - Making inferences from data
+% - GSR the assumption that it is the panacea. From a modeling perspective we are removing the global neural mode however this is NOT equivalent to what is happening, the reason is different. 
 
-Assumptions, that all problems listed above have been handled/sorted/agreed upon in the field. The question is how much does it matter? Here we will strive to show the problems associated with it -- FC and FCD are not enough as many models can fit the data. Show in a case study in a very simplified model. We show how much Global signal changes the fitting -- GSR is not adequate however. 
+% Assumptions, that all problems listed above have been handled/sorted/agreed upon in the field. The question is how much does it matter? Here we will strive to show the problems associated with it -- FC and FCD are not enough as many models can fit the data. Show in a case study in a very simplified model. We show how much Global signal changes the fitting -- GSR is not adequate however. 
 
-Show that we are not ready yet to make robust inferences, we need better models and cleaner data.
+% Show that we are not ready yet to make robust inferences, we need better models and cleaner data.
 
-\section*{Theory and results}
+% \section*{Theory and results}
 
-Add in stuff to do with 
+% Add in stuff to do with 
 
-The problems with FC and FCD
+% The problems with FC and FCD
 
-Definitions of data \\
-Definitions of global signals \\
-Definitions of models (heterogenous vs homogenous models) \\
-Show different candidates of metrics: FC,FCD and correlations.
-Show the different types \\
+% Definitions of data \\
+% Definitions of global signals \\
+% Definitions of models (heterogenous vs homogenous models) \\
+% Show different candidates of metrics: FC,FCD and correlations.
+% Show the different types \\
 
-\section*{Theory and predictions}
+% \section*{Theory and predictions}
 
-How many sample points are needed?
-Perhaps something we should also ask is how much of the time domain needed for the functional connectivity emerge as a robust measure -- timings etc. Which edges take the longest.
+% How many sample points are needed?
+% Perhaps something we should also ask is how much of the time domain needed for the functional connectivity emerge as a robust measure -- timings etc. Which edges take the longest.
 
-Perhaps we need a certainty. 
+% Perhaps we need a certainty. 
 
-\section*{Results from modeling:}
-Need to have a table here
+% \section*{Results from modeling:}
+% Need to have a table here
 
-\section*{ways to improve things}
-We take correlations blindly in functional networks on large scale connectivity. Perhaps however we need estimates of uncertainty on each node -- this way the model does not have to prove the existence of this connection. 
+% \section*{ways to improve things}
+% We take correlations blindly in functional networks on large scale connectivity. Perhaps however we need estimates of uncertainty on each node -- this way the model does not have to prove the existence of this connection. 
 
-How robust are connections to preprocessing methods and timing windows? Then fitting needs to work on this assumption.
+% How robust are connections to preprocessing methods and timing windows? Then fitting needs to work on this assumption.
 
-Heterogeneity is the answer. but preprocessing matters. 
+% Heterogeneity is the answer. but preprocessing matters. 
 
-GSR is probably not the answer.
+% GSR is probably not the answer.
 
-ANEC
+% ANEC
 
-\section*{Points that need to be discussed/mentioned here}
+% \section*{Points that need to be discussed/mentioned here}
 
-There is a big divide between modeling and experimental expertise \\
-There is an assumption of quality on each side \\
-Preprocessing affects the model findings and interpretation \\
-Discussion of homogenous vs heterogenous models\\
-The balanced EI model shows although good fit without GSR, it unfortunately not so good. \\
-The interplay between theory and experiment. \\
-Does it matter? we have a test scenario SCZ vs CTL -- what are the differences? \\
-Models fit best with the worst kind of preprocessing.
+% There is a big divide between modeling and experimental expertise \\
+% There is an assumption of quality on each side \\
+% Preprocessing affects the model findings and interpretation \\
+% Discussion of homogenous vs heterogenous models\\
+% The balanced EI model shows although good fit without GSR, it unfortunately not so good. \\
+% The interplay between theory and experiment. \\
+% Does it matter? we have a test scenario SCZ vs CTL -- what are the differences? \\
+% Models fit best with the worst kind of preprocessing.
 
-\section*{Discussion}
+% \section*{Discussion}
 
-What is actually being modelled? Is this brain function, or just a perturbation of a resting idled brain? This is not generalizable really. If one were to take a simple visual response what do we see? Should the models capture all this behaviour?
+% What is actually being modelled? Is this brain function, or just a perturbation of a resting idled brain? This is not generalizable really. If one were to take a simple visual response what do we see? Should the models capture all this behaviour?
 
-We need better measures - FCD? not sure if this is enough, we need more stuff. Also need to have predictive validity. 
+% We need better measures - FCD? not sure if this is enough, we need more stuff. Also need to have predictive validity. 
 
 
-also idea, shift the last few Gs stuff to negative see what GSR does to it.
+% also idea, shift the last few Gs stuff to negative see what GSR does to it.
 
 \end{document}
