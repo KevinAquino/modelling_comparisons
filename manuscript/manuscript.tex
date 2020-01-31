@@ -16,15 +16,13 @@
 
 \begin{document}
 
-
-
-\title{How wide scale deflections (WSDs) corrupt large scale network modelling of resting state fMRI.}
-\shorttitle{Effect of large-scale coherent structures on modelling}
+\title{How wide scale deflections bias brain-wide models of resting state fMRI.}
+\shorttitle{Effect of WSDs on modelling}
 
 % Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
 \author[1,*]{Kevin M. Aquino}
 \author[1,2]{Gustavo Deco}
-% \author[3]{Leonardo Gollo (ask)}
+\author[1]{Leonardo Gollo}
 \author[1]{Alex Fornito}
 
 \affil[1]{The Turner Institute for Brain and Mental Health, School of Psychological Sciences, and Monash Biomedical Imaging, Monash University, Victoria, Australia.}
@@ -41,7 +39,7 @@ The specific choice of pre-processing models has a major impact on the final mea
 We show, using popular neural mass models, that key de-noising step leads to very different degrees of model fit and interpetations of findings.
 These results question estimates of reported model parameters, model interpretation, and, in the worst case, model validity. 
 We try to bridge the gap between theory and experiment by presenting recent quality control measures on the acquired data and the different types of structured noise. 
-We hope to open the dialog between theory and experiment, which is necessary to advance large-scale brain network modelling. (having something less grand, statement is possibly too bold?)
+We hope to open the dialog between the modelling and experimental rsfMI communities, which is necessary to advance our understanding of the resting brain.
 \end{abstract}
 
 \begin{keywords}
@@ -75,13 +73,13 @@ Resting state fMRI has led to the discovery that the brain at rest exhibits sync
 There are many open questions as to the meaning of these networks, such as: what is driving these resting state fluctuations? (REFs) Does anatomical structure drive these co-ordinated flucations? (REFs) What drives differences between patient groups (Need refs for all of these). Large-scale biophysical models of cortical activity have sought to bridge the gaps in our understanding and have attempted to answer these questions. The majority of these models are at the mesoscopic population level, where the populations are on the scale of units derived from parcellations of cortex (REFs) and subcortex. The aim of these models is to simulate the resting brain and reproduce the functional connectivity network, where the nodes are the population units and the edges detail the empirical connectivity typically from correlations between nodes. Specifically, these are emboded in a functional connectivity (FC) matrix. These models have three critical ingredients - a biophysically realistic model of population dynamics, an anatomically defined connectivity structure, and a set of meaningful parameters. 
 
 
-Firstly, at each node is a model that describes the net neural activity from each node. The translation from single neurons to a population are typically derived via neural mass (REFs) or neural field theory (REFs). Recent models have also been derived that capture the canonical dynamics that come both these theories - i.e. noisy oscillations described by a Hopf bifurcation (REFs Freyer, Robers, Gustavo). Although the form of these models can be quite complex, resting state can be viewed as a perturbation from a steady state and thus allow many models to be linearized, reducing the complexity allowing efficient compuation. In addition, at each node many populations can be ascribed within a single unit e.g. excitatory, inhibitory, and associated populations through the lamination of cortex though the coupling to all other nodes are mediated through excitatory populations. The resultant excitatory neural dynamics are then translated to a BOLD forward model that allows a direct simulation of resting state fMRI.
+Firstly, at each node is a model that describes the net neural activity from a small patch of cortex. The translation from single neurons to a population are typically derived via neural mass (REFs) or neural field theory (REFs). Recent models have also been derived that capture the canonical dynamics that come both these theories - i.e. noisy oscillations described by a Hopf bifurcation (REFs Freyer, Robers, Gustavo). Although the form of all of these models can be quite complex, resting state can be viewed as a perturbation from a steady state and thus allow many models to be linearized (to some extent), reducing the complexity allowing efficient compuation. In addition, at each node many populations can be ascribed within a single unit e.g. excitatory, inhibitory, and associated populations through the lamination of cortex. The coupling to all other nodes are mediated through excitatory to excitatory connections. The resultant excitatory neural dynamics are then translated to a BOLD forward model that allows a direct simulation of resting state fMRI.
 
 
-Secondly, coupling between nodes is imposed by anatomical connections that emulates how neurons are wired and exert influence to one another. This anatomical connectivity is usually defined from measurements that use diffusion weighted MRI and automated fibre tracking to and from each node (REF). These fibre tracks are undirected and summarized in a symmetric structual connectivity matrix that can detail the existence of connection between two nodes and/or the strength of this connection (REFs.). In some non-human modelling, asymmetric matrices can be imposed via invasive recordings that can track directionality of fibre tracks. Importantly, it is worth noting that these matrices are limited in their resolution in that inter-hemispheric connections are generally underestimated (REFs), have strong spatial dependence that roughly follows an exponential decay (REFs), and many modelling studies use an average structual connectivity matrix aggregated from many subjects. 
+Secondly, coupling between nodes is imposed by anatomical connections that emulates how neurons are wired and exert influence to one another. This anatomical connectivity is usually defined from measurements that use diffusion weighted MRI and automated fibre tracking to and from each node (REF). These fibre tracks are undirected and summarized in a symmetric structual connectivity matrix that can detail the existence of connection between two nodes and/or the strength of this connection (REFs.). In some non-human modelling, asymmetric matrices can be utilized via experiments that use invasive recordings that can track directionality of fibre tracks. Importantly, it is worth noting that these matrices are limited in their resolution and accuracy specicifcally that inter-hemispheric connections are generally underestimated (REFs), have strong spatial dependence that roughly follows an exponential decay (REFs), and many modelling studies use an average structual connectivity matrix aggregated from many subjects. 
 
 
-Lastly, each biophysical model requires two types of parameters - at the global and at the individual node level. The global parameter/s are used to scale the anatomical connections uniformly as the structual connectivity matrix is calculated without units compatible with the models. In almost all models, this global parameter is a hyper parameter that has a large influence on the dynamics - scaling all connections too high can result in largely synchronized activity and too low causes asynchronus fluctuations. This is typically tuned to maximise model fits while being in a comparable dynamic range. At the node level, the neural mass or neural field models use techniques that translate measured parameters from the neuronal scale to the mesoscopic scale. The first generation of these large-scale models use the same local parameters for each node (REFs), however with the advent of additional measurements - such as intracortical myelin markers (REFs) - recent models employ heterogenous population parameters that have improved model fitting. (see below).
+Lastly, each biophysical model requires two types of parameters - at the global and at the individual node level. The global parameter/s are used to scale the anatomical connections uniformly as the structual connectivity matrix is calculated without units compatible with the models. In almost all models, this global parameter is a hyper parameter that has a large influence on the dynamics - scaling all connections too high can result in largely synchronized activity and too low causes asynchronus fluctuations. This is typically tuned to maximise model fits while being in a biologically relevant dynamic range. At the node level, the neural mass or neural field models use techniques that translate measured parameters from the neuronal scale to the mesoscopic scale. The first generation of these large-scale models use the same local parameters for each node (REFs), however with the advent of additional measurements - such as intracortical myelin markers (REFs) - recent models employ heterogenous population parameters that have improved model fitting. (see below).
 
 
 Through the application to rsfMRI, large-scale biophysical modelling has found that structure largely guides functional connectivity in both humans (REF) and primates (REF). The accuracy of such modelling is usually determined by how well it can reproduce the functional connectivity matrix, and models have increased their accuracy as models have become more sophisticated and imaging has improved. Recently, there has been a shift to use additional metrics on simulated and empirical data to further investiage model accuracy and validity by using dynamic measures such as using time varying functional connectivity, metastability, and phase coherence (REFs add more?). In concert, additonal parameters are being allowed to vary to fit to these dynamic measures which has provided estimates of directed structual connectivity by allowing the structural connectivity to vary (DCM REFs, Gilson Refs) and estimates of brain wide variation of neural populations by allowing local node parameters to vary (REFs). These recent developments allow estimates of parameters that indirectly measure neuromodulatory process, which provide futher generative insights, understand the implications of neural deficits, and these parameters have potential to be biomarkers that are directly related to neural processes. 
@@ -104,10 +102,13 @@ Ongoing efforts within the rsfMRI community has placed greater standards that an
 However, the modelling community has largely ignored these significant challenges within experimental rsfMRI. Equivalent comprehensive investigations on the effects of preprocessing, de-noising techniques, the visualisation of carpet plots or QC metrics have not penetrated the investigation of model outputs or inferences. Although the use of one particular de-noising strategy - global signal regression (GSR) - has been discussed (Messe and othe rpapers), its use or non-use is not standard and largely model dependent. Therefore, there is a gap in the field to determine whether WSDs influence model prediction, whether motion or respiration influences model estimates, and if WSDs influence model validity. 
 
 
+++ Working on a table of other papers and summarizing: the model, the study, MPP used, De-noising strategies, and QC for each model. Basically want to emphasise that nothing comprehensive has been done for any of these studies. ++
+
+
 Here, we investigate the effects of WSDs on modelling by employing recent techniques in the rsfMRI literature to a set of XX exisitng large-scale biophysical models. We find that the existence of WSDs influence model fits to a significant degree, and find that in some models increasing the accuracy/level of de-noising methods reduces model fits across many models. We find that many models are biased to modelling large scale coherent activity that is impossible (with many current methods) to disambiguate from potential sources of physiological or motion-driven noise. Second order neuronal fluctuations i.e. those that are not global do not fit very well on most models thus, we find that models need to be improved on the whole. We demonstrate this issue of bias to WSDs by showing that we can reduce down a recent model to a linear operation of degree and noise that outperforms models in terms of static FC and dynamic FC. We do find however, that heterogenoity can improve model accuracy and model second order effects that are less prone to WSDs driven by motion or physiology at the cost of model complexity. All analysis here is provided in open source toolboxes at XXX.
 
 
-\section*{Methods}
+\section*{Imaging Methods}
 % Here, we describe the methods in two distinct sections - resting state fMRI, which includes acqu
 % The methods here are split up into X different parts. 
 
@@ -115,9 +116,9 @@ Here, we investigate the effects of WSDs on modelling by employing recent techni
  % Methods here describe the expermiental data and the mentioned dynamical models. 
 \subsection*{Resting state fMRI}
 \paragraph{}
-Here, we used transparent, open rsfMRI datasets processed using open-source pipelines from \verb|fmriprep| \cite{esteban2019fmriprep} and the Human Connectome Project (HCP) (REF). 
+Here, we used transparent, open rsfMRI datasets processed using open-source pipelines from \verb|fmriprep| \cite{esteban2019fmriprep} and the Human Connectome Project (HCP) \cite{van2013wu}. 
 \subsubsection*{Imaging data \& preprocessing}
-We utilzed three open source data sets from the healthy controls of the UCLA Consortium for Neuropsychiatric Phenomics LA5c Study \cite{poldrack2016phenome} (v00016 \url{openneuro.org/datasets/ds000030/}), the Beijing-Zang dataset (\url{fcon_1000.projects.nitrc.org/fcpClassic/FcpTable.html}) and resting state fMRI from the HCP. The scanning parameters for these three datasets are described in \cite{esteban2019fmriprep}, \url{http://fcon_1000.projects. nitrc.org/fcpClassic/FcpTable.html} and Glasser et al. (be sure on the paper), respectively; a brief summary is in Table~\ref{tab:scanning_params}.
+We utilzed three open source data sets from the healthy controls of the UCLA Consortium for Neuropsychiatric Phenomics LA5c Study \cite{poldrack2016phenome} (v00016 \url{openneuro.org/datasets/ds000030/}), the Beijing-Zang dataset (\url{fcon_1000.projects.nitrc.org/fcpClassic/FcpTable.html}) and resting state fMRI from the HCP. The scanning parameters for these three datasets are described in \cite{esteban2019fmriprep}, \url{http://fcon_1000.projects. nitrc.org/fcpClassic/FcpTable.html} and \cite{van2013wu}, respectively; a brief summary is presented in Table~\ref{tab:scanning_params}.
 
 \begin{table*}[ht!]
 \begin{center}
@@ -130,7 +131,7 @@ We utilzed three open source data sets from the healthy controls of the UCLA Con
     \hline
     Beijing-Zang \url{http://fcon_1000.projects.nitrc.org/} & TE$=30$\,ms, 3.125\,mm, Inplane resolution, 33 slices with 3.6\,mm, slice thickness, FA$=90$, FOV$=200$\,mm, matrix $=64 \times 64$ & 225 & 192 & Subjects were healthy controls. \\
     \hline
-	HCP & TE$=30$\,ms, 3.125\,mm, Inplane resolution, 33 slices with 3.6\,mm, slice thickness, FA$=90$, FOV$=200$\,mm, matrix $=64 \times 64$ & 225 & 100 & Subjects were healthy controls. \\
+	HCP & TE$=30$\,ms, 3.125\,mm, Inplane resolution, 33 slices with 3.6\,mm, slice thickness, FA$=90$, FOV$=200$\,mm, matrix $=64 \times 64$ & 225 & 100 & Subjects were unrelated healthy controls, with the same fMRI reconstruction. \\
     \hline
     \end{tabular}
     \caption{Summary of acquisition parameters for the functional MRI and structural MRI used in this study.
@@ -139,27 +140,25 @@ We utilzed three open source data sets from the healthy controls of the UCLA Con
 \end{center}
 \end{table*}
 
-``Minimal'' preprocessing pipelines were used on the three datasets, where the UCLA and BZ utilized \verb|fmriprep| v1.1.1 as described in \cite{aquino2019identifying}. Briefly, this involves processing the T1-weighted anatomical images that involve: bias field correction, brain extraction, freesurfer segementation, and volume normalization to a standard MNI 152 Nonlinear Asymmetric templta version 2009c \cite{mni}. On the functional MRI, the minimal preprocessing steps involve slice time correction, motion correction, distortion correction using a template based $B_0$ image, and co-registration to the T1 anatomical image. The versions of code, specific details of the algorithms are detailed in the code described above. Functional imaging data from the HCP data were minimally preprocessed in a similar fashion, using the minimal HCP pipelines described in Glasser et al. (Find ref) however, an additional step was imposed to project the data into ``grayordinates'' which compactly represent data from grey matter cortex and subcortex. These grayordinates are described on a normalied template that has been surface registered for cortex data using the Multi. Sulcal matching algorithm, and volume-registered using fNIRT (REF) to MNI 152 space for subcortex data (REF). The purpose of having two different pipelines as we chose to use established data that have already undergone quality control so that these QC measures can be analyzed in the context of modelling. In addition, the comparisons due to de-noising levels are only to be interpreted within dataset as site effects between scanning is a major confound to functional connectivity measures. 
+``Minimal'' preprocessing pipelines were used on the three datasets, where the UCLA and BZ datasets were processed using \verb|fmriprep| v1.1.1 as described in \cite{aquino2019identifying}. Briefly, this involves processing the T1-weighted anatomical images that involve: bias field correction, brain extraction, freesurfer segementation, and volume normalization to the MNI 152 Nonlinear Asymmetric template version 2009c \cite{mni}. On the functional MRI, the minimal preprocessing steps involve: slice time correction, motion correction, distortion correction using a template based $B_0$ image, and co-registration to the T1 anatomical image. The versions of code, and specific details of the algorithms are detailed in the code described above and in \cite{aquino2019identifying}. Functional imaging data from the HCP data were minimally preprocessed in a similar fashion, using the minimal HCP pipelines described in \citet{hcppipelines} which additionaly describes how the data were projected data into ``grayordinates'' which compactly represent data from grey matter cortex and subcortex in a dedicated structure. These grayordinates are described on a normalized template that has been surface registered for cortex data using the Multimodal Sulcal Matching (MSM) algorithm, and volume-registered using fNIRT \cite{mcflirt} (check ref) to MNI 152 space for subcortex data. The purpose of having two different pipelines was to use established data that have already undergone quality control so that these QC measures can be analyzed in the context of modelling, and respresents typical data in clinical studies (UCLA and BZ) and data in the general population (HCP). In addition, the comparisons owing to de-noising levels are only to be interpreted within each dataset as site effects between scanning is a major confound to functional connectivity measures. 
 
-For transparency, the code to re-run all of these analyses are located at \vbox{\url{https://github.com/BMHLab/DiCER.git}}, and in the following sections we describe de-noising strategies that follow minimal preprocessing and standard outputs of fMRIprep. In our de-noising strategies we utilize two streams for the two datasets. 
+For transparency, the code to re-run all of these analyses are located at \vbox{\url{https://github.com/BMHLab/DiCER.git}}, and in the following sections we describe de-noising strategies that follow minimal preprocessing. In our de-noising strategies we utilize two streams employed to the two sets of data. 
 
 \subsubsection*{De-noising strategies for UCLA and BZ} 
 
-Firstly, for UCLA and BZ, Functional MRI data are analyzed within the MNI 152 Asymmetric 2009c space, which has been resampled to the native BOLD imaging dimensions, and we resampled any remaining anatomical masks/images to this space (including those that were not automatically resampled in the \verb|fmriprep| workflow). 
+Firstly, for UCLA and BZ, Functional MRI data were analyzed within the MNI 152 Asymmetric 2009c space, which has been resampled to the native BOLD imaging dimensions, and we resampled any remaining anatomical masks/images to this space (including those that were not automatically resampled in the \verb|fmriprep| workflow). 
 
-We restrict our analysis and visualizations to gray-matter voxels (GM), in UCLA and BZ, to minimize partial-volume effects, our analysis was restricted to voxels contained within the GM probability masks (calculated in fmriprep) thresholded at > 50\% probability.
-We also excluded voxels with signal intensities that were below 70\% of the mean fMRI signal intensity to avoid contamination by voxels with low signal plagued by susceptibility and partial-volume effects.
+We restrict our analysis to gray-matter voxels (GM), in UCLA and BZ, to minimize partial-volume effects, and we additioinaly restricted voxels contained within the GM probability masks (calculated in fmriprep) thresholded at > 50\% probability. We also excluded voxels with signal intensities that were below 70\% of the mean fMRI signal intensity to avoid contamination by voxels with low signal plagued by susceptibility and partial-volume effects.
 
 ICA-based Automatic Removal Of Motion Artifacts (AROMA) was used to generate noise regressors for use in the non-aggressive variant of the method \cite{aroma}. Regressors were calculated on the spatially smoothed variant of the minimally preprocessed images (as described within \verb|fmriprep| as a $6$ mm FHWM kernel) and then applied to the unsmoothed preprocessed images,
 
-Following ICA-AROMA, we extracted mean time courses from eroded masks (using a 3x3x3 erosion kernel) of the WM and CSF. The masks were generated by following \citet{Parkes:2018dz} and \citet{power2017sources}, where CSF and WM ROIs were created from tissue probability maps in \verb|fmriprep|. We eroded the WM mask five times and the CSF mask once. Erosion is crucial to avoid partial-volume effects from gray matter, which inflates the correlation between WM/CSF estimates and the global-mean signal \cite{power_fd_dvars,Parkes:2018dz}.
-We extracted these signals from the AROMA-denoised data, as performed in \citet{aroma}.
+Following ICA-AROMA, we extracted mean time courses from eroded masks (using a 3x3x3 erosion kernel) of the WM and CSF. The masks were generated by following \citet{Parkes:2018dz} and \citet{power2017sources}, where CSF and WM ROIs were created from tissue probability maps in \verb|fmriprep|. We eroded the WM mask five times and the CSF mask once. Erosion is crucial to avoid partial-volume effects from gray matter, which inflates the correlation between WM/CSF estimates and the global-mean signal \cite{power_fd_dvars,Parkes:2018dz}. We extracted these signals from the AROMA-denoised data, as performed in \citet{aroma}.
 
-The above steps are fairly standard and accepted de-noising techniques, however wide scale deflections (WSDs) are present following these pipelines which correlation structure is related to motion, corrupting neuronal inferences. Thus, further de-noising methods are described using the controversial Global signal regression (GSR), and Diffuse Cluster Estimation and Regression (DiCER) which has been shown to mitigate these effects in a different way. 
+The above steps are fairly standard and accepted de-noising techniques, however wide scale deflections (WSDs) are present following these pipelines which correlation structure is related to motion, corrupting neuronal inferences. Thus, further de-noising methods are implemented: Global signal regression (GSR), and Diffuse Cluster Estimation and Regression (DiCER) both of which has been shown to mitigate the influences of WSDs in different ways. 
 
-For GSR, estimates of the mean gray-matter signal is a proxy for the global signal as it is highly correlated to the mean signal from the entire brain and contributes the most to the signal \cite{power2017sources,Glasser:2018dt}. We thus refer to regression of this signal from fMRI gray-matter regression (GMR) for clarity. 
+For GSR, we use the mean gray-matter signal as for the global signal since it is highly correlated to the mean signal from the entire brain and contributes the most to the signal \cite{power2017sources,Glasser:2018dt}. We thus refer to regression of this signal from fMRI gray-matter regression (GMR) for clarity. The concept of GMR is that since this represents the mean wide-spread signal its removal will reduce WSDs.
 
-As shown in \cite{aquino2019identifying}, fMRI following ICA-AROMA and GMR are left with a wide variety of WSDs that are correlated to motion or physiology, that are particualry revealed under a re-ordering of the conventional carpet plots. DiCER is a method that targets these WSDs by focusing on diffuse, weakly correlated clusters, and has revealed to improve statistical sensitivity within datasets. We utilze DiCER settings as described within \citet{aquino2019identifying} to retrive noise regressors.
+As shown in \cite{aquino2019identifying}, rsfMRI data following GMR are left with a wide variety of WSDs that are correlated to motion or physiology, which are  revealed under a re-ordering of the conventional carpet plots. DiCER is a method that targets these WSDs by focusing on diffuse, weakly correlated clusters, and has revealed to improve statistical sensitivity within datasets. We utilze DiCER as described within \citet{aquino2019identifying} to retrive noise regressors.
 
 Using the noise-signal estimates, we perform three noise corrections, with
 (i) regression with the WM and CSF physiological signals, denoted as `+2P'; and
@@ -172,45 +171,172 @@ The data, including the minimally preprocessed data, were then detrended with a 
 
 \subsubsection*{De-noising strategies for HCP} 
 
-Talk about denoising on HCP
+Post minimal preprocessing (MPP), rsfMRI from the HCP were de-noised with ICA-FIX \cite{griffanti2014,glasser2016multi} which is an algorithm that uses spatial ICA to uncover a host of spatially independent components that are classified as noise or signal by a training algorithm. We use the de-noised data from the HCP (release xx?). As noted by \citet{power2017sources}, \citet{Glasser:2018dt} and \citet{aquino2019identifying}, this data still exhibits WSDs that are related to either motion, heart rate variability or respiration. GSR can mitigate some of these these effects\cite{power2019temporal}, but considerable artefacts can remain \cite{Glasser:2018dt,aquino2019identifying}. Here we additionally applied DiCER to the data from the HCP as way to additionally migate these effects as detailed in \cite{aquino2019identifying}. However, in future a temporal ICA approach will be more suitable in future as detailed in \cite{Glasser:2018dt}.
 
-MPP
-MPP+sICA+FIX
-MPP+sICA+FIX+GMR
-MPP+sICA+FIX+DiCER
-
-Talk about the strucual connectivity matrix.
+The data, including MPP, were then detrended with a 2nd order polynomial and high-pass filtered at 0.005\,Hz using AFNI's \verb|3dTproject|. This procedure resulted in four datasets for each subject, labeled `MPP',`MPP+ICA+FIX', `MPP+ICA-FIX+GMR', `MPP+ICA-FIX+DiCER'.
 
 Again, we stress that the results comparing differences in model fits can only be compared within each dataset as to remove well-known confounds of site, scanner quality and populations.
 
-\subsubsection*{Quality control methods} 
+\subsubsection*{Node defintion through Cortical and subcortical parcellation}
 
-\subsection*{Dynamical models}
+\subsubsection*{Structual connectivity matrix (SC)} This was done by Stuart -- have to fill in what has been done.
 
-Also talk about using the BCT. 
+\subsubsection*{Quality control methods and subject exclusion} 
+In the reaction to the abundance of potential artefacts and number of rsfMRI scans, there has been a push to develop automatic quality control (QC) methods at the single-scan and group level. 
 
-Homogenous models:
-Balanced EI
-Hopf
-BTF
 
-Heterogenous Node:
-Hopf
+At the single scan level, the spatiotemporal time series of fMRI is visualized with carpet plots (or ``grayplots'') that involve a heat map that shows each voxel (or summary parcel) at each row, where the column entries are time points. On top of these measures are time series that are potential confounds - such as framewise displacement (FD), global signal, respiratory envelope, pulse pressure, or heart rate. WSDs appear as large bands within the gray plots and their identification as being influenced by physiology or due to motion by being occuring with the vicinity of spikes or changes within the aforementioned traces. Besides changes in connectivity, de-noising techniques are often evaluated by their ability to remove WSDs in these carpetplots \cite{power2019temporal,power2018ridding,power2017sources}. Here, we utilize carpet plots under different orderings on the y-axis as random ordering (RO) of carpet plots under-emphasize the presence of WSDs and whether or not de-noising methods - such as GSR - has actually removed them \cite{aquino2019identifying}. The additional orderings involve ordering the y-axis with respect to the correlation to the global signal (GSO), and orderings based on heirarchacl clustering denoted as cluster ordering (CO) as implemented in (specific code?)
 
-Hetergenous Edge:
-Hopf+ANEC
 
-\section*{Results I: How WSDs influence model fits}
+At the group level, we consider three analyses. Quality control--functional connectivity correlations (QC--FC), a commonly used benchmark \cite{ciric2017benchmarking,Parkes:2018dz,power2017sources}, which is estimated as the cross-subject correlation between FC and mean FD at each edge in an FC network. The QC--FC quantifies the association between inter-individual variance in FC and gross head motion, indexed by mean FD (mFD). An efficient denoising method will be less corrupted by motion and hence score lower on this metric. The QC-FC is calculated throughout all edges, however the findings are summarized as counting the percentage of $p < 0.05$ (uncorrected) edges in the QC--FC correlation matrix. Secondly, another signature of successful rsfMRI denoising is a reduced dependence of QC--FC on the separation distance between pairs of ROIs \cite{Parkes:2018dz, satterthwaite2012impact}. Thirdly, we note that we implicity used the `flat' appearance of carpet plots to demonstrate that an fMRI dataset does not contain large WSDs, and thus to estimate the success of a given denoising procedure. A quantification of this `flatness' can be achived by using the variance explained by the first principal component (PC) of the voxel $\times$ time rsfMRI data matrix, denoted as `VE1'.
+High values of VE1 indicate that a large proportion of fMRI variance can be captured by a single component (PC1), consistent with the presence of dominant WSDs. 
+
+\section*{Modelling Methods}
+
+Here, we use three established dynamical models that can reproduce rsfMRI connectivity patterns. These models are a subset of all available neural models but represent the most commonly used models in the literature. In general these models have a canonical form:
+\begin{equation}
+\frac{z_i}{dt} = f\left({\bf z},\theta_i,G,C\right),
+\end{equation}
+where neural activity $z_i(t)$ is described at node $i$, owing to a dynamical model $f$ that depends on all other nodes (and populations) $\bf{z}$, with parameters $\theta_i$, structual connectivity matrix $C$ scaled by global parameter $G$. Below we describe the details of each model as well as the parameters for each model. 
+
+\subsubsection*{The balanced excitation-inhibition model} 
+The balanced exhibition-inhibition model simulates the collective behavior of excitatory populations that are in balance with inhibitory populations using a mean field approach (DECO et al.). This model is an extension of the Wang et al model, that is guided by the experiments in primates that show that local neural populations fire at a resting oscillation of 3Hz. This resting firing rate forms an additional constraint on the dynamics which is achieved by raising/lower the excitatory-inhibitory ratio such that each node in the system has a mean firing rate of 3Hz. 
+The model is set as a series of coupled stochastic differential equations evaulated at excitatory (E) and inhibitory popluations (I):
+\begin{eqnarray}
+I_i^E &= &W_EI_0 + w_+J_{N}S_I^E ... \nonumber \\
+& &... + GJ_{N}\sum_jC_{ij}S_J^E ... \nonumber \\ 
+& &... - J_iS_i^I + I_{external}, \\
+I_i^I &= &W_II_0 + J_{N}S_i^E - S_i^I, \\
+\frac{dS_i^E(t)}{dt} &= &-\frac{S_i^E}{\tau_E} + (1 - S_i^E)\gamma r_i^E + \sigma \nu_i(t),\\
+\frac{dS_i^I(t)}{dt} &= &-\frac{S_i^I}{\tau_I} + r_i^I + \sigma\nu_i(t),\\
+r_i^E &= &H(E,I_i^E),\\
+r_i^I &= &H(I,I_i^I),\\
+H(x,y) &= &\frac{a_xy - b_x}{1 - \exp{-d_x(a_xy - b_x)}},
+\end{eqnarray}
+where the variable $I_i^{E,I}$ indicates ionic current, $S_i^{E,I}$ denotes the average synaptic gating variable, and $r_i^{E,I}$ denotes the population firing rate - where all these dynamic variables are described at excitatory and inhibitory populations ($E,I)$ at node $i$. The parameters $W_E,W_I$ describe the overall scaling of the excitatory and inhibitory currents respecrtiely, $w_{+}$ describes the local excitatory recurrence, $J_{N}$ is the excitatory synaptic coupling, $\tau_{E,I}$ are time constants for exictatory and inhibitory populations, $\gamma$ is a kinetic rate constant. The function $H(x,y)$ is the neuronal input-output function for population $x$ due to input current $y$, which is parameterized for population $x$ with parameters $a_{x}$, and $b_{x}$ and this function maps how the net current induces a poplulation level firing rate. This model simulates resting state activity as the neural response to a noisy input $\sigma \nu_i(t)$, where $\sigma$ scales the level of noise. The local dynamics are  ``balanced'' by having the requirement that the local firing rate is $3Hz$ at each node - a requirement that is modelled by adjusting the ratio of the influence of the inhibitory populations parameterized by the parameter $J_i$ and estimated numerically (see below). The parameters, and their nominal values are in table y. 
+
+The model is solved numerically with MATLAB, where the equations are solved using an Euler-Maryuami integration scheme. In addition the parameter $J_i$ is estimated via a greedy search algorithm, where its value is raised or lowered so that each node meets the $3Hz$ firing rate conditions. See Deco et al. 2014 for more details, where the algorithmic implementation is placed in the code at XXXX. In addition, the output the synaptic gating $S_{E}(t)$ is used as the input 
+
+-> inputs to BOLD forward model
+
+\subsubsection*{Neural-mass model} 
+The neural-mass model simulates neuronal dynamics by a series of neuronal masses based off the Hodgkin-Huxley model (REF). The main dynamical variables are the excitatory (V) and inhibitory (Z) membrane potentials as well as the fraction of open sodium channels (W). At the node $i$ level, the dynamics are derived by using the equilvalent electrical circuits of a neuron, averaged over a small patch of cortex, that describe the conductance of sodium (Na), potassium (K) and calcium ions (Ca). The dynamical equations are as follows:
+\begin{eqnarray}
+        \frac{dV^i}{dt} &= &-\left[g_{\rm Ca} + rQ_{\Sigma}^i \right]\,m_{\rm Ca}^{i}\,(V^{i} {-} V_{\rm Ca})...\nonumber\\
+        & &...- \, \big(g_{\rm Na}\,m_{\rm Na}^{i} + Q_{\Sigma}^i)\,(V^{i} {-} V_{\rm Na})...\nonumber\\
+        & &...- \, g_{\rm K}\,W^{i}\,(V^{i} {-} V_{\rm K})...\nonumber\\
+        &  &...- \, g_L\,(V^{i} {-} V_L)...\nonumber\\
+        &  &...- \, a_{ie}\,Z\,Q_Z^{i}+ \, a_{ne}\,I,\\
+        \frac{dW^i}{dt} &= &\frac{\phi}{\tau}\,(m_{\rm K}^{i} {-} W^{i}), \label{eq:potassiumEq}\\
+        \frac{dZ^i}{dt} &= &b\,(a_{ni}\,I + a_{ei}\,V^{i}\,Q_V^{i}),\\
+        Q_{X}^{(i)} &= &\frac{1}{2} \left\{1 + \tanh\left[(X^{(i)}{-}X_{T})/\delta_{X}^{(i)}\right]\right\}, \\
+        m_{\rm ion}^i &= &\frac{1}{2} \left\{1 + \tanh\left[(V^{(i)}{-}V_{\rm ion})/\delta_{\rm ion}\right]\right\},
+\end{eqnarray}
+where the firing rate $Q_{V,Z}^i$ for excitatory and inhibitory populations are described via a sigmoid function that models the action potential at a population level which is parameterized by the mean population thresholds $V_T,Z_T$, and the variance of these thresholds $\delta_{\rm V,Z}$. The parameter $g_{\rm Na,Ca,K}$ is the conductance of ion channels and $r$ is the ratio of NMDA to AMPA receptors. The term $m_{\rm ion}^i$ is the ratio of the open to closed ion channels that is described according to a sigmoid, parameterized by the mean nerst potentials of the ion channels $V_{\rm ion}$ with the term $\delta_{\rm ion}$ capturing the variance of these potentials. The potassium channels is a special case that is dynamically modelled to relax to an additional state modelled as a exponential decay in Eq.~\ref{eq:potassiumEq} where the decay the parmeter $\tau$ is the relaxation rate and $\phi$ is the temperature scaling factor. The parameters $a_{ee},a_{ei},a_{ie},a_{ne},a_{ni}$ are the connection weights between inhibitory ($i$), excitatory ($e$), and external input ($n$) populations. The external population is modelled simply as a population that has input ionic current $I$. In this model, leaky currents are included that dissipate the excitatory membrane potential with appropriate parameters (of conductance and nerst potential) with subscript $L$. At the node level (i.e. when there is no coupling - $G=0$), the solutions exhibit dynamics similar to a hindmarsh rose neural oscillator described by a xxx. The coupling between nodes ($G>0$) are mediated through excitatory projections where the net firing rate from the network onto a single node is given by 
+\begin{equation}
+Q_{\Sigma}^i = (1{-}G)\,r\,a_{ee}\, Q_V^{i} + G\,r\,a_{ee} \sum_{j,j\ne i}Q_V^j\frac{C_{ij}}{D^i},
+\end{equation}
+where $D_i$ is the degree of the node ($D^i=\sum_jC_{ij}$), and $Q_\Sigma$ modulates the contributions of Sodium and Calcium excitatory membrane potentials. These equations are a nonlinear dynamical system that for realistic biophysical parameters and realitvely weak coupling, exhibits chaotic dynamics with weakly synchronized activity. It is this regime that is typically used to model neural dynamics. 
+
+Here, resting state activity is simulated as the cortical response due to unstructured white noise $a_{ne}I$, where $I$ is the nonspecific subcortical current. As the system of equations exhibit emergent chaotic behavior, it is only nescessary to include an initial condition for the noise across all nodes to reproduce this behavior. 
+
+The model parameters are listed in Table XXX, and is computationally integrated using the Brain Connectitivy toolkit (REF) in MATLAB.
+
+
+-> inputs to BOLD forward model
+
+\subsubsection*{The Hopf bifurcation model} 
+Lastly, instead of applying a specific biophysical model we can aim to reproduce three key types of dynamics observed in vivo - oscillations, noise and the combination - noisy oscillations. This model uses the supercritical Hopf bifurcation oscillator - which is a normal form to model the observed dynamics and approximates the behaviour of a large array of coupled dynamical systems and biophysically realstitic models (Robinson, Freyer, Breakspear). The dynamical system describes dynamics for over two variables $x_i$, $y_i$ per node $i$ through a series of coupled stochastic differential equations described as:
+\begin{eqnarray}
+\frac{dx_i}{dt} &=& [a - x_i^2 - y_i^2]x_i- \omega_iy_i...\\
+& &...+ G\sum_jC_{ij}(x_i-x_j)\beta\eta_i(t),\\
+\frac{dy_i}{dt} &=& [a - x_i^2 - y_i^2]y_i - \omega_ix_i ... \\
+& &...+ G\sum_jC_{ij}(y_i-y_j)\beta\eta_i(t),
+\end{eqnarray}
+where $a$ is the bifurcation parameter that at the nodel level tunes the system to be within three regimes. At the individual nodel level without coupling ($G=0$), if $a>0$ the system is in an oscillatory regime with frequency $\omega_i$, and if $a<=0$ the system lies on a fixed point and does. When coupling between nodes is introduced with multplicative noise Gaussian noise $\eta(t)$ (with standard deviation $\beta$) in the term $G\sum_jC_{ij}(y_i-y_j)\beta\eta_i(t)$ the dynamics of the system changes its characteristics with the bifurcation parameter $a$. When $a<0$ the dynamical system now exhibits noisy dynamics, but when around $a=0$ the system exibits noisy oscillations, and when $a>0$ the system exhibits the oscillatory behaviour. The frequency $\omega_i$ is estimated from resting state data itself by calculating the peak frequency within the narrow frequency band from $0.04$ to $0.07$ Hz. 
+
+This model requires two additional parameters to be fit: the global coupling parameter $G$, and the bifurcation parameter $a$. Firstly, as in the balanced E-I model, $G$ is a hyperparameter that is optimized for best fit on the similarity of the FC matrix and the dynamic FC (as described in the proceeding sections). Following this, the bifucation parameter $a$ is then fit according to similar principles to further improve fits. The dynamical equations are solved with MATLAB 2019, using an Euler Muryami integration scheme. 
+
+\subsubsection*{Imposing Heterogeneity}
+The presented models impose uniform node parameters, and although they provide moderate predictive power on static FC, they often lack in the predictive power on dynamic FC measures. To improve the overall fitting on both dynamic and static FC, we can increase the degrees of freedom by imposing heterogeneity on the node parameters. This variaton can be understood in terms of dynamics and the underlying biology. Dynamically, when nodes are parameterized with uniform parameters the dynamics are shaped by the emergent behaviour from network interactions. Variations of parameters can increase the dynamic range of the system. Biologically, uniform node parameters approximate neurophysiology, as local neuronal connectivity, lamination of cortex, and neuronal types vary throughout cortex and subcortex (REFS). In terms of observed dynamics, heterogeneity can changes local dynamics causing - but not limited to - changes in the autocorrelation, excited frequencies, and the ratio between noise and oscillations. 
+
+
+However, imposing this heterogeneity requires either some a priori knowledge such as the myelin markers as in (Dermitas et al.) or by optimizing node parameters to improve model fits. Here, we vary node parameters to optimize model estimates in functional connectivity similarity and dynamic functional connectivity (see below). Due to the ease of integration of the Hopf model, we impose heterogenity in ths model by varting the bifurcation parameter $a$ to be described at the node level yielding:
+\begin{eqnarray}
+\frac{dx_i}{dt} &=& [a_i - x_i^2 - y_i^2]x_i- \omega_iy_i...\\
+& &...+ G\sum_jC_{ij}(x_i-x_j)\beta\eta_i(t),\\
+\frac{dy_i}{dt} &=& [a_i - x_i^2 - y_i^2]y_i - \omega_ix_i ... \\
+& &...+ G\sum_jC_{ij}(y_i-y_j)\beta\eta_i(t).
+\end{eqnarray}
+The model is etimated following Deco et al, where the model is first fit by optimizing model fits of FC, and FCD (described below) with respect to $G$. Following this, $a_i$ is optimized with a greedy search algorithm to optimize FCD. (insert some details here?)
+
+\subsubsection*{Assessing model accuracy}
+The resulting neural dynamics from both the neural mass model and the balanced EI model are translated to BOLD activity via a convolution model typically used in BOLD fMRI studies (REF Boynton). As the Hopf bifurcation model simulates dynamics at the time scale of BOLD fMRI, it does not need a forward model and the dynamics of $x_j$ are the dynamics of the BOLD fMRI fluctuations. Assessing the accuracy of model simulations is achieved by how well the model can fit experimental rsfMRI. The comparsion metrics to quantify model fit can be split up into two different types of metrics those that are static and dynamic. 
+
+++ Might have to say in each model it was run for XX mins and BOLD data was YY. +++ 
+
+The most straightforward static comparison metrics is by using the functional connectivity matrix. Namely, once the model has been estimated pearson correlations between each node is calculated (as in the experimental data). As the functional connectivity matrix is symmetric, we compare how well the upper triangle of the model FC matrix correlates the upper triangle of the experimental FC described by the following similarity measure (fix up eq):
+\begin{equation}
+	FC_{s} = corr({\rm arctanh(FC^{exp}}),{\rm arctanh(FC^{sim}})).
+\end{equation}
+This metric is the intial target of parameter optimizations as it is a nessessary, but not sufficient, condition that models need for plausability. In all the models presented the choice of the hyperparameter $G$, that scales the overall coupling of the connections, is varied to maximize $FC_s$.  
+
+Models with a sufficiently high $FC_s$ can however, patterns simulate resting state flucations that are inconsistent with the observed dynamics. For this reason, measures of the fluctations were imposed to add additional constraints to find models. Here, we focus on a recent measure the dynamic functional connecitivy statistic (FCD).
+
+Firstly, the dynamic functional connectivity captures the variation of FC over time. The FCD is achieved by calculating the FC over a small time window of length LL, and this window then slides over time to cover YY minutes. At each FC calculation, the average FC is calculated and zzz. Then the distribution of this is calculated over a single instance in the modelling or at a group level. The comparison metric is not with any single instance of the FC, but over all time combinations to compare the distributions of the FC. The degree of similarity can be measured by using the Kolmogorov-Smirnoff statistic - a measure that is regularly used to compare distributions. This KS statistic measures the "distance" between two distributions, and a model that captures the same fluctuations will be minimized on this metric. 
+
+In the heterogenous models, parameter variations at the node level can alter the dynamic flucations and thus these models are optimized to minimize the KS-statistic (FCD). These are done via a greedy search algorithm, where changes in parameters are defined following linear pertubations to minimize the KS statistic. 
+
+\section*{Results}
+\subsection*{Denoising effects coherent structures}
+Structure:
+
+FIGURES:
+
+1. Preprocessing effects coherent structures (show coherence and measures)
+2. The coupling parameter in models (maybe show all three of them) shapes coherent structures
+3. How this effects both FCs and FCD show this for the optimal settings.
+3++ Influence on heterogenous parameters.
+
+Three datasets show this - distribution of the G optimal values
+4. Derivation of the Noisy-degree model, show on the B-EI model relative to GSR (in a figure with plots and things)
+
+we can derive this model - interesting relationship need to understand it - is it also related to ROI size? not sure.
+
+Then talk about improvements -- ANEC can do so. 
+
+
++First show some carpet plots, talk about how these carpet plots show the level of coherent data, talk about how they represnet differenet levels of coherence and how they effect FC, dynamic FC.
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/figure_example.png}
+\caption{Example carpet plots}
+\end{figure*}
+
+After showing the carpet plot discuss how these then can weight different models, for instance in the Hopf biophysical model we have different types of movemet.
+
+
+
+We first have a summary of all the data, and how to interpret these (important points to highlight).
+
+Before modelling - we urge modellers to understand these effects. 
 
 Show the results + show carpet plots and stuff
 
-\section*{Results II: The noisy degree model}
+Say that WSDs influence all of it
 
-Show how it comes about. 
+\section*{Model-wise comparisons}
 
 \section*{Results III: ANEC}
 
 \section*{Discussion}
+
+\subsection*{The Balloon model} 
+
+A common forward model in the literature is to use the Balloon-windkessl model to simulate forward model dynamics. Although its use is common, a number of studies has invalidated the use of the Balloon model - namely the non-existence of the venous balloon. Although, the Balloon model may capture non-linear properites of the BOLD response in resting state it is likely that this is not achieved. Therefore we advise against the use of this model. 
+
+\section*{Notes}
++ Parcellation discussion increase
 
 \section*{Acknowledgements}
 
