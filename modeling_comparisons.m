@@ -36,7 +36,7 @@ model_class = struct;
 
 model_class.global = struct;
 model_class.global.models = {'HOPF+GLOBAL','DECO+WANG','BTF','NOISY+DEGREE'};
-% Possibly for the BTF model we can use the brain dynamics toolkit (to avoid doing the wrong things :-O) we can possibly look at the
+% Possibly for the BTF model we can use the brain dynamics toolkit we can possibly look at the
 % responses in neural space and then look at the BOLD activity with a BOLD forward model.
 
 model_class.globalAndNode = struct;

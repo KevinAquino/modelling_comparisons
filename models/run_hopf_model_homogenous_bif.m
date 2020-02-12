@@ -32,7 +32,8 @@ function [ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_homogenous_b
 	% ============================== Parameters for the Hopf model ==============================
 	% 
 	% Setting the global Hopf parameter
-	a=-0.01*ones(N,2);	
+	% a=-0.01*ones(N,2);	
+	a=0*ones(N,2);	
 	% With this, set up the omega vector:
 	omega = repmat(2*pi*f_diff',1,2); omega(:,1) = -omega(:,1);
 	% Setting up the dt, and sig - strength of noise
@@ -42,9 +43,10 @@ function [ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_homogenous_b
 	% Now here we can run the Global model for each global coupling vector
 	upperTriangle = find(triu(ones(size(sc_matrix)),1));
 
+
 	for coupling_index = 1:length(G),
 		% Set up the weighted coupling matrix:
-		wC = G(coupling_index)*C;		
+		wC = G(coupling_index)*C;				
 		xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);		
 		% Now after this, we can look at the fitting corr matrix.
 		ts_simulated_all(:,:,coupling_index) = xs;

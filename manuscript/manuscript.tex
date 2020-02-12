@@ -93,7 +93,7 @@ Through the application to rsfMRI, large-scale biophysical modelling has found t
 
 % and simulate dynamics present in large scale resting state fMRI (REFs). There have been numerous coritcal models, each providing accurate predictions of the network correlational stucture. Together, these models show the following (A,B,C,D ++ need to find the key findings and what people are saying).
 
-The ease of recording rsfMRI, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest. However, with this advance, recent studies have relaved a wealth of confounding artefacts within rsfMRI such the presence of wide scale deflections (WSDs) correlated to head motion (REF), heart rate variability (REF), respiration (REF), time of acqusition (REF). Although there have been efforts over the last 30 years to remove these effects through physiological modelling (RETROICOR REF), improved motion correction algorithms (REF), fMRI acquisiton advancements (ME ref), and advancements in de-noising (MANY REFS) there is a large influence of motion and physiological confounds on rsfMRI. This is most clearly manifested in popularized ``carpet (or gray) plots'' which show temporal relationships of these confounds with rsfMRI (Power, Glasser, Aquino). In practise, this results in high global correlations functional correlations where the strength of these correlations have been shown to relate to motion (REF) or physiology (REF) making neural inferences from rsfMRI difficult to seperate from these processes. This issue is important in groups that naturally have differences in head motion (REFS) or physiology (REFS) which make neuronal differences are harder to determine. Through these confounds, there does not appear to be a clear concensus on the appropriate steps for not just de-noising but the order and type of steps with preprocessing pipelines - however there is a growing movement to standarize many of these steps (fMRIprep reference) and to utilzing large unified sources of data.
+The ease of recording rsfMRI, and the suitability to many biophysical models has seen the acceleration of studies acquiring and investigaing the brain at rest. However, with this advance, recent studies have relaved a wealth of confounding artefacts within rsfMRI such the presence of wide spread deflections (WSDs) correlated to head motion (REF), heart rate variability (REF), respiration (REF), time of acqusition (REF). Although there have been efforts over the last 30 years to remove these effects through physiological modelling (RETROICOR REF), improved motion correction algorithms (REF), fMRI acquisiton advancements (ME ref), and advancements in de-noising (MANY REFS) there is a large influence of motion and physiological confounds on rsfMRI. This is most clearly manifested in popularized ``carpet (or gray) plots'' which show temporal relationships of these confounds with rsfMRI (Power, Glasser, Aquino). In practise, this results in high global correlations functional correlations where the strength of these correlations have been shown to relate to motion (REF) or physiology (REF) making neural inferences from rsfMRI difficult to seperate from these processes. This issue is important in groups that naturally have differences in head motion (REFS) or physiology (REFS) which make neuronal differences are harder to determine. Through these confounds, there does not appear to be a clear concensus on the appropriate steps for not just de-noising but the order and type of steps with preprocessing pipelines - however there is a growing movement to standarize many of these steps (fMRIprep reference) and to utilzing large unified sources of data.
 
 
 Ongoing efforts within the rsfMRI community has placed greater standards that analyze not just group-level metrics but capture artefacts at the individual level by analyzing spatiotemporal time series via carpet plots (REFS) and quality control (QC) metrics that measure the influence of motion or respiration on FC edges. These tools are being employed to critically evaulate existing and new tools that denoise fMRI data and are often used to question any denoising method \cite{ciric2017benchmarking,Parkes:2018dz} 
@@ -109,11 +109,7 @@ Here, we investigate the effects of WSDs on modelling by employing recent techni
 
 
 \section*{Imaging Methods}
-% Here, we describe the methods in two distinct sections - resting state fMRI, which includes acqu
-% The methods here are split up into X different parts. 
 
-% Firstly, we talk about experiments then dynamical models.
- % Methods here describe the expermiental data and the mentioned dynamical models. 
 \subsection*{Resting state fMRI}
 \paragraph{}
 Here, we used transparent, open rsfMRI datasets processed using open-source pipelines from \verb|fmriprep| \cite{esteban2019fmriprep} and the Human Connectome Project (HCP) \cite{van2013wu}. 
@@ -154,7 +150,7 @@ ICA-based Automatic Removal Of Motion Artifacts (AROMA) was used to generate noi
 
 Following ICA-AROMA, we extracted mean time courses from eroded masks (using a 3x3x3 erosion kernel) of the WM and CSF. The masks were generated by following \citet{Parkes:2018dz} and \citet{power2017sources}, where CSF and WM ROIs were created from tissue probability maps in \verb|fmriprep|. We eroded the WM mask five times and the CSF mask once. Erosion is crucial to avoid partial-volume effects from gray matter, which inflates the correlation between WM/CSF estimates and the global-mean signal \cite{power_fd_dvars,Parkes:2018dz}. We extracted these signals from the AROMA-denoised data, as performed in \citet{aroma}.
 
-The above steps are fairly standard and accepted de-noising techniques, however wide scale deflections (WSDs) are present following these pipelines which correlation structure is related to motion, corrupting neuronal inferences. Thus, further de-noising methods are implemented: Global signal regression (GSR), and Diffuse Cluster Estimation and Regression (DiCER) both of which has been shown to mitigate the influences of WSDs in different ways. 
+The above steps are fairly standard and accepted de-noising techniques, however wide spread deflections (WSDs) are present following these pipelines which correlation structure is related to motion, corrupting neuronal inferences. Thus, further de-noising methods are implemented: Global signal regression (GSR), and Diffuse Cluster Estimation and Regression (DiCER) both of which has been shown to mitigate the influences of WSDs in different ways. 
 
 For GSR, we use the mean gray-matter signal as for the global signal since it is highly correlated to the mean signal from the entire brain and contributes the most to the signal \cite{power2017sources,Glasser:2018dt}. We thus refer to regression of this signal from fMRI gray-matter regression (GMR) for clarity. The concept of GMR is that since this represents the mean wide-spread signal its removal will reduce WSDs.
 
@@ -288,33 +284,126 @@ Firstly, the dynamic functional connectivity captures the variation of FC over t
 In the heterogenous models, parameter variations at the node level can alter the dynamic flucations and thus these models are optimized to minimize the KS-statistic (FCD). These are done via a greedy search algorithm, where changes in parameters are defined following linear pertubations to minimize the KS statistic. 
 
 \section*{Results}
-\subsection*{Denoising effects coherent structures}
-Structure:
 
-FIGURES:
+The results are structured as follows. Firstly, we investigate the spatiotemporal characteristics of the data that need to be modelled. Secondly, we then investigate the spatiotemporal characteristics of the models themselves. Thirdly, we describe the accuracy of the fits to data. With these results, we then employ heterogenous models to see if they help.
 
-1. Preprocessing effects coherent structures (show coherence and measures)
-2. The coupling parameter in models (maybe show all three of them) shapes coherent structures
+\subsection*{Wide spread deflections in rsfMRI data}
+To understand the effects of artefacts on modelling, it is important to characterize the issues within rsfMRI. Here, we reiterate the important aspects within rsfMRI and why they are important to modelling resting state fMRI. 
+
+Firstly, an important technique to analyze the quality of resting state fMRI scans is to visualize the spatiotemporal time series of scans. As shown in Figure~\ref{fig:rsfMRIexp}C, (MPP looks pretty similar, might include a noisier subject..) that following minimal preprocessing (MPP) a ``low-motion'' subject from the UCLA cohort (sub-10274) contains a wealth of wide-spread signals that are times tied to motion events as captured by the mean framewise displacement (FD) (in the blue rectangles). Additional wide-spread signals have also been tied to physiological events such as respriation \cite{power2017simple,power2018ridding} or heart rate variability \cite{birn2006separating}. A robust de-noising method - ICA-AROMA with regression of white and CSF signals (+2P) mitigates some of these events but as often with these de-noising methods WSDs remain \cite{power2018ridding,power2013steps} as can be appreciated in Fig.~\ref{fig:rsfMRIexp}D. The link between these WSDs and physiology and motion thus treats these particular WSDs as noise, and can be appreciated in the functional connectivity matrix in Fig~\ref{fig:rsfMRIexp}G, where the globally coherent structure causes a FC matrix that is postively correlated. This is an important issue as that if the FC matrix is used to compare between groups, then large motion drives the changes in the edges of the FC matrix rather than underlying neuronal processes. For these reasons, further de-noising is often employed to rid rsfMRI of these artefactual signals. As described in the methods GMR is regularly used to rid rsfMRI of these influences, and as seen in Fig~\ref{fig:rsfMRIexp}E, it can help mitigate these effects however introducing negative correlations due to this zero-centering \cite{murphy2009impact,saad2012-gsr-neg} which can be apprecaited in Fig~\ref{fig:rsfMRIexp}H and Fig\ref{fig:rsfMRIexpbiphasic}H. Using the mean of all voxels to remove WSDs can be problematic if the WSD is made of components that exist in multiple phases such as the subject in Fig.\ref{fig:rsfMRIexpbiphasic} where the common underlying WSD is expressed in two clear phases - i.e. the top half has the opposite sign of the bottom half. As can be apprecated in Fig.\ref{fig:rsfMRIexpbiphasic}D vs Fig.\ref{fig:rsfMRIexpbiphasic}E, GMR does not remove this WSD adequately, leaving behind a spatiotemporal time series that still contains artefactal WSD. This characterization of the types of WSDs is explained in \cite{aquino2019identifying} and can be thought to be of three types: weak (not shown here), single-phase, and biphasic. 
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/figure_example.png}
+\caption{Example carpet plots, single phase.}\label{fig:rsfMRIexp}
+\end{figure*}
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/figure_example2.png}
+\caption{Example carpet plots noisy biphasic subject.}\label{fig:rsfMRIexpbiphasic}
+\end{figure*}
+
+For these reasons, a new techinque - DiCER - was developed to targets these weak diffuse signals\cite{aquino2019identifying}. On application of DiCER to the ICA-AROMA+2P output form all subjects, the carpet plots in Figures \ref{fig:rsfMRIexp}F and \ref{fig:rsfMRIexpbiphasic}F show the reduction of WSDs, whilsting revealing FC matrices in Figures \ref{fig:rsfMRIexp}I and \ref{fig:rsfMRIexpbiphasic}I that have structure without zero centring the functional connectivity matrix. We note that undergoing network discovery, DiCER appears to improve statistical sensivity of neuronal components - or at worst - on par with GMR \cite{aquino2019identifying}. These type of WSDs are present across the three datasets described, and the removal of the WSDs by DiCER or GMR generally improves QC-FC measures (not sure how much detail...).
+
+\subsection*{Wide spread deflections in models of rsfMRI}
+
+The above results illustrate that the nature of coherent structures are largely seen as artefactual and the presence of these structures removed with varying degrees of de-noising. The varying degress of WSDs are important when biophysical models of resting state fMRI, as the models not only have to capture the overall functional connectivity but the typical dynamics within data. As described in the methods, a key feature of all biophysical models is the global coupling parameter $G$, that changes the dynamics of the models from un-coupled dynamical nodes ($G=0$) through to completely synchronized dynamics ($G>4$ in the models considered here). Therefore, the tunining of the model and the dynamic regime that is being fit will depend on the quality of the data wiht regards to the level of WSDs. This can be appreciated by analzying the WSDs in the biophysical predictions in a similar fashion to the experimental data.
+
+Firstly, for the Balanced Excitation Inihbition model Fig.~\ref{fig:BalancedEI_G}~A shows that varying the global coupling parameter $G$ largely changes the dynamics of the model. If we compare the carpet plots of varying levels of the coupling parameter $G$ we see visually that the level of WSDs peaks for $G=3$, and is reflected in the global structure in the functional connectivity matrices in Fig.~\ref{fig:BalancedEI_G}~B. The level of WSDs can be quantified by using heuristics, namely using the variance explained by the first PC (VE1) or the global mean of all correlations in the FC matrix (GFC). As shown in Figs~\ref{fig:BalancedEI_G}~C, and ~\ref{fig:BalancedEI_G}~D we can see that like in the carpet plots and the FC matrix, VE1 and GCF peaks for $G=3$ meaning that this parameter maximises the coherence and thus WSDs. When comparing these measures to subject 10274 in the UCLA data we find that the level of synchrony needed to match the data depends on the level of WSDs within the data that are dependendent on the preprocessing pipeline. Overall, these features are shown in the neural mass model in Fig.~\ref{fig:NM_G} as well as the Hopf bifurcation model in Fig.~\ref{fig:Hopf_G}. Where the transition from uncoupled noisy nodes changes from obtaining an optiumum in the Balanced EI case (Fig.~\ref{fig:BalancedEI_G}C,D), to a phase transition in the Neural mass model (Fig.~\ref{fig:NM_G}C,D) to a gradual increase in coherence in the Hopf bifurcation model(\ref{fig:Hopf_G}C,D). 
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/BEModel.png}
+\caption{Wide spread deflections in the Balanced Excitation-inhibiton model. A B C D}\label{fig:BalancedEI_G}
+\end{figure*}
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/BTFImage.png}
+\caption{Wide spread deflections in the neural mass model. A B C D}\label{fig:NM_G}
+\end{figure*}
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/HopfImage.png}
+\caption{Wide spread deflections in the Hopf Bifurcation model. A B C D}\label{fig:Hopf_G}
+\end{figure*}
+
+
+The above results indciate that data with WSDs requires models to be biased toward the synchronized regime, whereas data with reduced WSDs push data to the unsynchronized regime (i.e. lower $G$). We can explore this issue further in the highly synchronized regime, and the weakly synchronized regime. Firstly, models within the synchronized regime appear to have a globaly coherent signal is present in the spatiotemporal carpet plots as visually expressed by the large vertical stripes in Figs~\ref{fig:BalancedEI_G}~A,\ref{fig:NM_G}~A,\ref{fig:Hopf_G}A with $G=3,3.25,2--8$ respecively. If we were to model this behaviour explicitly, we first note that in all three models the local dynamics at node $i$ are modulated by the influences owing to the sum (or mean) of the neighbouring nodes weighted by $C$ i.e. by a general factor
+\begin{equation}
+G\sum_jC_{ij}f_{j}(t),
+\end{equation}
+where $f_{j}(t)$ is a general term that describes some output node $j$ expressed to node $i$ which in most models is the dynamics of excitatory population at node $j$. Thus, if all nodes shared a common signal $\sigma(t)$ the dynamics at node $i$ will be modulated by this common factor and a local Gaussian noise term $N(0,1)$ (owing to noisy inputs in all the three models) expressed as:
+\begin{eqnarray}
+B_i(t) &=& \alpha N(0,1) + G\sum_jC_{ij}\sigma(t),\\
+	   &=& \alpha N(0,1) + GD_{i}\sigma(t),
+\end{eqnarray}
+where $D_i$ is the node degree, and $\alpha$ determines the strength of the noise term which we set at $\alpha=1/2$. When we use the common signal as the mean signal of sub-10274, this noisy degree model in Fig~\ref{fig:NDM_G} can reproduce carpet plots and FC matrices similar to the preprocessing pipeline ICA-AROMA+2P with $G=4$. Therefore, we note that a model of the global signal modulated by node degree is roughly equivalent to highly synchronized models of rsfMRI, and is well correlated  to the balanced to the Balanced Excitation Inibition model ($r=0.99$). (think about how this fits in..)
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/NDMModel.png}
+\caption{Wide spread deflections in the Noisy degree model. A B C D}\label{fig:NDM_G}
+\end{figure*}
+
+Secondly, in the weakly synchronized regime, there are fewer WSDs and there is closer match with that undergoing GSR or DiCER. However, within the experimental fMRI literature, a key argument against the use of GMR is that it may remove neurally related WSDs. Here, the presented models simulate globally coherent neuronal fluctuations, thus a key question is what remains post GSR. Following GMR, we see three types of artefactual effects in the three presented models in Fig.~\ref{fig:GMRModels}. For low $G$, WSDs are removed lowering VE1 and GFC (we exclude the noisy degree model as by construction, most of the signal is removed post GMR). This effect is present however, for all $G$ for the Hopf bifurcation model. Secondly, When there is a globally coherent signal that is delayed between nodes - such as those imposed by a travelling wave (Roberts et al.) - the mean signal can does not capture the WSD such as in the neural mass model for $G=3.5$ as in Fig.\ref{fig:NM_G}~A thus leaving WSDs post GMR in Figure.~\ref{fig:GMRModels}~E,F. And finally, a residual artefactual signal can be left behind following GMR for the balanced EI models for $G=3$. In all models and global parameter variations, only the neural mass model for $G=2-3$ and the balaneced EI model for $G=2,4$ leaves residual structure in the FC matrix, indicating residual modulations above globally coherent ones. These are visual comparisons provide indications of the artefacts and FC matrix structure, quantiative comparisons with rsfMRI are described in the next section. 
+
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/GMRModels.png}
+\caption{GMR models}\label{fig:GMRModels}
+\end{figure*}
+
+The above results relate to the appearance WSDs visually in the spatiotemporal characteristics and on FC matrcies, improvements in rsfMRI mdoelling is the focus on dynamic measures of functional connections. Here, we examine dynamic functional connectivity in a similar fashion to above.
+
+We calculate the DFC and find that
+% We find that X and Y. 
+
+% The two above metrics can then be used to analyze the models themselves. 
+
+
+% The above results relate to static measures of dynamic activity, of course an additional measure is to use a dynamic measure - dynamic functional connectivity. 
+
+% + Then talk about FCDs and match to data. 
+
+
+\subsection*{WSDs affect model fits}
+With a characterization of the wide spread deflections in rsfMRI data and modelling, we can now explore how well these features correspond to quantitative model fits.
+
+
+
+Also have to fix for BTF (need to run many simulations)
+
+Show Fit values, FCD values and DMN type of figures for all of them
+
+Then talk about this.
+
+Then talk about improving the models with heterongeous parameters on A -- doesn't work.
+
+Then talk about imrpovements with ANEC, it does work but at WHAT COST??!?!?
+
+Thats it. 
+
+
+
 3. How this effects both FCs and FCD show this for the optimal settings.
-3++ Influence on heterogenous parameters.
+
+Need to talk about the differences in the fittings on both FCD and FC, say that we previously showed how different coupling changes WSDs and then results change too.
+
+
+3++ Influence on heterogenous parameters. - talk about ways to combat this. 
 
 Three datasets show this - distribution of the G optimal values
 4. Derivation of the Noisy-degree model, show on the B-EI model relative to GSR (in a figure with plots and things)
 
 we can derive this model - interesting relationship need to understand it - is it also related to ROI size? not sure.
 
-Then talk about improvements -- ANEC can do so. 
+5. Then talk about improvements -- ANEC can do so. 
 
 
 +First show some carpet plots, talk about how these carpet plots show the level of coherent data, talk about how they represnet differenet levels of coherence and how they effect FC, dynamic FC.
 
-\begin{figure*}[ht!]
-\includegraphics[width=1\textwidth]{figs/figure_example.png}
-\caption{Example carpet plots}
-\end{figure*}
 
-After showing the carpet plot discuss how these then can weight different models, for instance in the Hopf biophysical model we have different types of movemet.
+The problem with WSDs in data (and we dont correct for them) is that we then build and focus on models that also have large WSDs. 
 
+Maybe then here we could show something with that on purpose.......
+
+We have simple measures there. 
 
 
 We first have a summary of all the data, and how to interpret these (important points to highlight).
@@ -325,11 +414,18 @@ Show the results + show carpet plots and stuff
 
 Say that WSDs influence all of it
 
-\section*{Model-wise comparisons}
 
-\section*{Results III: ANEC}
++++ Heterogeneity, things that can be done.
+
++++ ANEC 
+
+
 
 \section*{Discussion}
+Global signal - noise or what? the problems within models. 
+
+\subsection*{Evidence against using data without some denoising} 
+Need to discuss that a common reason not to use GMR (or even other WSD reducing types of analysis) is that it will impact neuronally driven WSDs - a feature in many models (as seen above). However models may just be fitting this and nothing else if theya re not careful. 
 
 \subsection*{The Balloon model} 
 
