@@ -550,6 +550,7 @@ end
 summary_plot(ts_simulated_all,G,show_g,ve_data,GFC_exp,0);
 
 load('/Users/kevinaquino/projects/modelling_gustavo/results/BEI/BEI_simulation_88.mat')
+show_g=[1:4:20];
 summary_plot(ts_simulated_all,G,show_g,ve_data,GFC_exp,0);
 
 % Now something for FCD - maybe show non GSR and GSR in a big histogram
@@ -586,3 +587,143 @@ subplot(2,6,[6 12]);
 % FCD_d = phase_fcd(t1',2);
 hist(FCD_d(find(triu(ones(size(FCD_d)),1))),50);
 title('Data');
+
+for k=1:3
+	for j=1:100,
+		FC(:,:,j,k) = corr(time_series(:,:,j,k));
+	end;
+	FC_mean(:,:,k) = nanmean(FC(:,:,:,k),3);
+end
+
+
+% Fitting corrs for BE
+inds=find(triu(ones(size(FC_mean(:,:,1))),1));
+for j=1:length(G),
+	% Model vs ICA-AROMA data
+	FC_model=corr(ts_simulated_all(:,:,j));
+	FC_emp = FC_mean(:,:,1);
+	sim(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+	% Dicer estimates
+	FC_emp = FC_mean(:,:,3);
+	sim_dicer(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));	
+
+	% Model vs GSR data
+	FC_emp = FC_mean(:,:,2);
+	sim2(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+	
+	
+
+	% Model GSR vs Data GSR
+	sim_t=ts_simulated_all(:,:,j);
+	sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
+	FC_model=corr(sim_t);
+	sim3(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+
+	% Dicer estimates
+	FC_emp = FC_mean(:,:,3);
+	sim_dicer_gsm(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+end
+
+figure;plot(G,sim);
+hold on;
+plot(G,sim2);
+plot(G,sim3);
+plot(G,sim_dicer);
+plot(G,sim_dicer_gsm);
+
+legend({'BEI vs ICA-AROMA','BEI vs ICA-AROMA+GSR','BEI+GSR vs ICA-AROMA+GSR','BEI vs ICA-AROMA+DiCER','BEI + GSR vs ICA-AROMA+DiCER'});
+
+
+
+% Fitting corrs for BTF
+
+
+
+for k=1:3
+	for j=1:100,
+		tt=time_series(:,[1:34,42:41+34],j,k);
+		FC(:,:,j,k) = corr(tt);
+	end;
+	FC_mean(:,:,k) = nanmean(FC(:,:,:,k),3);
+end
+
+
+inds=find(triu(ones(size(FC_mean(:,:,1))),1));
+for j=1:length(G),
+	% Model vs ICA-AROMA data
+	FC_model=corr(ts_simulated_all(:,:,j));
+	FC_emp = FC_mean(:,:,1);
+	sim(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+	% Dicer estimates
+	FC_emp = FC_mean(:,:,3);
+	sim_dicer(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));	
+
+	% Model vs GSR data
+	FC_emp = FC_mean(:,:,2);
+	sim2(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+	
+	
+
+	% Model GSR vs Data GSR
+	sim_t=ts_simulated_all(:,:,j);
+	sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
+	FC_model=corr(sim_t);
+	sim3(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+
+	% Dicer estimates
+	FC_emp = FC_mean(:,:,3);
+	sim_dicer_gsm(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
+end
+
+figure;plot(G,sim);
+hold on;
+plot(G,sim2);
+plot(G,sim3);
+plot(G,sim_dicer);
+plot(G,sim_dicer_gsm);
+
+legend({'BEI vs ICA-AROMA','BEI vs ICA-AROMA+GSR','BEI+GSR vs ICA-AROMA+GSR','BEI vs ICA-AROMA+DiCER','BEI + GSR vs ICA-AROMA+DiCER'});
+
+legend({'MODEL vs ICA-AROMA','MODEL vs ICA-AROMA+GSR','MODEL+GSR vs ICA-AROMA+GSR','MODEL vs ICA-AROMA+DiCER','MODEL + GSR vs ICA-AROMA+DiCER'});
+
+%%% Here show the fits summarized
+
+% Here maybe show a summary?
+
+
+% Be awesome FITS fs mFD?
+
+
+% for sub=1:100,
+% 	% FC_emp = FC(:,:,sub,2);
+% 	for j=1:length(G),
+% 		sim_t=ts_simulated_all(:,:,j);
+% 		sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
+% 		FC_model=corr(sim_t);		
+% 		sim_fit(j,sub)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));		
+% 	end
+% 	% fit_max(sub) = max(sim_fit(:,sub));
+% end
+
+
+
+% % Prepare data:
+% for sub=1:100,
+% 	t1 = zscore(time_series(:,:,sub,1));
+% 	[~,~,~,~,expl] = pca(t1);
+% 	co = corr(t1);
+% 	GFC_exp(sub) = mean(abs(co(:)));
+% 	ve_data(sub) = expl(1);
+% end
+
+% nonNans=find(~isnan(fit_max));
+% corr(ve_data(nonNans)',fit_max(nonNans)')
+
+
+% Findthe best fit
+[~,ind]=max(sim_dicer_gsm);
+sim_t=ts_simulated_all(:,:,ind)';
+sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
+FC_model=corr(sim_t);
+figure;imagesc(triu(FC_model,1) + tril(FC_mean(:,:,2),-1))
+caxis([-1 1]);colormap(cmap);axis image;colorbar

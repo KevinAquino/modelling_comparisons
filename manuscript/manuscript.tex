@@ -279,7 +279,7 @@ This metric is the intial target of parameter optimizations as it is a nessessar
 
 Models with a sufficiently high $FC_s$ can however, patterns simulate resting state flucations that are inconsistent with the observed dynamics. For this reason, measures of the fluctations were imposed to add additional constraints to find models. Here, we focus on a recent measure the dynamic functional connecitivy statistic (FCD).
 
-Firstly, the dynamic functional connectivity captures the variation of FC over time. The FCD is achieved by calculating the FC over a small time window of length LL, and this window then slides over time to cover YY minutes. At each FC calculation, the average FC is calculated and zzz. Then the distribution of this is calculated over a single instance in the modelling or at a group level. The comparison metric is not with any single instance of the FC, but over all time combinations to compare the distributions of the FC. The degree of similarity can be measured by using the Kolmogorov-Smirnoff statistic - a measure that is regularly used to compare distributions. This KS statistic measures the "distance" between two distributions, and a model that captures the same fluctuations will be minimized on this metric. 
+Firstly, the dynamic functional connectivity captures the variation of FC over time. The FCD is achieved by calculating the FC over a small time window of length LL, and this window then slides over time to cover YY minutes. At each FC calculation, the average FC is calculated and zzz. Then the distribution of this is calculated over a single instance in the modelling or at a group level. The comparison metric is not with any single instance of the FC, but over all time combinations to compare the distributions of the FC. The degree of similarity can be measured by using the Kolmogorov-Smirnoff statistic - a measure that is regularly used to compare distributions. This KS statistic measures the ``distance'' between two distributions, and a model that captures the same fluctuations will be minimized on this metric. 
 
 In the heterogenous models, parameter variations at the node level can alter the dynamic flucations and thus these models are optimized to minimize the KS-statistic (FCD). These are done via a greedy search algorithm, where changes in parameters are defined following linear pertubations to minimize the KS statistic. 
 
@@ -363,6 +363,7 @@ We calculate the DFC and find that
 
 
 \subsection*{WSDs affect model fits}
+
 With a characterization of the wide spread deflections in rsfMRI data and modelling, we can now explore how well these features correspond to quantitative model fits.
 
 
