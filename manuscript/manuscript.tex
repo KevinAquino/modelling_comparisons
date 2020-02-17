@@ -16,7 +16,7 @@
 
 \begin{document}
 
-\title{How wide scale deflections bias brain-wide models of resting state fMRI.}
+\title{How wide spread deflections bias brain-wide models of resting state fMRI.}
 \shorttitle{Effect of WSDs on modelling}
 
 % Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
@@ -307,25 +307,25 @@ For these reasons, a new techinque - DiCER - was developed to targets these weak
 
 The above results illustrate that the nature of coherent structures are largely seen as artefactual and the presence of these structures removed with varying degrees of de-noising. The varying degress of WSDs are important when biophysical models of resting state fMRI, as the models not only have to capture the overall functional connectivity but the typical dynamics within data. As described in the methods, a key feature of all biophysical models is the global coupling parameter $G$, that changes the dynamics of the models from un-coupled dynamical nodes ($G=0$) through to completely synchronized dynamics ($G>4$ in the models considered here). Therefore, the tunining of the model and the dynamic regime that is being fit will depend on the quality of the data wiht regards to the level of WSDs. This can be appreciated by analzying the WSDs in the biophysical predictions in a similar fashion to the experimental data.
 
-Firstly, for the Balanced Excitation Inihbition model Fig.~\ref{fig:BalancedEI_G}~A shows that varying the global coupling parameter $G$ largely changes the dynamics of the model. If we compare the carpet plots of varying levels of the coupling parameter $G$ we see visually that the level of WSDs peaks for $G=3$, and is reflected in the global structure in the functional connectivity matrices in Fig.~\ref{fig:BalancedEI_G}~B. The level of WSDs can be quantified by using heuristics, namely using the variance explained by the first PC (VE1) or the global mean of all correlations in the FC matrix (GFC). As shown in Figs~\ref{fig:BalancedEI_G}~C, and ~\ref{fig:BalancedEI_G}~D we can see that like in the carpet plots and the FC matrix, VE1 and GCF peaks for $G=3$ meaning that this parameter maximises the coherence and thus WSDs. When comparing these measures to subject 10274 in the UCLA data we find that the level of synchrony needed to match the data depends on the level of WSDs within the data that are dependendent on the preprocessing pipeline. Overall, these features are shown in the neural mass model in Fig.~\ref{fig:NM_G} as well as the Hopf bifurcation model in Fig.~\ref{fig:Hopf_G}. Where the transition from uncoupled noisy nodes changes from obtaining an optiumum in the Balanced EI case (Fig.~\ref{fig:BalancedEI_G}C,D), to a phase transition in the Neural mass model (Fig.~\ref{fig:NM_G}C,D) to a gradual increase in coherence in the Hopf bifurcation model(\ref{fig:Hopf_G}C,D). 
+Firstly, for the Balanced Excitation Inihbition model Fig.~\ref{fig:BalancedEI_G}~A shows that varying the global coupling parameter $G$ largely changes the dynamics of the model. If we compare the carpet plots of varying levels of the coupling parameter $G$ we see visually that the level of WSDs peaks for $G=3$, and is reflected in the global structure in the functional connectivity matrices in Fig.~\ref{fig:BalancedEI_G}~B. The level of WSDs can be quantified by using heuristics, namely using the variance explained by the first PC (VE1) or the global mean of all correlations in the FC matrix (GFC). As shown in Figs~\ref{fig:BalancedEI_G}~C, and ~\ref{fig:BalancedEI_G}~D we can see that like in the carpet plots and the FC matrix, VE1 and GCF peaks for $G=3$ meaning that this parameter maximises the coherence and thus WSDs. When comparing these measures to subject 10274 in the UCLA data we find that the level of synchrony needed to match the data depends on the level of WSDs within the data that are dependendent on the preprocessing pipeline. Overall, these features are shown in the neural mass model in Fig.~\ref{fig:BalancedEI_G}~F--I as well as the Hopf bifurcation model in Fig.~\ref{fig:BalancedEI_G}J--M. Where the transition from uncoupled noisy nodes changes from obtaining an optiumum in the Balanced EI case (Fig.~\ref{fig:BalancedEI_G}C,D), to a phase transition in the Neural mass model (Fig.~~\ref{fig:BalancedEI_G}~H,I) to a gradual increase in coherence in the Hopf bifurcation model(~\ref{fig:BalancedEI_G}~L,M). 
 
 \begin{figure*}[ht!]
-\includegraphics[width=1\textwidth]{figs/BEModel.png}
+\includegraphics[width=1\textwidth]{figs/Models_all.png}
 \caption{Wide spread deflections in the Balanced Excitation-inhibiton model. A B C D}\label{fig:BalancedEI_G}
 \end{figure*}
 
-\begin{figure*}[ht!]
-\includegraphics[width=1\textwidth]{figs/BTFImage.png}
-\caption{Wide spread deflections in the neural mass model. A B C D}\label{fig:NM_G}
-\end{figure*}
+% \begin{figure*}[ht!]
+% \includegraphics[width=1\textwidth]{figs/BTFImage.png}
+% \caption{Wide spread deflections in the neural mass model. A B C D}\label{fig:NM_G}
+% \end{figure*}
 
-\begin{figure*}[ht!]
-\includegraphics[width=1\textwidth]{figs/HopfImage.png}
-\caption{Wide spread deflections in the Hopf Bifurcation model. A B C D}\label{fig:Hopf_G}
-\end{figure*}
+% \begin{figure*}[ht!]
+% \includegraphics[width=1\textwidth]{figs/HopfImage.png}
+% \caption{Wide spread deflections in the Hopf Bifurcation model. A B C D}\label{fig:Hopf_G}
+% \end{figure*}
 
 
-The above results indciate that data with WSDs requires models to be biased toward the synchronized regime, whereas data with reduced WSDs push data to the unsynchronized regime (i.e. lower $G$). We can explore this issue further in the highly synchronized regime, and the weakly synchronized regime. Firstly, models within the synchronized regime appear to have a globaly coherent signal is present in the spatiotemporal carpet plots as visually expressed by the large vertical stripes in Figs~\ref{fig:BalancedEI_G}~A,\ref{fig:NM_G}~A,\ref{fig:Hopf_G}A with $G=3,3.25,2--8$ respecively. If we were to model this behaviour explicitly, we first note that in all three models the local dynamics at node $i$ are modulated by the influences owing to the sum (or mean) of the neighbouring nodes weighted by $C$ i.e. by a general factor
+The above results indciate that data with WSDs requires models to be biased toward the synchronized regime, whereas data with reduced WSDs push data to the unsynchronized regime (i.e. lower $G$). We can explore this issue further in the highly synchronized regime, and the weakly synchronized regime. Firstly, models within the synchronized regime appear to have a globaly coherent signal is present in the spatiotemporal carpet plots as visually expressed by the large vertical stripes in Figs~\ref{fig:BalancedEI_G}~A,F,J with $G=3,3.25,2--8$ respecively. If we were to model this behaviour explicitly, we first note that in all three models the local dynamics at node $i$ are modulated by the influences owing to the sum (or mean) of the neighbouring nodes weighted by $C$ i.e. by a general factor
 \begin{equation}
 G\sum_jC_{ij}f_{j}(t),
 \end{equation}
@@ -341,79 +341,97 @@ where $D_i$ is the node degree, and $\alpha$ determines the strength of the nois
 \caption{Wide spread deflections in the Noisy degree model. A B C D}\label{fig:NDM_G}
 \end{figure*}
 
-Secondly, in the weakly synchronized regime, there are fewer WSDs and there is closer match with that undergoing GSR or DiCER. However, within the experimental fMRI literature, a key argument against the use of GMR is that it may remove neurally related WSDs. Here, the presented models simulate globally coherent neuronal fluctuations, thus a key question is what remains post GSR. Following GMR, we see three types of artefactual effects in the three presented models in Fig.~\ref{fig:GMRModels}. For low $G$, WSDs are removed lowering VE1 and GFC (we exclude the noisy degree model as by construction, most of the signal is removed post GMR). This effect is present however, for all $G$ for the Hopf bifurcation model. Secondly, When there is a globally coherent signal that is delayed between nodes - such as those imposed by a travelling wave (Roberts et al.) - the mean signal can does not capture the WSD such as in the neural mass model for $G=3.5$ as in Fig.\ref{fig:NM_G}~A thus leaving WSDs post GMR in Figure.~\ref{fig:GMRModels}~E,F. And finally, a residual artefactual signal can be left behind following GMR for the balanced EI models for $G=3$. In all models and global parameter variations, only the neural mass model for $G=2-3$ and the balaneced EI model for $G=2,4$ leaves residual structure in the FC matrix, indicating residual modulations above globally coherent ones. These are visual comparisons provide indications of the artefacts and FC matrix structure, quantiative comparisons with rsfMRI are described in the next section. 
+Secondly, in the weakly synchronized regime, there are fewer WSDs and there is closer match with that undergoing GSR or DiCER. However, within the experimental fMRI literature, a key argument against the use of GMR is that it may remove neurally related WSDs. Here, the presented models simulate globally coherent neuronal fluctuations, thus a key question is what remains post GSR. Following GMR, we see three types of artefactual effects in the three presented models in Fig.~\ref{fig:GMRModels}. For low $G$, WSDs are removed lowering VE1 and GFC (we exclude the noisy degree model as by construction, most of the signal is removed post GMR). This effect is present however, for all $G$ for the Hopf bifurcation model. Secondly, When there is a globally coherent signal that is delayed between nodes - such as those imposed by a travelling wave (Roberts et al.) - the mean signal can does not capture the WSD such as in the neural mass model for $G=3.5$ as in Fig.~\ref{fig:BalancedEI_G}~F thus leaving WSDs post GMR in Figure.~\ref{fig:GMRModels}~E,F. And finally, a residual artefactual signal can be left behind following GMR for the balanced EI models for $G=3$. In all models and global parameter variations, only the neural mass model for $G=2-3$ and the balaneced EI model for $G=2,4$ leaves residual structure in the FC matrix, indicating residual modulations above globally coherent ones. These are visual comparisons provide indications of the artefacts and FC matrix structure, quantiative comparisons with rsfMRI are described in the next section. 
 
 
 \begin{figure*}[ht!]
 \includegraphics[width=1\textwidth]{figs/GMRModels.png}
-\caption{GMR models}\label{fig:GMRModels}
+\caption{GMR models, talk about what is happening. }\label{fig:GMRModels}
 \end{figure*}
-
-The above results relate to the appearance WSDs visually in the spatiotemporal characteristics and on FC matrcies, improvements in rsfMRI mdoelling is the focus on dynamic measures of functional connections. Here, we examine dynamic functional connectivity in a similar fashion to above.
-
-We calculate the DFC and find that
-% We find that X and Y. 
-
-% The two above metrics can then be used to analyze the models themselves. 
-
-
-% The above results relate to static measures of dynamic activity, of course an additional measure is to use a dynamic measure - dynamic functional connectivity. 
-
-% + Then talk about FCDs and match to data. 
 
 
 \subsection*{WSDs affect model fits}
+With a characterization of the wide spread deflections in rsfMRI data and modelling, we can now explore how well these features correspond to quantitative model fits. In Figure~\ref{fig:FC_fits} we show the results of fitting functional connectivity similarity in the four models presented over three de-noising pipelines in the UCLA cohort. We note in all four models, model fits with regard to FC similarity are maximised with ICA-AROMA, with a global coupling factor that corresponds to model predictions with large global synchrony (as described above). This globally coherent feature is emphasized when comparing the FC of the model at optimal fits with the group average FC matrix in Fig.~\ref{fig:FC_fits}~E, i.e. regions are highly correlated to one another. The slight exception is the neural mass model, that has a lower overall fit. It is worth noting that the noisy degree model on data with large WSDs well in this metric and only contains one parameter ($G$). 
 
-With a characterization of the wide spread deflections in rsfMRI data and modelling, we can now explore how well these features correspond to quantitative model fits.
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/FC_comparisons_all.png}
+\caption{GMR models}\label{fig:FC_fits}
+\end{figure*}
 
+As decribed above, GMR applied rsfMRI models can reduce coherent signals thus an important question remains - what neuronal information is left post GMR and how well does this fit rsfMRI that has undergone reduction of WSDs with GMR or DiCER. When comparing rsfMRI models that have undergone GMR, we find that the performance of three of the presented models drop from $0.55$ to $3.55$ in the Balanced EI model, from $0.6$ to $0.2$ in the Hopf Bifurcation model, and $0.56$ to $0.1$ in the Noisy degree model to data that has undergone GMR or DiCER. In these models, WSDs dominate the dynamics thus their removal leaves residual dynamics that is less compatible with rsfMRI that has been de-noised past ICA-AROMA, which can be appreciated in the FC matrices in Figs.~\ref{fig:FC_fits}~F,G. Note that these results hold if the focus was restricted to unihemispheric dynamics. On the other hand, the dymamics in the neural mass model are weakly synchronized for $G<3.25$ and thus upon GMR the dynamics and the functional connectivity structure is unchanged - albeit shifted toward the negative, and the fitting of this model with the data is relatively unchanged. 
 
+Beyond static measures, dynamic measures of functional connectivity provide additional constraints on the models, thus the models can also be tested in terms of how well their dynamics match data. Here, we use phase-lagged coherence (what else do you call it Gustavo..) which, as stated in the methods, calculates the phase difference between all nodes for data within a window and correlates this with shifted versions of this window, as indicated in Fig.~\ref{fig:FCD_model_BEI}~A for subject 10274 in the UCLA cohort. From these figures, what can be appreciated is that the structure of the time-lagged coherence is reduced once the data has been de-noised in GMR or with DiCER. The distribution of the phase lagged coherence determines the dynamic nature of these fluctuations and Fig.~\ref{fig:FCD_model_BEI}~B indicates the aggregated histogram for all subjects. Here we emphasize that the fluctuations are correlated over time at different degrees - indicated by the spreading of the distribtution from 0 to 1. As the data is de-noised there is a shift to 0 indicating that this apparent time-lagged structure is largely dependent on the level of WSDs, thus WSDs bias these measures as well. When comparing the phase-lagged structure and histograms applied to the optimal models in the balanced EI model - the optimal model for blanced EI with ICA-AROMA and the optimal models for balanced EI+GSR for comparisons to ICA-AROMA+GSR and ICA-AROMA+DiCER. The shift toward 0 in the histogram is also present in the models that seem to generally match the histograms in the group data. To compare this quantiatively, a Komologrov-Smirnoff test (KS) is used to compare the histograms. The KS statistic from this test is called the Functional Connectivity Dynamics (FCD) and a small FCD implies a closer fit, and a large FCD (close to 1) implies a divergent fit. In Figure~\ref{fig:FCD_all_fits} this is calcualted in a similar fashion to Figs.~\ref{fig:FC_fits}. 
 
-Also have to fix for BTF (need to run many simulations)
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/FCD_BEI_data.png}
+\caption{Phase - derived dynamic connectivity. Need to redo for longer and more sims.}\label{fig:FCD_model_BEI}
+\end{figure*}
 
-Show Fit values, FCD values and DMN type of figures for all of them
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/FCD_all.png}
+\caption{Phase - derived dynamic connectivity. Need to redo for longer and more sims.}\label{fig:FCD_all_fits}
+\end{figure*}
 
-Then talk about this.
-
-Then talk about improving the models with heterongeous parameters on A -- doesn't work.
-
-Then talk about imrpovements with ANEC, it does work but at WHAT COST??!?!?
-
-Thats it. 
-
-
-
-3. How this effects both FCs and FCD show this for the optimal settings.
-
-Need to talk about the differences in the fittings on both FCD and FC, say that we previously showed how different coupling changes WSDs and then results change too.
-
-
-3++ Influence on heterogenous parameters. - talk about ways to combat this. 
-
-Three datasets show this - distribution of the G optimal values
-4. Derivation of the Noisy-degree model, show on the B-EI model relative to GSR (in a figure with plots and things)
-
-we can derive this model - interesting relationship need to understand it - is it also related to ROI size? not sure.
-
-5. Then talk about improvements -- ANEC can do so. 
+\subsection*{Targetting data with low WSDs: Heterogeniety}
+Say after all, this it is better (and harder to tackle FCDs) this captures fluctations etc. This ANEC could be applied instead to the cleaner data and applied to all. 
 
 
-+First show some carpet plots, talk about how these carpet plots show the level of coherent data, talk about how they represnet differenet levels of coherence and how they effect FC, dynamic FC.
+
+% Targetting the ANEC and discuss this. 
 
 
-The problem with WSDs in data (and we dont correct for them) is that we then build and focus on models that also have large WSDs. 
-
-Maybe then here we could show something with that on purpose.......
-
-We have simple measures there. 
+% Here now say that WSDs greatly affect the results mainly because 
 
 
-We first have a summary of all the data, and how to interpret these (important points to highlight).
+% Also have to fix for BTF (need to run many simulations)
 
-Before modelling - we urge modellers to understand these effects. 
 
-Show the results + show carpet plots and stuff
+% Show Fit values, FCD values and DMN type of figures for all of them
 
-Say that WSDs influence all of it
+
+% Then talk about this.
+
+
+% Then talk about improving the models with heterongeous parameters on A -- doesn't work.
+
+% Then talk about imrpovements with ANEC, it does work but at WHAT COST??!?!?
+
+% Thats it. 
+
+
+
+% 3. How this effects both FCs and FCD show this for the optimal settings.
+
+% Need to talk about the differences in the fittings on both FCD and FC, say that we previously showed how different coupling changes WSDs and then results change too.
+
+
+% 3++ Influence on heterogenous parameters. - talk about ways to combat this. 
+
+% Three datasets show this - distribution of the G optimal values
+% 4. Derivation of the Noisy-degree model, show on the B-EI model relative to GSR (in a figure with plots and things)
+
+% we can derive this model - interesting relationship need to understand it - is it also related to ROI size? not sure.
+
+% 5. Then talk about improvements -- ANEC can do so. 
+
+
+% +First show some carpet plots, talk about how these carpet plots show the level of coherent data, talk about how they represnet differenet levels of coherence and how they effect FC, dynamic FC.
+
+
+% The problem with WSDs in data (and we dont correct for them) is that we then build and focus on models that also have large WSDs. 
+
+% Maybe then here we could show something with that on purpose.......
+
+% We have simple measures there. 
+
+
+% We first have a summary of all the data, and how to interpret these (important points to highlight).
+
+% Before modelling - we urge modellers to understand these effects. 
+
+% Show the results + show carpet plots and stuff
+
+% Say that WSDs influence all of it
 
 
 +++ Heterogeneity, things that can be done.
