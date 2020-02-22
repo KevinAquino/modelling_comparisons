@@ -259,10 +259,10 @@ The presented models impose uniform node parameters, and although they provide m
 
 However, imposing this heterogeneity requires either some a priori knowledge such as the myelin markers as in (Dermitas et al.) or by optimizing node parameters to improve model fits. Here, we vary node parameters to optimize model estimates in functional connectivity similarity and dynamic functional connectivity (see below). Due to the ease of integration of the Hopf model, we impose heterogenity in ths model by varting the bifurcation parameter $a$ to be described at the node level yielding:
 \begin{eqnarray}
-\frac{dx_i}{dt} &=& [a_i - x_i^2 - y_i^2]x_i- \omega_iy_i...\\
-& &...+ G\sum_jC_{ij}(x_i-x_j)\beta\eta_i(t),\\
-\frac{dy_i}{dt} &=& [a_i - x_i^2 - y_i^2]y_i - \omega_ix_i ... \\
-& &...+ G\sum_jC_{ij}(y_i-y_j)\beta\eta_i(t).
+\frac{dx_i}{dt} &=& [a_i - x_i^2 - y_i^2]x_i- \omega_iy_i...\nonumber \\
+& &...+ G\sum_jC_{ij}(x_i-x_j)\beta\eta_i(t), \label{eq:hopfHeteroNode1}\\
+\frac{dy_i}{dt} &=& [a_i - x_i^2 - y_i^2]y_i - \omega_ix_i ... \nonumber\\
+& &...+ G\sum_jC_{ij}(y_i-y_j)\beta\eta_i(t). \label{eq:hopfHeteroNode2}
 \end{eqnarray}
 The model is etimated following Deco et al, where the model is first fit by optimizing model fits of FC, and FCD (described below) with respect to $G$. Following this, $a_i$ is optimized with a greedy search algorithm to optimize FCD. (insert some details here?)
 
@@ -360,7 +360,8 @@ With a characterization of the wide spread deflections in rsfMRI data and modell
 
 As decribed above, GMR applied rsfMRI models can reduce coherent signals thus an important question remains - what neuronal information is left post GMR and how well does this fit rsfMRI that has undergone reduction of WSDs with GMR or DiCER. When comparing rsfMRI models that have undergone GMR, we find that the performance of three of the presented models drop from $0.55$ to $3.55$ in the Balanced EI model, from $0.6$ to $0.2$ in the Hopf Bifurcation model, and $0.56$ to $0.1$ in the Noisy degree model to data that has undergone GMR or DiCER. In these models, WSDs dominate the dynamics thus their removal leaves residual dynamics that is less compatible with rsfMRI that has been de-noised past ICA-AROMA, which can be appreciated in the FC matrices in Figs.~\ref{fig:FC_fits}~F,G. Note that these results hold if the focus was restricted to unihemispheric dynamics. On the other hand, the dymamics in the neural mass model are weakly synchronized for $G<3.25$ and thus upon GMR the dynamics and the functional connectivity structure is unchanged - albeit shifted toward the negative, and the fitting of this model with the data is relatively unchanged. 
 
-Beyond static measures, dynamic measures of functional connectivity provide additional constraints on the models, thus the models can also be tested in terms of how well their dynamics match data. Here, we use phase-lagged coherence (what else do you call it Gustavo..) which, as stated in the methods, calculates the phase difference between all nodes for data within a window and correlates this with shifted versions of this window, as indicated in Fig.~\ref{fig:FCD_model_BEI}~A for subject 10274 in the UCLA cohort. From these figures, what can be appreciated is that the structure of the time-lagged coherence is reduced once the data has been de-noised in GMR or with DiCER. The distribution of the phase lagged coherence determines the dynamic nature of these fluctuations and Fig.~\ref{fig:FCD_model_BEI}~B indicates the aggregated histogram for all subjects. Here we emphasize that the fluctuations are correlated over time at different degrees - indicated by the spreading of the distribtution from 0 to 1. As the data is de-noised there is a shift to 0 indicating that this apparent time-lagged structure is largely dependent on the level of WSDs, thus WSDs bias these measures as well. When comparing the phase-lagged structure and histograms applied to the optimal models in the balanced EI model - the optimal model for blanced EI with ICA-AROMA and the optimal models for balanced EI+GSR for comparisons to ICA-AROMA+GSR and ICA-AROMA+DiCER. The shift toward 0 in the histogram is also present in the models that seem to generally match the histograms in the group data. To compare this quantiatively, a Komologrov-Smirnoff test (KS) is used to compare the histograms. The KS statistic from this test is called the Functional Connectivity Dynamics (FCD) and a small FCD implies a closer fit, and a large FCD (close to 1) implies a divergent fit. In Figure~\ref{fig:FCD_all_fits} this is calcualted in a similar fashion to Figs.~\ref{fig:FC_fits}. 
+Beyond static measures, dynamic measures of functional connectivity provide additional constraints on the models, thus the models can also be tested in terms of how well their dynamics match data. Here, we use phase-lagged coherence (what else do you call it Gustavo..) which, as stated in the methods, calculates the phase difference between all nodes for data within a window and correlates this with shifted versions of this window, as indicated in Fig.~\ref{fig:FCD_model_BEI}~A for subject 10274 in the UCLA cohort. From these figures, what can be appreciated is that the structure of the time-lagged coherence is reduced once the data has been de-noised in GMR or with DiCER. The distribution of the phase lagged coherence determines the dynamic nature of these fluctuations and Fig.~\ref{fig:FCD_model_BEI}~B indicates the aggregated histogram for all subjects. Here we emphasize that the fluctuations are correlated over time at different degrees - indicated by the spreading of the distribtution from 0 to 1. As the data is de-noised there is a shift to 0 indicating that this apparent time-lagged structure is largely dependent on the level of WSDs, thus WSDs bias these measures as well. When comparing the phase-lagged structure and histograms applied to the optimal models in the balanced EI model - the optimal model for blanced EI with ICA-AROMA and the optimal models for balanced EI+GSR for comparisons to ICA-AROMA+GSR and ICA-AROMA+DiCER. The shift toward 0 in the histogram is also present in the models that seem to generally match the histograms in the group data. To compare this quantiatively, a Komologrov-Smirnoff test (KS) is used to compare the histograms. The KS statistic from this test is called the Functional Connectivity Dynamics (FCD) and a small FCD implies a closer fit, and a large FCD (close to 1) implies a divergent fit. 
+In Figure~\ref{fig:FCD_all_fits} this is calculated for the four presented models in a similar fashion to Figs.~\ref{fig:FC_fits}. Similar to the FC results, as we vary the level of synchrony in the models by varying $G$, the fits of dynamic properties vary and their associated fits to different denoising pipelines. However, unlike the fits for the FC matrix, in all models there exists a minimum for fitting the dynamics of the model to data, and this minimum is the same for all models associated comparsions to the three denoising methods i.e. a KS statistic $\approx 0.05$. It is noted that for each model, the minimum of the KS statistic occurs at a different $G$ relative to the maximum for similarity of the FC matrix, for example in the ICA-AROMA pipeline the maximum simlarity for the balanced EI model occurs at $G=4.5$, however in terms of FCD this occurs at $G=2.8$. This divergence means that while the FC matrix can be reproduced, the fluctuations are not at odds with the fluctuations present in the data. We note that since the noisy degree model exhibits FCD performance as well as the three other models, FCD may be just a feature of the time series i.e. properties such as autocorrelation as the noisy degree model is merely a global signal model. Thus optimization over FCD may just guide the time scale of general fluctuations not an accurate representation of change of brain states, or dynamic switching of synchronization. 
 
 \begin{figure*}[ht!]
 \includegraphics[width=1\textwidth]{figs/FCD_BEI_data.png}
@@ -372,10 +373,25 @@ Beyond static measures, dynamic measures of functional connectivity provide addi
 \caption{Phase - derived dynamic connectivity. Need to redo for longer and more sims.}\label{fig:FCD_all_fits}
 \end{figure*}
 
-\subsection*{Targetting data with low WSDs: Heterogeniety}
-Say after all, this it is better (and harder to tackle FCDs) this captures fluctations etc. This ANEC could be applied instead to the cleaner data and applied to all. 
 
+\subsection*{Using heterogeneity to improve fits to data with low WSDs}
+Here we explore additional models that introduce heterogenity, in order to fit higher order dynamics. Here, we introduce heterogenity in two forms at the node level and at the edge level (i.e. optimizing the structural connectivity matrix). In both forms heterogenity is imposed by finding optimal functional connectivity, then modulating parameters (at the node or edge level) to minimise the FCD. In our previous section we showed that if models were fit to data with large WSDs such as those present in the ICA-AROMA scheme, then models will be biased to have WSDs in the simulations indeed the Hopf bifurcation, the Balanced EI model and the noisy degree model (introduced here) are optimzed to fit data with large WSDs. Thus our heterogenous variations are imposed on data that has reduced WSDs. As both heterogenous variations require optimzation, these models are performed on the Hopf Birfcation model for computational complexity.
 
+Firstly for the hetergenous node parameters, we use the approach in Deco et al. 2018, where for a given coupling $G$, the parameter $a_i$ for node $i$ in equations \ref{eq:hopfHeteroNode1}\&\ref{eq:hopfHeteroNode2} is varied in a way to minimize FCD. This is achieved in a greedy algorithm, where each node has $a$ increased or decreased at each iteration by a factor of XXX depending on the distance to the phase difference. This greedy algorithm converges and the result of the algorithm finds the lowest FCD for a given parameter $G$. Below in Figure~\ref{fig:FCD_all_fits_BTFa} we see that although we have improvment on functional connectivity similarity and dynamic functional connectivity. This improvement of the functional connectivity and was achieved by increasing the degrees of freedom by modifying $88$ parameters. 
+
+\begin{figure}[ht!]
+\includegraphics[width=1\columnwidth]{figs/BTF_heterogenous.png}
+\caption{Hopf heterogenous}\label{fig:FCD_all_fits_BTFa}
+\end{figure}
+
+Secondly, an additional heterogenity was to estimate the directed effective connectivity, that is to adjust the edge weights within the structural connecivity matrix. This process invovled a greedy search algorithm to improve the fits of the FCD while maintaining a homogenous hopf bifurcation model, the steps are as follows (maybe include the steps on how ANEC is actually formed). This adjustment is on all the non-zero edges in the structural connectivity matrix, and can involve a large number of edges to be modified. In order to test for over fitting, we fit this optimization on 85\% of the subjects and then apply this optimization on the remaining 25\%. In Figure~\ref{fig:FC_ANEC} we find that the functional connectivity as well as the dynamic functional connectivity is improve when using data without WSDs. Although this shows a dramatic improvment, we note however that 
+
+\begin{figure*}[ht!]
+\includegraphics[width=1\textwidth]{figs/BTF_ANEC.png}
+\caption{Hopf ANEC}\label{fig:FC_ANEC}
+\end{figure*}
+
+++ Maybe then talk about T1/T2 Ratio, how that can be used as well? Perhaps a simple test
 
 % Targetting the ANEC and discuss this. 
 
@@ -434,9 +450,9 @@ Say after all, this it is better (and harder to tackle FCDs) this captures fluct
 % Say that WSDs influence all of it
 
 
-+++ Heterogeneity, things that can be done.
+% +++ Heterogeneity, things that can be done.
 
-+++ ANEC 
+% +++ ANEC 
 
 
 
