@@ -21,9 +21,11 @@ function [ts_simulated_all,fitting,bifpar,FCD] = run_hopf_model_heterogenous_bif
 	%inside a 1 x numberOfSubjects array. sc is the C matrix.
 
 
-	[FC_simul, FC_emp, fitting, meta, ksP, PhasesD, Phases, bifpar, ts_simulated_all]=...
-	    hbif_NewOpt(C, subject_ts, Tmax, wG, ldata, Cfg);
-
+	% [FC_simul, FC_emp, fitting, meta, ksP, PhasesD, Phases, bifpar, ts_simulated_all]=...
+	    % hbif_NewOpt(C, subject_ts, Tmax, wG, ldata, Cfg);
+% 
+    [FC_simul, FC_emp, fitting, meta, ksP, PhasesD, Phases, bifpar, ts_simulated_all] =...
+	     hbif_NewOpt_GSR(C, subject_ts, Tmax, wG, ldata, Cfg);
 
     % Using the same way to calculate FCD as been done in all the other scripts
 	phfcddata = [];

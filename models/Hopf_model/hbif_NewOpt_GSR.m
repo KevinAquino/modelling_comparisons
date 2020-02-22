@@ -39,7 +39,7 @@
 %Cuts execution time by more than a half.
 
 
-function [FC_simul, FC_emp, fitting, meta, ksP, PhasesD, Phases, bifpar] = hbif_NewOpt_GSR(C,tseries,Tmax,wG,ldata,Cfg)
+function [FC_simul, FC_emp, fitting, meta, ksP, PhasesD, Phases, bifpar, ts_simulated_all] = hbif_NewOpt_GSR(C,tseries,Tmax,wG,ldata,Cfg)
 
 if ~isfield(Cfg, 'simulID'), Cfg.simulID = 'Unknown'; else end;
 
@@ -413,6 +413,8 @@ for idx_g = 1:nWeights
     
     xs = RegressNoiseSignal(xs.',mean(xs.')).';
     FC_simul(:, :, idx_g) = corrcoef(xs(1:nn,:)); %Now one FC_simul per G
+
+    ts_simulated_all(:,:,idx_g) = xs(1:nn,:);
 %     keyboard
     cc=corrcoef(squareform(tril(FC_emp,-1)),squareform(tril(FC_simul(:, :, idx_g),-1)));%atanh(FC...
     fitting(idx_g)=cc(2);

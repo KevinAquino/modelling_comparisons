@@ -588,6 +588,7 @@ subplot(2,6,[6 12]);
 hist(FCD_d(find(triu(ones(size(FCD_d)),1))),50);
 title('Data');
 
+clear FC FC_mean
 for k=1:3
 	for j=1:100,
 		FC(:,:,j,k) = corr(time_series(:,:,j,k));
@@ -614,9 +615,9 @@ for j=1:length(G),
 	
 
 	% Model GSR vs Data GSR
-	sim_t=ts_simulated_all(:,:,j);
+	sim_t=ts_simulated_all(:,:,j)';
 	sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
-	FC_model=corr(sim_t);
+	FC_model=corr(sim_t');
 	sim3(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
 
 	% Dicer estimates
@@ -665,9 +666,9 @@ for j=1:length(G),
 	
 
 	% Model GSR vs Data GSR
-	sim_t=ts_simulated_all(:,:,j);
+	sim_t=ts_simulated_all(:,:,j)';
 	sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
-	FC_model=corr(sim_t);
+	FC_model=corr(sim_t');
 	sim3(j)=corr(atanh(FC_model(inds)),atanh(FC_emp(inds)));
 
 	% Dicer estimates
@@ -721,9 +722,50 @@ legend({'MODEL vs ICA-AROMA','MODEL vs ICA-AROMA+GSR','MODEL+GSR vs ICA-AROMA+GS
 
 
 % Findthe best fit
-[~,ind]=max(sim_dicer_gsm);
+[~,ind]=max(sim);
 sim_t=ts_simulated_all(:,:,ind)';
-sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
-FC_model=corr(sim_t);
-figure;imagesc(triu(FC_model,1) + tril(FC_mean(:,:,2),-1))
-caxis([-1 1]);colormap(cmap);axis image;colorbar
+% sim_t=sim_t-(pinv(mean(sim_t))'*(sim_t'))'*mean(sim_t);
+FC_model=corr(sim_t');
+figure;imagesc(triu(FC_model,1) + tril(FC_mean(:,:,1),-1))
+% caxis([-1 1]);colormap(cmap);axis image;colorbar
+caxis(0.5*[-1 1]);colormap(cmap);axis image;colorbar
+
+
+% FCD:
+
+
+for k=1:3,
+	FCD_d = [];
+	for ns=1:100,
+		t1 = zscore(time_series(:,:,ns,k));
+		% FCD_d = [FCD_d,fcd_calculator(t1',10,5)];
+		FCD_d = [FCD_d phase_fcd(t1,2)];
+	end
+	FCD_data_all(:,k)= FCD_d;
+end
+
+
+for k=1:3,
+	t1 = zscore(time_series(:,:,14,k));
+	[p,pmat]=phase_fcd(t1,2); 
+	figure('color','white');
+	imagesc(pmat)
+	axis image;
+	xlabel('$\tau_i$','Interpreter','LaTeX');
+	set(gca,'fontSize',18);
+	colorbar
+	colormap(hot);
+	caxis([0 1])
+end
+
+
+figure('color','white');
+hold on
+plot(G,sim,'k','lineWidth',2);
+plot(G,all_FCDS2(:,3),'k--','lineWidth',2);
+plot(G,sim_dicer,'r-','lineWidth',2);
+plot(G,all_FCDS2(:,5),'r--','lineWidth',2);
+set(gca,'fontSize',18)
+xlabel('G')
+legend({'MODEL+GSR vs ICA-AROMA+GSR FC','MODEL+GSR vs ICA-AROMA+GSR FCD','MODEL+GSR vs ICA-AROMA+DiCER FC','MODEL+GSR vs ICA-AROMA+DiCER FCD'});
+

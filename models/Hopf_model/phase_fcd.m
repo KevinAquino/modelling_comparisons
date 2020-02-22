@@ -1,4 +1,4 @@
-function phfcd = phase_fcd(xs,TR)
+function [phfcd,phase_fcd_all] = phase_fcd(xs,TR)
     k=2;                  % 2nd order butterworth filter
     fnq=1/(2*TR);
     flp = .04;            % lowpass frequency of filter
