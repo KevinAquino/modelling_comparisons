@@ -39,7 +39,7 @@ for t=0:dt:3000
 end
 nn=1;
 timeVector = 0:dt:((Tmax-1)*TR);
-downsampleRate = TR/dt;
+downsampleRate = floor(TR/dt);
 tsampled = (timeVector(1:downsampleRate:end));
 
 % keyboard
