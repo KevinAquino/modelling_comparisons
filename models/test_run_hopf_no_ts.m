@@ -2,6 +2,9 @@
 % 
 % SC Matrix normalization
 C=AdjDens;
+
+C = GrFA(1:180,1:180);
+N = size(C,1);
 C = C/max(C(:))*0.2;
 
 % Frequency specification for each node (its relatively constant for all time series)
@@ -9,10 +12,16 @@ f_diff=ones(N,1)*0.05;
 TR=0.72;
 
 % Global coupling parameter (tune this)
-G = 5;
-% Frequency of each node:
-xs = run_hopf_no_ts(C,G,f_diff,TR);
+GG=linspace(0,5,100);
+for Gn = 1:100;
+	G = GG(Gn);
+	% Frequency of each node:
+	xs = run_hopf_no_ts(C,G,f_diff,TR);
+	hh(:,:,Gn)=corr(xs);
+	
+end
 
+figure;plot(reshape(hh,180*180,100));
 
 % Calculating Hopf model for the given data, to work out 
 G_vec = linspace(0,10,40);
