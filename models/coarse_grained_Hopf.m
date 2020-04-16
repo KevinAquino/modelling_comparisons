@@ -11,11 +11,11 @@ function [G_all,metric] = coarse_grained_Hopf(C,FC_empirical,comparison)
 	TR=0.72;
 
 	% Parameters to tune the number of sims for the coarse and the fine resolutions
-	N_coarse_sims=10;
+	N_coarse_sims=30;
 	N_refined_sims=100;
 
 	% Parameter chosen for how far to go in the initial sweep
-	MAX_COARSE_G_SWEEP=10;
+	MAX_COARSE_G_SWEEP=6;
 
 	% COARSE SIMULATIONS
 	% ==================
