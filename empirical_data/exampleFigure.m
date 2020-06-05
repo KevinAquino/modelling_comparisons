@@ -1,6 +1,6 @@
 % 
-noise_correction=1;
-subject=10;
+noise_correction=3;
+subject=84;
 
 
 

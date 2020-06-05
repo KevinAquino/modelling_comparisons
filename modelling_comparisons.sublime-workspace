@@ -1,0 +1,1392 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ei",
+				"eig_data"
+			],
+			[
+				"sim",
+				"simulation_eigs"
+			],
+			[
+				"FC_",
+				"FC_empirical"
+			],
+			[
+				"comp",
+				"comparison"
+			],
+			[
+				"max",
+				"max_G_value"
+			],
+			[
+				"cor",
+				"cor_vals"
+			],
+			[
+				"new_",
+				"new_area"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"phas",
+				"phase_fcd"
+			],
+			[
+				"colo",
+				"colorbar"
+			],
+			[
+				"FCD",
+				"FCD_data_all"
+			],
+			[
+				"sim_",
+				"sim_dicer_gsm"
+			],
+			[
+				"FC",
+				"FC_mean"
+			],
+			[
+				"gra",
+				"grand_fc"
+			],
+			[
+				"li",
+				"lineWidth"
+			],
+			[
+				"GF",
+				"GFC_exp"
+			],
+			[
+				"on",
+				"onset_vec"
+			],
+			[
+				"fc",
+				"fcorr_1"
+			],
+			[
+				"ts",
+				"ts_simulated2"
+			],
+			[
+				"t1",
+				"t1t2_ctx"
+			],
+			[
+				"time",
+				"time_series"
+			],
+			[
+				"pre",
+				"prepro_num"
+			],
+			[
+				"g",
+				"global_signal"
+			],
+			[
+				"uni",
+				"unix_command"
+			],
+			[
+				"mat",
+				"matlabPath"
+			],
+			[
+				"ana",
+				"analysis_type"
+			],
+			[
+				"tiss",
+				"tissue"
+			],
+			[
+				"GM",
+				"GMdbscan_vox"
+			],
+			[
+				"TR",
+				"TR_vol"
+			],
+			[
+				"fil",
+				"file_output"
+			],
+			[
+				"tem",
+				"temp_hcp_directory"
+			],
+			[
+				"task",
+				"taskFolder"
+			],
+			[
+				"sub",
+				"subject_list"
+			],
+			[
+				"An",
+				"AnalysisName"
+			],
+			[
+				"temp",
+				"temp_gifti"
+			],
+			[
+				"fold",
+				"resultsFolderBase"
+			],
+			[
+				"working",
+				"working_hcp_dir"
+			],
+			[
+				"reg",
+				"regressor"
+			],
+			[
+				"tas",
+				"task_nm"
+			],
+			[
+				"sav",
+				"savetxt"
+			],
+			[
+				"GMR",
+				"GMR_output"
+			],
+			[
+				"ba",
+				"base_dicer_o"
+			],
+			[
+				"gm_",
+				"gm_signal"
+			],
+			[
+				"conv",
+				"convert_ev_files"
+			],
+			[
+				"calculat",
+				"calculate_FD_P"
+			],
+			[
+				"ti",
+				"tissue_mask"
+			],
+			[
+				"tissue",
+				"tissue_mask_ds"
+			],
+			[
+				"ds",
+				"ds_factor"
+			],
+			[
+				"dow",
+				"downsampled_ordering"
+			],
+			[
+				"ord",
+				"ordered_inds"
+			],
+			[
+				"out",
+				"output_detrended"
+			],
+			[
+				"mask",
+				"mask_epi"
+			],
+			[
+				"bas",
+				"base_input"
+			],
+			[
+				"me",
+				"mean_ts"
+			],
+			[
+				"gm_m",
+				"gm_mask_restrictive"
+			],
+			[
+				"func",
+				"func_restricted"
+			],
+			[
+				"seg",
+				"seg_temp"
+			],
+			[
+				"make",
+				"makeTissueMap"
+			],
+			[
+				"print",
+				"print_usage"
+			],
+			[
+				"base",
+				"base_dicer_o"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"inpu",
+				"input_file"
+			],
+			[
+				"outpu",
+				"output_folder"
+			],
+			[
+				"wht",
+				"white"
+			],
+			[
+				"newI",
+				"newIm"
+			],
+			[
+				"new",
+				"newOrder_gm"
+			],
+			[
+				"tr",
+				"threshUse"
+			],
+			[
+				"G",
+				"G_estimate"
+			],
+			[
+				"GS",
+				"GSRN"
+			],
+			[
+				"atl",
+				"altasRankSum"
+			],
+			[
+				"atal",
+				"atlasRankSubjects"
+			],
+			[
+				"cmap",
+				"cmapMin"
+			],
+			[
+				"par",
+				"parcellationData"
+			],
+			[
+				"parc",
+				"parcelNo"
+			],
+			[
+				"save",
+				"savefile"
+			],
+			[
+				"mri",
+				"mriFile"
+			],
+			[
+				"num",
+				"numberOfOutliers"
+			],
+			[
+				"glob",
+				"globalSignal"
+			],
+			[
+				"st",
+				"stocasticGS_mean"
+			],
+			[
+				"X",
+				"Xresid"
+			],
+			[
+				"GT",
+				"GT_n"
+			],
+			[
+				"corr",
+				"corr_diff"
+			],
+			[
+				"n",
+				"numPCs"
+			],
+			[
+				"GST",
+				"GSR_BEST_Corr"
+			],
+			[
+				"z",
+				"zs_xs"
+			],
+			[
+				"Zs",
+				"zs_xs"
+			],
+			[
+				"PD",
+				"PD_emp"
+			],
+			[
+				"bds",
+				"bds_all"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "manuscript/manuscript.tex",
+			"settings":
+			{
+				"buffer_size": 80139,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/run_BTF_model.m",
+			"settings":
+			{
+				"buffer_size": 4054,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/Hopf_model/solve_hopf_ode.m",
+			"settings":
+			{
+				"buffer_size": 2270,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/test_run_hopf_no_ts.m",
+			"settings":
+			{
+				"buffer_size": 927,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/coarse_grained_NDM.m",
+			"settings":
+			{
+				"buffer_size": 2434,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "FCD_figure.m",
+			"settings":
+			{
+				"buffer_size": 4904,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "calc_fcd.m",
+			"settings":
+			{
+				"buffer_size": 690,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "function calc_fcd(G,ts_simulated_all,fcd_data)"
+			}
+		},
+		{
+			"file": "models/Hopf_model/phase_fcd.m",
+			"settings":
+			{
+				"buffer_size": 1884,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/Hopf_model/fcd_calculator.m",
+			"settings":
+			{
+				"buffer_size": 971,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/run_noisy_degree_model.m",
+			"settings":
+			{
+				"buffer_size": 2752,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "summary_plot.m",
+			"settings":
+			{
+				"buffer_size": 2073,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "        \\dot{V}^{i} &= &-\\big(g_{Ca} + (1{-}C)\\,r\\,a_{ee}\\, Q_V^{i} + C\\,r\\,a_{ee}\\,\\langle Q_V \\rangle^{i} \\big)\\,m_{Ca}^{i}\\,(V^{i} {-} V_{Ca})\\\\\n        & &- \\, \\big(g_{Na}\\,m_{Na}^{i} + (1{-}C)\\,a_{ee}\\,Q_V^{i} + C\\,a_{ee}\\, \\langle Q_V \\rangle^{i} \\big)\\,(V^{i} {-} V_{Na})\\\\\n        & &- \\, g_K\\,W^{i}\\,(V^{i} {-} V_K)\\\\\n        &  &- \\, g_L\\,(V^{i} {-} V_L)\\\\\n        &  &- \\, a_{ie}\\,Z\\,Q_Z^{i}\\\\\n        & &+ \\, a_{ne}\\,I,\\\\\n        \\dot{W}^{i} &= &\\frac{\\phi}{\\tau}\\,(m_K^{i} {-} W^{i}),\\\\\n        \\dot{Z}^{i} &= &b\\,(a_{ni}\\,I + a_{ei}\\,V^{i}\\,Q_V^{i}),",
+			"settings":
+			{
+				"buffer_size": 564,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "equidistant model (needed?)\nbinnig of equivolume (normalization wrt thickness?)\n+ equivolume track changes of layers?\n\n\n+ gradient projections per subject why? \n+ myelin - speed vs plasticity\n\n",
+			"settings":
+			{
+				"buffer_size": 193,
+				"line_ending": "Unix",
+				"name": "equidistant model (needed?)"
+			}
+		},
+		{
+			"contents": "things to do\n\n+ Review NI paper\n+ Review NComms paper\n+ Review other NI\n+++ Work on Modelling manuscript",
+			"settings":
+			{
+				"buffer_size": 104,
+				"line_ending": "Unix",
+				"name": "things to do"
+			}
+		},
+		{
+			"file": "manuscript/manuscript.bbl",
+			"settings":
+			{
+				"buffer_size": 8522,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"PdfLaTeX"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"package control di",
+				"Package Control: Disable Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 255.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/kevinaquino/projects/modelling_gustavo",
+		"/Users/kevinaquino/projects/modelling_gustavo/models"
+	],
+	"file_history":
+	[
+		"/Users/kevinaquino/Documents/Sourdough/Sourdough_pizza.txt",
+		"/Users/kevinaquino/projects/matlabHCPtools/transform_fs_to_label.sh",
+		"/Users/kevinaquino/projects/modelling_gustavo/.gitignore",
+		"/Users/kevinaquino/projects/modelling_gustavo/show_corrs.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/calc_fit_all_FC.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/manuscript/manuscript.tex",
+		"/Users/kevinaquino/projects/modelling_gustavo/manuscript/GSR_references.bib",
+		"/Users/kevinaquino/Documents/Journal_publications/UnderReview/ClusterCorrectfMRIPaper/Article.tex",
+		"/Users/kevinaquino/projects/modelling_gustavo/manuscript/test.tex",
+		"/Users/kevinaquino/projects/modelling_gustavo/testing_gs.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/models/run_BTF_model.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/models/test1t2.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/models/run_noisy_t1t2_model.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/models/run_hopf_model.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/run_network_model.m",
+		"/Users/kevinaquino/Desktop/onset_spiker.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/modeling_comparisons.m",
+		"/Users/kevinaquino/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/A847441C-64DA-4632-80BD-BC9EDD2861E1/surface_display_results.m",
+		"/Users/kevinaquino/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/6F686803-CA0D-4F41-911C-6C177E4F8A7D/surface_label.mat",
+		"/Users/kevinaquino/projects/modelling_gustavo/grab_t1t2Ratio_HCP.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/extract_time_series_GenOfCog.m",
+		"/Users/kevinaquino/projects/modelling_gustavo/test.m",
+		"/Users/kevinaquino/Desktop/Guell_cerebellar_FC_expression.py",
+		"/Users/kevinaquino/Desktop/gandal_rank_correlations.py",
+		"/Users/kevinaquino/Desktop/Concatonating_AHBA_data.py",
+		"/Users/kevinaquino/projects/DiCER/utils/sparse_sample_tissue.py",
+		"/Users/kevinaquino/projects/DiCER/fmriprepProcess/gsReorder.py",
+		"/Users/kevinaquino/projects/DiCER/carpetReport/grabOrderingForMatlab.py",
+		"/Users/kevinaquino/projects/DiCER/utils/fMRI_in_out.py",
+		"/Users/kevinaquino/projects/DiCER/fmriprepProcess/clusterReorder.py",
+		"/Users/kevinaquino/projects/eigen_decomposition/shapeDNA_emodes/convert_ev_files.py",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/QC_FC_stats.m",
+		"/Users/kevinaquino/projects/DiCER/carpetCleaning/clusterCorrect.py",
+		"/Users/kevinaquino/projects/DiCER/.gitignore",
+		"/Users/kevinaquino/projects/DiCER/tester.sh",
+		"/Users/kevinaquino/projects/DiCER/carpetReport/tapestry.py",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/calculateParcelTimeSeriesHCP.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/run_DiCER_hcp.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/tester.sh",
+		"/Users/kevinaquino/projects/matlabHCPtools/parcelTimeSeries.m",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/copyDICER_STATS.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/run_task_analysis.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/TaskfMRIAnalysisBatch.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/tasks_cluster_mass.m",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/merge_tasks.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/spatialCorrelations.m",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/level3_group_stats.fsf",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/Task_level3_batch.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/TaskfMRILevel3.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/split_up_regressor.py",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/calculate_FD.py",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/calculate_dvars_hcp.sh",
+		"/Users/kevinaquino/projects/DiCER/fmriprepProcess/preprocess_fmriprep.sh",
+		"/Users/kevinaquino/projects/BrainPrint/fs_brainPrint.py",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/perform_DiCER_hcp.sh",
+		"/Users/kevinaquino/projects/DiCER/DiCER_lightweight.sh",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/plotCarpetRest.m",
+		"/Users/kevinaquino/Desktop/makeEvsCSV.py",
+		"/Users/kevinaquino/projects/DiCER/hcp_processing/run_dicer_one_session.sh",
+		"/Applications/freesurfer/subjects/S1_me/brainprint/aseg.final.52.vtk",
+		"/Users/kevinaquino/projects/matlabHCPtools/CIFTI_mapping/LEFT_inds.txt",
+		"/Users/kevinaquino/projects/matlabHCPtools/CIFTI_mapping/VOLUME_ALL.txt",
+		"/Users/kevinaquino/projects/DiCER/carpetCleaner.sh",
+		"/Users/kevinaquino/Documents/fMRIClusterCorrect/stats/rain_test.m",
+		"/Users/kevinaquino/Documents/fMRIClusterCorrect/stats/raincloud_plot.m",
+		"/Users/kevinaquino/Documents/stimBOLD/GUIcode/stimBOLDGUI.m",
+		"/Users/kevinaquino/Documents/stimBOLD/core/batch_coreFunction_example.m",
+		"/Users/kevinaquino/Documents/stimBOLD/visualStimuli/wedgeExample.txt",
+		"/Users/kevinaquino/Documents/GSRSimulation/imageGSCorr.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/CorrMethods/MinOptFun.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Benchmarks/BMMixed_varying_flat_randGS_var_Voxels.txt",
+		"/Users/kevinaquino/Documents/GSRSimulation/Benchmarks/signalCombinations.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Benchmarks/BMMixed_varying_OutlierBreaking.txt",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/perform_matrix.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/CorrMethods/CMOptionsPCsQuantile.txt",
+		"/Users/kevinaquino/Documents/GSRSimulation/CorrMethods/CM_ICoptim.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/PCoptimFC.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Peripheral/generateSliceSummary.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Peripheral/generate_pngs_correlation.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/sandbox_vis.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/distNetwork.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/testing.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Analysis/Vis_methods.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/Benchmarks/networkGenerator.m",
+		"/Users/kevinaquino/Documents/GSRSimulation/CorrMethods/CM_PCoptim.m",
+		"/Users/kevinaquino/Desktop/projectileMotion.m",
+		"/Users/kevinaquino/Desktop/projectileMotionPlanets.m"
+	],
+	"find":
+	{
+		"height": 50.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"show_g",
+			"ve_data",
+			"scale",
+			"spread",
+			"scale",
+			"1",
+			"The coupling",
+			"(j)"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "manuscript/manuscript.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 80139,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								341,
+								341
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "models/run_BTF_model.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4054,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1316,
+								1316
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "models/Hopf_model/solve_hopf_ode.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2270,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1333,
+								1333
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "models/test_run_hopf_no_ts.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								67,
+								67
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "models/coarse_grained_NDM.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2434,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100,
+								100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax"
+						},
+						"translation.x": 53.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "FCD_figure.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4904,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3404,
+								3583
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "calc_fcd.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 690,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								561,
+								561
+							]
+						],
+						"settings":
+						{
+							"auto_name": "function calc_fcd(G,ts_simulated_all,fcd_data)",
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "models/Hopf_model/phase_fcd.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1884,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1044,
+								1044
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "models/Hopf_model/fcd_calculator.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 971,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								533,
+								533
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "models/run_noisy_degree_model.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2752,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2266,
+								2267
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "summary_plot.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2073,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								923,
+								677
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								564,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								193,
+								193
+							]
+						],
+						"settings":
+						{
+							"auto_name": "equidistant model (needed?)",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 104,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"auto_name": "things to do",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "manuscript/manuscript.bbl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8522,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 50.0
+	},
+	"input":
+	{
+		"height": 50.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.latextools":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "Packages/LaTeXTools/LaTeX.sublime-build",
+	"project": "modelling_comparisons.sublime-project",
+	"replace":
+	{
+		"height": 80.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"manu",
+				"manuscript/manuscript.tex"
+			],
+			[
+				"phase",
+				"models/Hopf_model/phase_fcd.m"
+			],
+			[
+				"dvars",
+				"hcp_processing/calculate_dvars_hcp.sh"
+			],
+			[
+				"cluster",
+				"fmriprepProcess/clusterReorder.py"
+			],
+			[
+				"clusterR",
+				"carpetCleaning/clusterCorrect.py"
+			],
+			[
+				"stimboldgui",
+				"GUIcode/stimBOLDGUI.m"
+			],
+			[
+				"real",
+				"Analysis/realDataPlay.m"
+			],
+			[
+				"generate",
+				"Peripheral/generate_pngs_correlation.m"
+			],
+			[
+				"gscor",
+				"imageGSCorr.m"
+			],
+			[
+				"l",
+				"Data/LoadAndSave.m"
+			],
+			[
+				"par",
+				"Data/parcelVolumeTimeSeries.m"
+			],
+			[
+				"parcelv",
+				"Data/parcelVolumeTimeSeries.m"
+			],
+			[
+				"min",
+				"CorrMethods/MinOptFun.m"
+			],
+			[
+				"generate_pngs_correlation",
+				"Peripheral/generate_pngs_correlation.m"
+			],
+			[
+				"cm_pcoptimautom",
+				"CorrMethods/CM_PCoptimAutoM.m"
+			],
+			[
+				"cm_pcoptim",
+				"CorrMethods/CM_PCoptim.m"
+			],
+			[
+				"cm_pc",
+				"CorrMethods/CM_PCoptim.m"
+			],
+			[
+				"per",
+				"Analysis/perform_matrix.m"
+			],
+			[
+				"",
+				"CorrMethods/CM_PCoptim.m"
+			],
+			[
+				"pc",
+				"Analysis/PCoptimFC.m"
+			],
+			[
+				"netw",
+				"Benchmarks/networkGenerator.m"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 227.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

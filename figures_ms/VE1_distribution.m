@@ -2,14 +2,17 @@ tempColors = num2cell([255,105,97;97,168,255;178,223,138;117,112,179;255,179,71;
 col_vec=[1 4 2 3 5 6];
 theColors = tempColors(col_vec);
 
-load('/Users/aquino/projects/modelling_comparisons/figures_ms/CNP_eps_08.mat')
+% load('/Users/aquino/projects/modelling_comparisons/figures_ms/CNP_eps_08.mat')
+load('~/Documents/fMRIClusterCorrect/stats/CNP_eps_08.mat');
+% load('/Users/aquino/projects/modelling_comparisons/figures_ms/CNP_eps_08.mat')
 subjects_restricted=metadata.ParticipantID;
 
 % Now do the subject pruning:
 subjects_restricted=subjects_restricted(setdiff(1:length(subjects_restricted),[5 7]));
 % remaining_subs=1:length()
-
-load('/Users/aquino/projects/modelling_comparisons/empirical_data/UCLA_time_series_four_groups.mat')
+load('UCLA_time_series_four_groups.mat')
+% load('/Users/aquino/projects/modelling_comparisons/empirical_data/UCLA_time_series_four_groups.mat')
+load('/Users/kevinaquino/projects/modelling_gustavo/empirical_data/UCLA_time_series_four_groups.mat')
 subject_ids_restricted=find(ismember(metadata.participant_id,subjects_restricted));
 C=ADJ_average;C=C + C';C=C/max(C(:))*0.2;
 % Have to leave out another subject too
