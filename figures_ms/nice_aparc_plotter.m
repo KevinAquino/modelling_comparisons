@@ -1,4 +1,7 @@
-function [square_mat,inds,total_order,all_regions] = nice_aparc_plotter(img,cax,colLines)
+function [square_mat,inds,total_order,all_regions] = nice_aparc_plotter(img,cax,colLines,lineWidth)
+	if(nargin<4)
+		lineWidth=2;
+	end
 % APARC parcellation
 	% Here grab the names:
 	[verts map_data ctab] = read_annotation('/Applications/freesurfer/subjects/fsaverage/label/lh.aparc.annot');
@@ -40,15 +43,15 @@ function [square_mat,inds,total_order,all_regions] = nice_aparc_plotter(img,cax,
 	imagesc(img(total_order,total_order))
 	hold on;
 	for h=1:length(ind_line),
-		line([ind_line(h) ind_line(h)], [0.5 82.5],'lineWidth',2,'Color',colLines);
-		line([0.5 82.5],[ind_line(h) ind_line(h)],'lineWidth',2,'Color',colLines);
+		line([ind_line(h) ind_line(h)], [0.5 82.5],'lineWidth',lineWidth,'Color',colLines);
+		line([0.5 82.5],[ind_line(h) ind_line(h)],'lineWidth',lineWidth,'Color',colLines);
 
-		line([ind_line(h)+41 ind_line(h)+41], [0.5 82.5],'lineWidth',2,'Color',colLines);
-		line([0.5 82.5],[ind_line(h)+41 ind_line(h)+41],'lineWidth',2,'Color',colLines);
+		line([ind_line(h)+41 ind_line(h)+41], [0.5 82.5],'lineWidth',lineWidth,'Color',colLines);
+		line([0.5 82.5],[ind_line(h)+41 ind_line(h)+41],'lineWidth',lineWidth,'Color',colLines);
 	end
 
-	line([0.5 0.5], [0.5 82.5],'lineWidth',2,'Color',colLines);
-	line([0.5 82.5],[0.5 0.5],'lineWidth',2,'Color',colLines);
+	line([0.5 0.5], [0.5 82.5],'lineWidth',lineWidth,'Color',colLines);
+	line([0.5 82.5],[0.5 0.5],'lineWidth',lineWidth,'Color',colLines);
 	axis image;
 	% colormap(cmap);
 	caxis(cax);
