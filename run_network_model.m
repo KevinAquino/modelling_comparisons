@@ -50,6 +50,6 @@ if(~isdir(folder))
 	system(['mkdir -p ',folder]);
 end
 
-save([folder,'/','simulation','.mat'],'G','ts_simulated');
+save([folder,'/','simulation','.mat'],'simulation_params','ts_simulated');
 
 % There is a slight issue -- FCD can be calculated in different ways -- either using the phases (as Gustavo is using now) or by standard FCD measures, will have to work out later.
