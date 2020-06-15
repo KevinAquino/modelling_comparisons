@@ -3,7 +3,7 @@
 % This calculates 1 instance and you can feed in previously calculated J values
 % i.e. the balancing terms. This is there because this takes too long to do each
 % time. 
-function bds = balanced_EI_model(C,we,J)
+function bds = balanced_EI_model(C,we,J,total_time,TR)
     if(nargin<3)
         disp('Balancing the model - can take a long time');
         J=Balance_J(we,C);
@@ -16,8 +16,8 @@ function bds = balanced_EI_model(C,we,J)
 
     load_BEI_parameters;
 
-    % Have to translate this better
-    Tmaxneuronal=100000*3;
+    % Add an extra 10 seconds to the simulation for equilibration
+    Tmaxneuronal=(total_time+10)/dtt;
 
 
     
@@ -36,8 +36,7 @@ function bds = balanced_EI_model(C,we,J)
         sn(sn<0) = 0;
         sg=sg+dt*(-sg/taog+rg./1000.)+sqrt(dt)*sigma_factor*randn(N,1);
         sg(sg>1) = 1;
-        sg(sg<0) = 0;
-        j=j+1;
+        sg(sg<0) = 0;        
         if abs(mod(t,1))<0.01
             neuro_act(nn,:)=rn';
             nn=nn+1;
@@ -58,7 +57,11 @@ function bds = balanced_EI_model(C,we,J)
         BOLD_act(:,nnew) = B;
     end
 
-    bds=BOLD_act(2000:2000:end,:);
+    BOLD_sampling=floor(TR/1e-3);
+    bds=BOLD_act(1:BOLD_sampling:end,:);
 
+    % Now retrive the total volumes, removing the first 5
+    nFrames=floor(total_time/TR);
+    bds=bds(5:end,:);
     
 
