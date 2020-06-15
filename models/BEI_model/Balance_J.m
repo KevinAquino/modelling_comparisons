@@ -6,9 +6,11 @@ function Joptim=Balance_J(we,C)
   tmax1=10000;
   tspan1=0:dt:tmax1;
   % Load up all the parameters in a seperate file.  
+  disp(['Estimating solution for we=',num2str(we),' Analytically']);
   load_BEI_parameters;
   % Initial estimates for J
   J=Balance_J_analytic(we,C);
+  disp(['Now Estimating solution for we=',num2str(we),' Numerically']);
   % Test  
   curr=zeros(tmax1,Nnew);
   % Change in the parameters:
