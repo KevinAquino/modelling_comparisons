@@ -26,7 +26,7 @@ switch simulation_params.MODEL
 	case 'HOPF+HETEROGENOUS',
 		% Here look at the heterogenous 
 		folder = [fmri_dataset,'/results/HOPF+HETEROGENOUS'];
-		[ts_simulated_all,grandFCcorr,bifpar,FCD] = run_hopf_model_heterogenous_bif(sc_matrix,time_series,G,folder);
+		[ts_simulated,grandFCcorr,bifpar,FCD] = run_hopf_model_heterogenous_bif(sc_matrix,time_series,G,folder);
 		% Will have to instead have something more uniform, but for now keep this structure.
 
 	case 'DECO+WANG+BALANCED',
@@ -40,13 +40,13 @@ switch simulation_params.MODEL
 		% Will have to work through this as well. 
 		% This here works now -- I think however, will have to implement this version of the FCD as well and add it all together up to the final FCD.
 		folder = [fmri_dataset,'/results/HOPF+ANEC'];
-		[ts_simulated_all,grandFCcorr,FCD] = run_hopf_model_heterogenous_edge_bif(sc_matrix,time_series,G,folder);
-		
+		[ts_simulated,grandFCcorr,FCD] = run_hopf_model_heterogenous_edge_bif(sc_matrix,time_series,G,folder);
+
 	case 'NOISY+DEGREE',
 		% Here is simply the noise and degree model
 		folder = [fmri_dataset,'/results/NOISY+DEGREE'];
 		% Maybe here run it then save it appropriately.
-		[ts_simulated_all,FCcorr,grandFCcorr,FCD] =run_noisy_degree_model(sc_matrix,time_series,G,folder);
+		ts_simulated = run_noisy_degree_model(empirical_params,simulation_params);
 end
 
 
