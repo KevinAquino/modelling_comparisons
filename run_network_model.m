@@ -11,7 +11,7 @@ function run_network_model(empirical_params,simulation_params)
 % now the first thing one has to do is to check the model
 % Another thing -- we have to consider actually adding GSR to the models as well. 
 
-switch empirical_params.MODEL
+switch simulation_params.MODEL
 	case 'HOPF+GLOBAL',
 		% Here it is the hopf global model i.e. setting a=-0.01.
 		folder = [fmri_dataset,'/results/HOPF+GLOBAL'];
