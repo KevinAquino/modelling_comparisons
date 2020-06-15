@@ -1,5 +1,6 @@
 % Structural connectivity test:
-function [xs] = run_hopf_no_ts(C,G,f_diff,TR)
+function [xs] = run_hopf_no_ts(C,G,f_diff,TR,total_time)
+	disp(['Running the HOPF model for G=',num2str(G)]);
 	% Normalization of C
 	C=C/max(C(:))*0.2;
 	% Find the number of nodes
@@ -7,8 +8,9 @@ function [xs] = run_hopf_no_ts(C,G,f_diff,TR)
 	wC = C*G;
 	sig=0.04;
 	dt=0.1;
-	% TR=2;
-	Tmax=1200;
+	
+	% here just adjusting how many volumes one needs for the simulation
+	Tmax=ceil(total_time/TR);
 
 
 	% Definition of node frequencies & conversion to radians	
