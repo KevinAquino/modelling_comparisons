@@ -10,6 +10,7 @@ function run_network_model(empirical_params,simulation_params)
 
 % now the first thing one has to do is to check the model
 % Another thing -- we have to consider actually adding GSR to the models as well. 
+fmri_dataset=empirical_params.fmri_dataset;
 
 switch simulation_params.MODEL
 	case 'HOPF+GLOBAL',
