@@ -2,7 +2,7 @@
 %
 
 function [ts_simulated_all] = run_BTF_model(empirical_params,simulation_params)
-
+	
 	% This is the parameter within one segment of the BTF run - its run in 2s chunks
 	SIM_time=2;
 	% Extra iterations in the BTF code to remove transients, i.e. run another 4*TR times, and remove the first 4TRs worth
@@ -21,7 +21,10 @@ function [ts_simulated_all] = run_BTF_model(empirical_params,simulation_params)
 	total_time=empirical_params.TR*simulation_params.N_FRAMES;
 	% First need to work out if the balanced parameters  have been calculated
 	N_iterations=ceil(simulation_params.N_FRAMES*empirical_params.TR/SIM_time)+EXTRA_ITERATIONS;
-
+	% Testing parameter 
+	if(simulation_params.test)
+		N_iterations=4;
+	end
 
 	if(simulation_params.batch.on)
 		% Run the BTF for 1 complete run

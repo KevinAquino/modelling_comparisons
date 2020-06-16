@@ -5,7 +5,7 @@
 
 % Here we have the four processing streams that we want to model the responses to
 fmri_dataset = 'UCLA'
-test=0;
+simulation_params.test=0; % Little testing parameter that can be passed on if needed
 
 switch fmri_dataset
 	case 'UCLA'
@@ -57,7 +57,7 @@ simulation_params.N_FRAMES=n_volumes;
 MODELS={'BTF'};
 
 
-if(test)
+if(simulation_params.test)
 	% Test case variables
 	simulation_params.G = [1 2 3];
 	simulation_params.N_RUNS=5;
