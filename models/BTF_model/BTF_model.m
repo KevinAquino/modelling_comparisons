@@ -2,7 +2,7 @@
 % albeit for a handful of very important parameters! These made all the difference actually, so here we are making them
 % explicitly defined in this regime. 
 
-function [bold_estimate,Vin] = BTF_model(C,cparam,N_iterations)
+function [bold_estimate,Vin] = BTF_model(C,cparam,N_iterations,TR)
 bold_estimate=[];
 
 % Here is how long each simulation segment is being run for, there is no point doing the whole thing as it will kill memory
@@ -109,14 +109,14 @@ dsRate=100;
 
 time = 0:dsRate*dt:(size(Vin,2)-1)*dt;
 
-% Here is the Boynton double gamma HRF
-modelHrf = gampdf(time/1e3, 6, 1) - gampdf(time/1e3, 16, 1)/6;		
-% Re-ordering the hrf so the convolution actually makes sense:
-hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
+% Inputs to the BOLD model
+z=Vin(:,1:dsRate:end);
 
-% Here perform the convolutions.
+% Here change it so we use the BOLD_model instead
+
 for n=1:size(C,1),
-	bold_estimate(n,:) = conv(Vin(n,1:dsRate:end),hrf,'same');
+	bold_estimate(n,:) = BOLD_model(z(n,:),time,TR);
 end
 
-
+% Transpose for convention with the rest of the code.
+bold_estimate = bold_estimate';

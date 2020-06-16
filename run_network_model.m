@@ -20,8 +20,8 @@ switch simulation_params.MODEL
 
 	case 'BTF',
 		% Here will have to grab the BTF model and then look at stuff
-		folder = [fmri_dataset,'/results/BTF'];
-		FCD = [];ts_simulated_all = [];grandFCcorr = [];
+		folder = [fmri_dataset,'/results/BTF'];		
+		[ts_simulated_all] = run_BTF_model(empirical_params,simulation_params)
 
 	case 'HOPF+HETEROGENOUS',
 		% Here look at the heterogenous 
@@ -53,6 +53,15 @@ end
 system(['mkdir -p ',folder]);
 
 
-save([folder,'/','simulation','.mat'],'simulation_params','ts_simulated');
+
+if(simulation_params.batch.on)
+	G_index = simulation_params.batch.g_ind;
+	N_run_model = simulation_params.batch.run;
+	save([folder,'/','G_ind_',num2str(G_index),'_RUN_',num2str(N_run_model),'simulation','.mat'],'simulation_params','ts_simulated');
+else
+	save([folder,'/','simulation','.mat'],'simulation_params','ts_simulated');
+end
+
+
 
 % There is a slight issue -- FCD can be calculated in different ways -- either using the phases (as Gustavo is using now) or by standard FCD measures, will have to work out later.
