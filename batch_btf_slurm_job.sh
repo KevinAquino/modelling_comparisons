@@ -8,7 +8,8 @@
 #SBATCH --export=ALL
 #SBATCH --mem-per-cpu=24000
 #SBATCH -A kg98
-#SBATCH --array=1-999
+# SBATCH --array=1-999
+#SBATCH --array=1000-1900
 #SBATCH --mail-user=kevin.aquino@monash.edu
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-type=END
