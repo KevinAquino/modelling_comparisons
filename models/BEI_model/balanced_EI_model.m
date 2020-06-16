@@ -44,7 +44,7 @@ function bds = balanced_EI_model(C,we,J,total_time,TR)
     end
     nn=nn-1;
 
-    %%%% BOLD empirical
+    % %%%% BOLD empirical
     % Friston BALLOON MODEL
     T = nn*dtt; % Total time in seconds
 
@@ -63,5 +63,22 @@ function bds = balanced_EI_model(C,we,J,total_time,TR)
     % Now retrive the total volumes, removing the first 5
     nFrames=floor(total_time/TR);
     bds=bds(5:end,:);
-    
+    % keyboard % Change this entirely
 
+    % % Total time for the neural activity
+    % time = 0:dtt:nn*dtt;
+    % % Conversion to ms
+    % time = time*1e3;
+    % % Now downsample to 0.1s
+    % dsRate=100;
+    % % Inputs to the BOLD model
+    % z=neuro_act(1:dsRate:end,:);
+    % time=time(1:dsRate:end);
+
+    % % Here change it so we use the BOLD_model instead
+
+    % for n=1:size(C,1),
+    %     bold_estimate(n,:) = BOLD_model(z(:,n),time,TR);
+    % end
+
+    % bds=bold_estimate(:,5:end)';

@@ -97,26 +97,28 @@ for n=1:N_iterations,
 end
 
 
-% Downsample the responses to 100 ms resolution for the responses and peform a convolution. Note that the Balloon-model
-% is not really needed, as the responses are in the linear regime, it just adds complexity to the modelling, and although
-% the Balloon model displays some comparable characteristics of the bold_estimate response, it is not a model of reality. As shown
-% by Hillman et al 2007, and should be replaced by a better model e.g. Aquino et al. 2012, Ress et al 2013.
-dt = 1;
+% keyboard
 
-% I have downsampled the responses here rather crudely -- need to do this properly by filtering then downsampling.
-% not sure if this will make a difference. 
-dsRate=100;
 
-time = 0:dsRate*dt:(size(Vin,2)-1)*dt;
+% %%%% BOLD empirical
+% Friston BALLOON MODEL
+dt = 1e-3;
+T =(size(Vin,2)-1)*dt;  % Total time in seconds
+neuro_act=Vin(:,1:end)';
 
-% Inputs to the BOLD model
-z=Vin(:,1:dsRate:end);
+B = BOLD(T,neuro_act(:,1)'); 
+BOLD_act = zeros(length(B),size(C,1));
+BOLD_act(:,1) = B;
 
-% Here change it so we use the BOLD_model instead
-
-for n=1:size(C,1),
-	bold_estimate(n,:) = BOLD_model(z(n,:),time,TR);
+for nnew=2:size(C,1)
+    B = BOLD(T,neuro_act(:,nnew));
+    BOLD_act(:,nnew) = B;
 end
 
-% Transpose for convention with the rest of the code.
-bold_estimate = bold_estimate';
+BOLD_sampling=floor(TR/1e-3);
+bds=BOLD_act(1:BOLD_sampling:end,:);
+
+% Now retrive the total volumes, removing the first 5
+% nFrames=floor(T/TR);
+bold_estimate=bds(5:end,:);
+
