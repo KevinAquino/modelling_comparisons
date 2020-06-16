@@ -8,6 +8,7 @@
 #SBATCH --mem-per-cpu=24000
 #SBATCH -A kg98
 #SBATCH --array=1-2160
+#SBATCH --job-name BTF
 
 FILE='BTF_batch_list.txt'
 
