@@ -11,7 +11,7 @@ switch fmri_dataset
 	case 'UCLA'
 		% Load up the previously calcualted QC-FC metrics (From Aquino et al. 2019)
 		% load('~/Documents/fMRIClusterCorrect/stats/CNP_eps_08.mat');
-		load('/Users/aquino/projects/modelling_comparisons/figures_ms/CNP_eps_08.mat')
+		load('figures_ms/CNP_eps_08.mat')
 		subjects_restricted=metadata.ParticipantID;
 		% Now do the subject pruning:
 		subjects_restricted=subjects_restricted(setdiff(1:length(subjects_restricted),[5 7]));
