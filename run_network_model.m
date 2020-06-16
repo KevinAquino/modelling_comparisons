@@ -46,9 +46,8 @@ switch simulation_params.MODEL
 end
 
 
-if(~isdir(folder))
-	system(['mkdir -p ',folder]);
-end
+system(['mkdir -p ',folder]);
+
 
 save([folder,'/','simulation','.mat'],'simulation_params','ts_simulated');
 
