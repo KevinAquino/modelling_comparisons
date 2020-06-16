@@ -51,7 +51,10 @@ end
 
 
 system(['mkdir -p ',folder]);
-
+% If no batching was induced/setup make sure it doesnt get tested
+if(~isfield(simulation_params,'batch'))
+	simulation_params.batch.on=0;
+end
 
 
 if(simulation_params.batch.on)
@@ -59,7 +62,7 @@ if(simulation_params.batch.on)
 	N_run_model = simulation_params.batch.run;
 	save([folder,'/','G_ind_',num2str(G_index),'_RUN_',num2str(N_run_model),'simulation','.mat'],'simulation_params','ts_simulated');
 else
-	save([folder,'/','simulation','.mat'],'_simulation_params','ts_simulated');
+	save([folder,'/','simulation','.mat'],'simulation_params','ts_simulated');
 end
 
 
