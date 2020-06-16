@@ -1,5 +1,6 @@
 #!/bin/env bash
 
+#SBATCH --job-name=BTF
 #SBATCH --account=kg98
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -7,8 +8,11 @@
 #SBATCH --export=ALL
 #SBATCH --mem-per-cpu=24000
 #SBATCH -A kg98
-#SBATCH --array=1-2160
-#SBATCH --job-name BTF
+#SBATCH --array=1-999
+#SBATCH --mail-user=kevin.aquino@monash.edu
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-type=END
+
 
 FILE='BTF_batch_list.txt'
 
