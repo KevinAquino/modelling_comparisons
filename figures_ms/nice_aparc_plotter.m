@@ -2,6 +2,12 @@ function [square_mat,inds,total_order,all_regions] = nice_aparc_plotter(img,cax,
 	if(nargin<4)
 		lineWidth=2;
 	end
+	if(nargin<3)
+		colLines='black';
+	end
+	if(nargin<2)
+		cax=[0 1];
+	end
 % APARC parcellation
 	% Here grab the names:
 	[verts map_data ctab] = read_annotation('/Applications/freesurfer/subjects/fsaverage/label/lh.aparc.annot');
