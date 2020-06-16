@@ -2,8 +2,8 @@
 % albeit for a handful of very important parameters! These made all the difference actually, so here we are making them
 % explicitly defined in this regime. 
 
-function [Vin,BOLD] = BTF_model(C,cparam,N_iterations)
-BOLD=[];
+function [bold_estimate,Vin] = BTF_model(C,cparam,N_iterations)
+bold_estimate=[];
 
 % Here is how long each simulation segment is being run for, there is no point doing the whole thing as it will kill memory
 simSegmentTime = 2000;
@@ -99,7 +99,7 @@ end
 
 % Downsample the responses to 100 ms resolution for the responses and peform a convolution. Note that the Balloon-model
 % is not really needed, as the responses are in the linear regime, it just adds complexity to the modelling, and although
-% the Balloon model displays some comparable characteristics of the BOLD response, it is not a model of reality. As shown
+% the Balloon model displays some comparable characteristics of the bold_estimate response, it is not a model of reality. As shown
 % by Hillman et al 2007, and should be replaced by a better model e.g. Aquino et al. 2012, Ress et al 2013.
 dt = 1;
 
@@ -116,7 +116,7 @@ hrf = circshift(modelHrf.',round(length(modelHrf)/2)).';
 
 % Here perform the convolutions.
 for n=1:size(C,1),
-	BOLD(n,:) = conv(Vin(n,1:dsRate:end),hrf,'same');
+	bold_estimate(n,:) = conv(Vin(n,1:dsRate:end),hrf,'same');
 end
 
 
