@@ -26,7 +26,7 @@ switch simulation_params.MODEL
 	case 'HOPF+HETEROGENOUS',
 		% Here look at the heterogenous 
 		folder = [fmri_dataset,'/results/HOPF+HETEROGENOUS'];
-		[ts_simulated,grandFCcorr,bifpar,FCD] = run_hopf_model_heterogenous_bif(sc_matrix,time_series,G,folder);
+		[ts_simulated,simulation_params] = run_hopf_heterogenous_MODEL(empirical_params,simulation_params);		
 		% Will have to instead have something more uniform, but for now keep this structure.
 
 	case 'DECO+WANG+BALANCED',
