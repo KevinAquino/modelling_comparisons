@@ -1,5 +1,5 @@
 % Structural connectivity test:
-function [xs] = run_hopf_no_ts(C,G,f_diff,TR,total_time)
+function [xs] = run_hopf_no_ts(C,G,f_diff,TR,total_time,a)	
 	disp(['Running the HOPF model for G=',num2str(G)]);
 	% Normalization of C
 	C=C/max(C(:))*0.2;
@@ -18,7 +18,9 @@ function [xs] = run_hopf_no_ts(C,G,f_diff,TR,total_time)
 	omega(:,1) = -omega(:,1);
 
 	% Defintion of homgeneous a parameter
-	a=-0.01*ones(N,2);	
+	if(nargin<6)		
+		a=-0.01*ones(N,2);	
+	end
 
 	% Solve the Hopf model, model parameters
 	xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);
