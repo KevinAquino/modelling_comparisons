@@ -27,20 +27,24 @@ function [ts_simulated_all,simulation_params] = run_hopf_ANEC_MODEL(empirical_pa
 	% Store this for future use
 	simulation_params.f_peak=f_peak;
 	
+	% Here now is the Hopf ANEC optimization, this optimization can take a while (not too long though!)
+	[~,Coptim]=hopf_optimization_ANEC(C,G,f_peak,empirical_params.time_series(:,:,:,simulation_params.preproMethod),empirical_params.TR,total_time,simulation_params.UseGSR);
+	simulation_params.ANEC_C = Coptim;
+	% Note that this model is a homogenous Hopf bifurcation.
 
-
-	% % After these have been calculated (takes a long time) the simulation is made for multiple runs
-	% for g_ind=1:length(G),		
-	% 	for nr=1:simulation_params.N_RUNS,
-	% 		disp(['Run ',num2str(nr),'/',num2str(simulation_params.N_RUNS),'...']);
-	% 		xs = run_hopf_no_ts(C,G(g_ind),f_peak,empirical_params.TR,total_time,simulation_params.bifpar(:,g_ind));
-	% 		if(simulation_params.UseGSR)
-	% 			% Here using the parameters we got and do GSR as the data was fit with GSR
-	% 			xs = RegressNoiseSignal(xs.',mean(xs.')).';
-	% 		end
-	% 		ts_simulated_all(:,:,g_ind,nr) = xs;
-	% 	end 
-	% end
+	% After these have been calculated (takes a long time) the simulation is made for multiple runs
+	for g_ind=1:length(G),		
+		for nr=1:simulation_params.N_RUNS,
+			disp(['Run ',num2str(nr),'/',num2str(simulation_params.N_RUNS),'...']);
+			% Running the default Hopf homogenous model now with the ANEC derived matrix.
+			xs = run_hopf_no_ts(squeeze(Coptim(g_ind,:,:)),G(g_ind),f_peak,empirical_params.TR,total_time);		
+			if(simulation_params.UseGSR)
+				% Here using the parameters we got and do GSR as the data was fit with GSR
+				xs = RegressNoiseSignal(xs.',mean(xs.')).';
+			end
+			ts_simulated_all(:,:,g_ind,nr) = xs;
+		end 
+	end
 
 	% disp(['Finished Hopf homogenous simulation.']);
 end

@@ -12,7 +12,8 @@ function [ts_simulated,Coptim,MSE_run] = hopf_optimization_ANEC(C,G,f_diff,time_
     Tmax=Tmax*NSUB; % This just ensures a longer time period for better estimation of the phases
 
     % Calculate the peak frequency - this is done outside the function
-    omega = repmat(2*pi*f_diff',1,2); omega(:,1) = -omega(:,1);
+    omega = repmat(2*pi*f_diff,1,2); %angular velocity
+    omega(:,1) = -omega(:,1);
 
     % Setting of the simulation parameters
     dt=0.1*TR/2;
@@ -34,8 +35,8 @@ function [ts_simulated,Coptim,MSE_run] = hopf_optimization_ANEC(C,G,f_diff,time_
     %%
     WE=G;
     Cnew=C;
-    % ITER=1:30;
-    ITER=[];
+    ITER=1:30;
+    % ITER=[];
 
     iwe=1;
     for we=WE,        
@@ -50,12 +51,20 @@ function [ts_simulated,Coptim,MSE_run] = hopf_optimization_ANEC(C,G,f_diff,time_
             wC = we*Cnew;
             sumC = repmat(sum(wC,2),1,2); % for sum Cij*xj
             if length(ITER)>1
+                if(we==0)
+                    disp(['G=',num2str(we),' cant be optimized as C==0, skipping..']);
+                    break;
+                end
                 % keyboard
             	% Solve the hopf ode/sde:
 
             	% Solve the HOPF model here.
                 % keyboard
+
             	xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);
+                if(GSR_flag)
+                    xs = RegressNoiseSignal(xs.',mean(xs.')).';
+                end
             	nn = size(xs,2);
                 %%%%
                 BOLD=xs';
@@ -97,7 +106,10 @@ function [ts_simulated,Coptim,MSE_run] = hopf_optimization_ANEC(C,G,f_diff,time_
         %%%%%%%%%%%%%%
         %%% Final simulation to save for further use.
         xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);    
-        
+        if(GSR_flag)
+            xs = RegressNoiseSignal(xs.',mean(xs.')).';
+        end
+                
         iwe=iwe+1;
         ts_simulated(:,:,iwe) = xs;
     end
