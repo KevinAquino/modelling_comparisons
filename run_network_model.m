@@ -40,7 +40,7 @@ switch simulation_params.MODEL
 		% Will have to work through this as well. 
 		% This here works now -- I think however, will have to implement this version of the FCD as well and add it all together up to the final FCD.
 		folder = [fmri_dataset,'/results/HOPF+ANEC'];
-		[ts_simulated,grandFCcorr,FCD] = run_hopf_model_heterogenous_edge_bif(sc_matrix,time_series,G,folder);
+		[ts_simulated,simulation_params] = run_hopf_ANEC_MODEL(empirical_params,simulation_params);	
 
 	case 'NOISY+DEGREE',
 		% Here is simply the noise and degree model
