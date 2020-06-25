@@ -14,6 +14,8 @@ for k=1:3,
 	FCD_data_all(:,k)= FCD_d;
 end
 
+save('figures_ms/FCD_data.mat','FCD_data_all');
+
 % Calculation of FC means:
 for k=1:3
 	for j=1:size(time_series,3),

@@ -8,7 +8,7 @@ function [ts_simulated,Coptim,MSE_run] = hopf_optimization_ANEC(C,G,f_diff,time_
 
 
     % Grabbing all the parameters from the time series
-    [Tmax,N,NSUB] = size(time_series);
+    [Tmax,N,NSUB] = size(time_series);    
     Tmax=Tmax*NSUB; % This just ensures a longer time period for better estimation of the phases
 
     % Calculate the peak frequency - this is done outside the function
@@ -58,8 +58,7 @@ function [ts_simulated,Coptim,MSE_run] = hopf_optimization_ANEC(C,G,f_diff,time_
                 % keyboard
             	% Solve the hopf ode/sde:
 
-            	% Solve the HOPF model here.
-                % keyboard
+            	% Solve the HOPF model here.                
 
             	xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);
                 if(GSR_flag)

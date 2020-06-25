@@ -31,7 +31,6 @@ sys.pardef = bdSetValue(sys.pardef,'Gion',Gion);
 
 aee = 0.36;% This here is the value from honey et al. 
 sys.pardef = bdSetValue(sys.pardef,'aee',aee);
-
 % Solve the model for 2 seconds to remove transients
 sol = bdSolve(sys,[0 simSegmentTime],@ode23);
 
