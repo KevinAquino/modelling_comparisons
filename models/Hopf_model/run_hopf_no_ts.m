@@ -20,7 +20,6 @@ function [xs] = run_hopf_no_ts(C,G,f_diff,TR,total_time,a)
 	% Defintion of homgeneous a parameter
 	if(nargin<6)		
 		a=-0.01*ones(N,2);	
-	end
-
+	end	
 	% Solve the Hopf model, model parameters
 	xs = solve_hopf_ode(omega,a,wC,dt,Tmax,TR,sig);

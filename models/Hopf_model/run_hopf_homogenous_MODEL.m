@@ -21,10 +21,12 @@ function ts_simulated_all = run_hopf_homogenous_MODEL(empirical_params,simulatio
 	simulation_params.f_peak=f_peak;
 	
 	% After these have been calculated (takes a long time) the simulation is made for multiple runs
+	N=size(C,1);
+	a=0*ones(N,2);
 	for g_ind=1:length(G),		
 		for nr=1:simulation_params.N_RUNS,
 			disp(['Run ',num2str(nr),'/',num2str(simulation_params.N_RUNS),'...']);			
-			ts_simulated_all(:,:,g_ind,nr) = run_hopf_no_ts(C,G(g_ind),f_peak,empirical_params.TR,total_time);
+			ts_simulated_all(:,:,g_ind,nr) = run_hopf_no_ts(C,G(g_ind),f_peak,empirical_params.TR,total_time,a);
 		end 
 	end
 	disp(['Finished Hopf homogenous simulation.']);
