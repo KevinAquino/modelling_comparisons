@@ -28,7 +28,7 @@ function [ts_simulated_all] = run_BTF_model(empirical_params,simulation_params)
 
 	if(simulation_params.batch.on)
 		% Run the BTF for 1 complete run
-		G_index = simulation_params.batch.g_ind;
+		G_index = simulation_params.batch.g_ind;		
 		ts_simulated_all = BTF_model(C,G(G_index)*BTF_normFactor,N_iterations,TR);
 	else
 		% If there is no batching then will have to run this for all global coupling values. this will take a very long time ~40 days for 100 subjects X 20 G values, 300 seconds.

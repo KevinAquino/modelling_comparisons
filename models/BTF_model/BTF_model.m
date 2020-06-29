@@ -20,6 +20,7 @@ sys.pardef=bdSetValue(sys.pardef,'deltaV',0.65*ones(size(deltaV)));
 sys.pardef=bdSetValue(sys.pardef,'deltaZ',0.65*ones(size(deltaZ)));
 
 % Change the initial conditions to be consistent with prev. work
+rng('shuffle');
 nnodes=size(C,1);
 sys.vardef = [ struct('name','V', 'value',(rand(nnodes,1)-0.5)*0.8-0.2);      % Mean firing rate of excitatory cells
                struct('name','W', 'value',(rand(nnodes,1)-0.5)*0.6+0.3);      % Proportion of open K channels
