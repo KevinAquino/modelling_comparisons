@@ -2,7 +2,12 @@
 % albeit for a handful of very important parameters! These made all the difference actually, so here we are making them
 % explicitly defined in this regime. 
 
-function [bold_estimate,Vin] = BTF_model(C,cparam,N_iterations,TR)
+function [bold_estimate,Vin] = BTF_model(C,cparam,N_iterations,TR,randSeed)
+	if(nargin<5)
+		rng('shuffle');
+	else
+		rng(randSeed);
+	end
 bold_estimate=[];
 
 % Here is how long each simulation segment is being run for, there is no point doing the whole thing as it will kill memory
@@ -20,7 +25,7 @@ sys.pardef=bdSetValue(sys.pardef,'deltaV',0.65*ones(size(deltaV)));
 sys.pardef=bdSetValue(sys.pardef,'deltaZ',0.65*ones(size(deltaZ)));
 
 % Change the initial conditions to be consistent with prev. work
-rng('shuffle');
+
 nnodes=size(C,1);
 sys.vardef = [ struct('name','V', 'value',(rand(nnodes,1)-0.5)*0.8-0.2);      % Mean firing rate of excitatory cells
                struct('name','W', 'value',(rand(nnodes,1)-0.5)*0.6+0.3);      % Proportion of open K channels
