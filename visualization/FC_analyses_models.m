@@ -21,9 +21,10 @@ theColors = tempColors(col_vec);
 savePrefix='figures_ms/';
 
 % Now look for every model.
-MODELS={'DECO+WANG+BALANCED','HOPF+GLOBAL','NOISY+DEGREE','BTF'};%,'HOPF+HETEROGENOUS+GSR','HOPF+HETEROGENOUS+DICER'};
+% MODELS={'DECO+WANG+BALANCED','HOPF+GLOBAL','NOISY+DEGREE','BTF'};%,'HOPF+HETEROGENOUS+GSR','HOPF+HETEROGENOUS+DICER'};
 % MODELS={'HOPF+HETEROGENOUS+GSR','HOPF+HETEROGENOUS+DICER'};
 % MODELS={'HOPF+ANEC'};
+MODELS={'BTF'};
 
 for nm=1:length(MODELS),
 	MODEL=MODELS{nm};
@@ -123,3 +124,21 @@ for nm=1:length(MODELS),
 	% legend(noiseOptions);
 	% colormap(cell2mat(theColors(1:3)))
 end
+
+
+% Here just show the same format the different data results:
+
+
+figure('Color','white');
+for j=[1,3],
+	subplot(3,1,j)
+	nice_aparc_plotter(mFC(:,:,j),0.7*[-1 1],'black',1);
+	if(j==3)
+		caxis(0.3*[-1 1]);
+	end
+end
+subplot(3,1,2)
+[~,inds_reg,total_order,all_regions] = nice_aparc_plotter(mFC(:,:,2),0.3*[-1 1],'black',1);
+colormap(redwhitebluemap(100));
+
+savePng(gcf,[savePrefix,'UCLA_DATA_FC_MATS'],[20 60]);
