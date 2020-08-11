@@ -1,6 +1,8 @@
-function summary_plot(ts_simulated_all,G,show_g,ve_data,GS,savePrefix)
+function summary_plot(ts_simulated_all,G,show_g,ve_data,GS,savePrefix,simulation_iteration)
 		
-	simulation_iteration=1;	
+	if(nargin<7)
+		simulation_iteration=1;	
+	end
 
 	% Calculate VE1 for all simulations
 	for ns=1:size(ts_simulated_all,4),
@@ -11,6 +13,8 @@ function summary_plot(ts_simulated_all,G,show_g,ve_data,GS,savePrefix)
 			VE1_all(j,ns) = expl(1);
 		end
 	end
+	
+
 	VE1=mean(VE1_all,2);
 	SEM_V1=std(VE1_all,[],2)/sqrt(size(ts_simulated_all,4));
 	STD_V1=std(VE1_all,[],2);	
@@ -37,7 +41,7 @@ function summary_plot(ts_simulated_all,G,show_g,ve_data,GS,savePrefix)
 
 	for j=1:5,
 		subplot(1,5,j);
-		t1=ts_simulated_all(:,:,show_g(j))';
+		t1=ts_simulated_all(:,:,show_g(j),simulation_iteration)';
 		% GSR IF NEEDED
 		if(GS);t1=gsr_model(t1);end % GSR MODEL
 		nice_aparc_plotter(corr(t1'),[-1 1],'black',0.5);
