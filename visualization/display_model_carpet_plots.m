@@ -15,8 +15,11 @@ for nm=1:length(MODELS),
 	show_g=[1 6 11 16 20];
 	if(strcmp(MODEL,'BTF'))
 		show_g=[1 6 11 15 16];
+		show_sim=4;
+	else
+		show_sim=1;
 	end
-	summary_plot(ts_simulated,simulation_params.G,show_g,mean_VE1,0,['figures_ms/',data,'_',MODEL,'_NO_GSR']);
+	summary_plot(ts_simulated,simulation_params.G,show_g,mean_VE1,0,['figures_ms/',data,'_',MODEL,'_NO_GSR'],show_sim);
 end
 
 
@@ -32,5 +35,5 @@ for nm=1:length(MODELS),
 	if(strcmp(MODEL,'BTF'))
 		show_g=[1 6 11 15 16];
 	end
-	summary_plot(ts_simulated,simulation_params.G,show_g,mean_VE1,1,['figures_ms/',data,'_',MODEL,'_GSR']);
+	summary_plot(ts_simulated,simulation_params.G,show_g,mean_VE1,1,['figures_ms/',data,'_',MODEL,'_GSR'],show_sim);
 end
