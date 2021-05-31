@@ -13,5 +13,14 @@ This work is licensed under a
 
 
 # modelling_comparisons
-
+<img width="523" alt="image" style="float: right;" src="https://user-images.githubusercontent.com/6628199/120135202-15275b00-c213-11eb-83f7-88634c36086b.png">
 A set of scripts to do a large comparisons of different models with different preprocessing strategies.
+
+
+# How to run the code:
+
+Will update this section soon!
+
+
+# Questions:
+If you have any questions about the model, please leave an issue in the repository. 
