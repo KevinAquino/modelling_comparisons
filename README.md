@@ -13,7 +13,9 @@ This work is licensed under a
 
 
 # modelling_comparisons
-<img width="523" alt="image" style="float: right;" src="https://user-images.githubusercontent.com/6628199/120135202-15275b00-c213-11eb-83f7-88634c36086b.png">
+<p align="center">
+  <img width="523" alt="image" src="https://user-images.githubusercontent.com/6628199/120135202-15275b00-c213-11eb-83f7-88634c36086b.png">
+</p>
 A set of scripts to do a large comparisons of different models with different preprocessing strategies.
 
 
